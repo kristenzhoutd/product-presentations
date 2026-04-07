@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMEA QBR Product Update — April 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --soft-purple: #847BF2;
+  --orchid: #C466D4;
+  --sky-blue: #80B3FA;
+  --light-pink: #F3CCF2;
+  --peach: #FFE2BD;
+  --coral: #FDB893;
+  --indigo: #2D40AA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--soft-purple);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--soft-purple);
+  max-width: 640px;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body { font-size: 14.5px; line-height: 1.72; color: var(--black); }
+.body ul { padding-left: 22px; margin: 6px 0; }
+.body li { list-style: none; position: relative; padding-left: 4px; margin-bottom: 5px; }
+.body li::before { content: ''; position: absolute; left: -16px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--soft-purple); }
+
+.col-hdr {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--soft-purple); margin-bottom: 8px;
+}
+
+.metric { font-size: clamp(36px, 4vw, 56px); font-weight: 800; color: var(--soft-purple); }
+
+/* ===== LAYOUT ===== */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+  scroll-snap-align: start;
+}
+
+@media (max-width: 768px) { section { padding: 60px 24px; } }
+
+.section-inner {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.top-bar-logo {
+  font-size: 14px; font-weight: 700; color: var(--black);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.top-bar-logo svg { width: 18px; height: 18px; }
+.top-bar-logo span { color: var(--soft-purple); }
+
+.top-bar-section {
+  font-size: 12px; font-weight: 500; color: #999;
+  transition: color 0.3s ease;
+}
+
+/* ===== SECTION NAV ===== */
+.nav {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 0; align-items: flex-end;
+  transition: opacity 0.4s ease;
+  opacity: 0.25;
+}
+
+.nav:hover { opacity: 1; }
+
+.nav-section {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 9px 0; transition: all 0.25s ease; position: relative;
+}
+
+.nav-section:hover .nav-label { color: var(--soft-purple); }
+
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(0,0,0,0.15); transition: all 0.3s ease;
+}
+
+.nav-section.active .nav-dot {
+  background: var(--soft-purple); transform: scale(1.4);
+  box-shadow: 0 0 0 3px rgba(132,123,242,0.18);
+}
+
+.nav-section:hover .nav-dot { background: var(--soft-purple); }
+
+.nav-label {
+  font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.25);
+  white-space: nowrap; transition: all 0.3s ease; letter-spacing: 0.01em;
+  opacity: 0; transform: translateX(4px);
+}
+
+.nav:hover .nav-label { opacity: 1; transform: translateX(0); }
+.nav-section.active .nav-label { color: var(--soft-purple); font-weight: 700; }
+
+.nav-num {
+  font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.15);
+  width: 14px; text-align: right; flex-shrink: 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.nav:hover .nav-num { opacity: 1; }
+.nav-section.active .nav-num { color: var(--soft-purple); }
+
+/* ===== KEY HINT ===== */
+.key-hint {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.55); font-size: 11px;
+  padding: 8px 16px; border-radius: 100px;
+  opacity: 1; transition: opacity 0.5s ease; pointer-events: none;
+}
+
+.key-hint kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 6px; border-radius: 4px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.14);
+  font-size: 10px; font-family: inherit; font-weight: 600; color: rgba(255,255,255,0.75);
+}
+
+.key-hint.hidden { opacity: 0; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===== HERO ===== */
+section.hero {
+  background: linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);
+  text-align: left; align-items: flex-start; position: relative; overflow: hidden;
+}
+
+.hero-shapes {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 200px; height: 200px;
+}
+.hero-shapes div { position: absolute; border-radius: 24px; width: 100px; height: 140px; }
+.hero-shapes div:nth-child(1) { background: rgba(128,179,250,.45); left: 0; top: 20px; transform: rotate(-5deg); }
+.hero-shapes div:nth-child(2) { background: rgba(196,102,212,.35); left: 40px; top: 10px; transform: rotate(3deg); }
+.hero-shapes div:nth-child(3) { background: rgba(243,204,242,.45); left: 80px; top: 0; transform: rotate(8deg); }
+
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(0,0,0,0.25); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  animation: floatHint 2s ease-in-out infinite;
+}
+@keyframes floatHint { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(6px); } }
+
+/* ===== DIVIDERS ===== */
+section.divider { align-items: flex-start; }
+.bg-dusk     { background: linear-gradient(135deg,#d5c8e8,#c8d0f0 50%,#d5e0f5); }
+.bg-lavender { background: linear-gradient(135deg,#d5c8e8,#e8d0e0 50%,#f0c8d8); }
+.bg-rainbow  { background: linear-gradient(135deg,#f5d5c8,#f5e6d0 33%,#d5e8f5 66%,#d0d5f5); }
+.bg-sunset   { background: linear-gradient(135deg,#e8d5f0,#f5e6d0 50%,#f5deb3); }
+
+/* ===== CARDS ===== */
+.card {
+  background: #fff; border: 1px solid #e8e8f0; border-radius: 16px;
+  padding: 24px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.card:hover { box-shadow: 0 8px 24px rgba(132,123,242,0.08); transform: translateY(-2px); border-color: rgba(132,123,242,0.2); }
+.card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.card p { font-size: 12.5px; line-height: 1.6; color: #555; }
+
+.ci {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg,var(--soft-purple),var(--orchid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px;
+}
+
+/* ===== GRIDS ===== */
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+@media (max-width:900px) { .g3,.g4 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width:600px) { .g2,.g3,.g4 { grid-template-columns: 1fr; } }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+@media (max-width:768px) { .cols { grid-template-columns: 1fr; } }
+
+/* ===== PILLS ===== */
+.pill { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:600; margin:2px; }
+.pp { background:rgba(132,123,242,.11); color:var(--soft-purple); }
+.pg { background:rgba(34,197,94,.11); color:#16a34a; }
+.po { background:rgba(249,115,22,.11); color:#ea580c; }
+.pb { background:rgba(59,130,246,.11); color:#2563eb; }
+
+/* ===== TABLE ===== */
+.dt { width:100%; border-collapse:collapse; font-size:13px; margin-top:12px; }
+.dt th { background:var(--soft-purple); color:#fff; padding:10px 14px; text-align:left; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.3px; }
+.dt th:first-child { border-radius:8px 0 0 0; } .dt th:last-child { border-radius:0 8px 0 0; }
+.dt td { padding:10px 14px; border-bottom:1px solid #eee; vertical-align:top; }
+.dt tr:hover td { background:rgba(132,123,242,.02); }
+
+/* ===== NAMING CARDS ===== */
+.nc {
+  padding: 20px; border-radius: 16px; border: 1px solid #e8e8f0; text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.nc:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(132,123,242,0.08); }
+.nc h4 { font-size: 13px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
+.nc p { font-size: 11px; line-height: 1.6; color: #555; }
+
+/* ===== ARCH LAYERS ===== */
+.al { display:flex; align-items:center; gap:10px; padding:10px 14px; margin-bottom:5px; border-radius:10px; transition:transform .2s; }
+.al:hover { transform:translateX(4px); }
+.al-l { font-size:10px; font-weight:700; text-transform:uppercase; color:var(--soft-purple); width:90px; flex-shrink:0; }
+.al-b { display:flex; gap:5px; flex-wrap:wrap; }
+.ab { padding:5px 11px; border-radius:7px; font-size:11px; font-weight:600; background:rgba(132,123,242,.07); border:1px solid rgba(132,123,242,.1); white-space:nowrap; }
+.ab-h { background:linear-gradient(135deg,var(--soft-purple),var(--orchid)); color:#fff; border:none; }
+
+/* ===== TIMELINE ===== */
+.tl { display:flex; gap:0; margin-top:20px; }
+.tp { flex:1; padding:16px; border-left:3px solid var(--soft-purple); position:relative; transition:background .2s; }
+.tp::before { content:''; position:absolute; top:18px; left:-7px; width:11px; height:11px; border-radius:50%; background:var(--soft-purple); }
+.tp.done::before { background:#22c55e; }
+.tp.now::before { box-shadow:0 0 0 4px rgba(132,123,242,.22); }
+.tp:hover { background:rgba(132,123,242,.03); }
+.tp .lbl { font-size:10.5px; font-weight:700; text-transform:uppercase; color:var(--soft-purple); margin-bottom:5px; }
+.tp h4 { font-size:13px; font-weight:700; margin-bottom:5px; }
+.tp li { list-style:none; padding-left:14px; position:relative; font-size:12px; color:#555; line-height:1.55; margin-bottom:2px; }
+.tp li::before { content:'→'; position:absolute; left:0; color:var(--soft-purple); font-size:10px; }
+@media(max-width:900px) { .tl { flex-direction:column; } }
+
+/* ===== STEPS ===== */
+.steps { display:flex; align-items:flex-end; gap:6px; margin-top:20px; min-height:340px; padding-bottom:16px; }
+.sb { flex:1; background:linear-gradient(180deg,rgba(132,123,242,.07),rgba(132,123,242,.015)); border:1px solid rgba(132,123,242,.13); border-radius:12px 12px 4px 4px; padding:16px 12px; display:flex; flex-direction:column; transition:transform .2s,box-shadow .2s; }
+.sb:nth-child(1){min-height:22%} .sb:nth-child(2){min-height:36%} .sb:nth-child(3){min-height:50%} .sb:nth-child(4){min-height:64%} .sb:nth-child(5){min-height:78%}
+.sb:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(132,123,242,.1); }
+.sb .num { font-size:10.5px; font-weight:700; color:var(--soft-purple); text-transform:uppercase; margin-bottom:5px; }
+.sb h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
+.sb p { font-size:11px; color:#666; line-height:1.5; }
+
+/* ===== PARITY METER ===== */
+.pm { display:flex; align-items:center; gap:8px; margin:5px 0; }
+.pm-t { flex:1; height:10px; border-radius:5px; background:#eee; overflow:hidden; }
+.pm-f { height:100%; border-radius:5px; background:linear-gradient(90deg,var(--soft-purple),var(--orchid)); }
+.pm-p { font-size:14px; font-weight:800; color:var(--soft-purple); min-width:40px; }
+
+/* ===== FAQ ===== */
+.faq { border:1px solid #eee; border-radius:12px; margin-bottom:8px; overflow:hidden; transition:box-shadow .2s; }
+.faq:hover { box-shadow:0 2px 12px rgba(132,123,242,.06); }
+.faq summary { padding:14px 18px; font-size:14px; font-weight:600; cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
+.faq summary::before { content:'❝'; color:var(--soft-purple); font-size:18px; flex-shrink:0; }
+.faq summary::after { content:'▾'; margin-left:auto; color:#ccc; }
+.faq[open] summary::after { content:'▴'; }
+.faq .ans { padding:0 18px 14px; font-size:13px; line-height:1.7; color:#555; }
+
+/* ===== CHECKLIST ===== */
+.cl-g { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:16px; }
+.cl-g h4 { font-size:12.5px; font-weight:700; color:var(--soft-purple); text-transform:uppercase; margin-bottom:10px; }
+.ci-row { display:flex; align-items:flex-start; gap:8px; padding:8px 0; border-bottom:1px solid #f0f0f0; font-size:13px; line-height:1.5; }
+.cb { width:18px; height:18px; border:2px solid #ddd; border-radius:4px; flex-shrink:0; cursor:pointer; display:flex; align-items:center; justify-content:center; transition:all .2s; font-size:11px; color:#fff; }
+.cb.ck { background:#22c55e; border-color:#22c55e; }
+.cw { font-size:10px; color:var(--soft-purple); font-weight:700; margin-left:auto; white-space:nowrap; }
+@media(max-width:768px) { .cl-g { grid-template-columns:1fr; } }
+
+/* ===== CALLOUT ===== */
+.callout { margin-top:16px; padding:16px 20px; border-radius:12px; border-left:4px solid #ef4444; background:rgba(239,68,68,.04); }
+.callout h5 { font-weight:700; font-size:13px; margin-bottom:3px; }
+.callout p { font-size:12.5px; color:#555; line-height:1.6; }
+
+/* ===== AGENDA ===== */
+.ag { display:flex; align-items:center; padding:16px 14px; border-bottom:1px solid #eee; cursor:pointer; border-radius:8px; transition:background .2s; }
+.ag:hover { background:rgba(132,123,242,.04); }
+.ag-n { font-size:20px; font-weight:700; color:var(--soft-purple); width:42px; flex-shrink:0; }
+.ag-l { font-size:16px; font-weight:500; flex:1; }
+.ag-b { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(132,123,242,.08); color:var(--soft-purple); font-weight:600; }
+
+/* ===== THANK YOU ===== */
+section.closing {
+  background: linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);
+  text-align: center; align-items: center;
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar" id="topBar">
+  <div class="top-bar-logo">
+    <svg viewBox="0 0 24 24"><path d="M12 2L3 9L12 22L21 9Z" fill="#847BF2"/><path d="M12 2L3 9L12 13L21 9Z" fill="#80B3FA" opacity=".7"/></svg>
+    Treasure <span>AI</span>
+  </div>
+  <div class="top-bar-section" id="topBarSection">EMEA QBR</div>
+</div>
+
+<!-- Section Nav -->
+<nav class="nav" id="sideNav">
+  <div class="nav-section active" data-section="hero">
+    <span class="nav-label">Cover</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="q4-div" data-sections="q4-div,takeaways,naming,outcomes">
+    <span class="nav-num">1</span>
+    <span class="nav-label">Q4 Outcomes</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="plg-div" data-sections="plg-div,identity,shifts,gtm">
+    <span class="nav-num">2</span>
+    <span class="nav-label">Studio & PLG</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="gap-div" data-sections="gap-div,top5,process">
+    <span class="nav-num">3</span>
+    <span class="nav-label">Gap Council</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="comp-div" data-sections="comp-div,comp-vs,ps,comp-road,parity,pilot,next">
+    <span class="nav-num">4</span>
+    <span class="nav-label">Composable</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="faq-div" data-sections="faq-div,faq,roadmap">
+    <span class="nav-num">5</span>
+    <span class="nav-label">FAQ & Q&A</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="closing">
+    <span class="nav-label">Close</span>
+    <div class="nav-dot"></div>
+  </div>
+</nav>
+
+<!-- Keyboard hint -->
+<div class="key-hint" id="keyHint">
+  <kbd>&darr;</kbd> <kbd>&uarr;</kbd> navigate &nbsp;
+  <kbd>1</kbd>&ndash;<kbd>9</kbd> jump to section
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HERO                                       -->
+<!-- ══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="section-inner" style="position:relative;z-index:2;">
+    <div class="reveal section-label">FY27 Q1 &middot; April 2026</div>
+    <h1 class="reveal section-title" style="font-size:clamp(36px,5vw,58px);">EMEA QBR<br>Product Update</h1>
+  </div>
+  <div class="hero-shapes"><div></div><div></div><div></div></div>
+  <div class="scroll-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Scroll</div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Overview</div>
+    <h2 class="reveal section-title">Agenda</h2>
+    <div style="margin-top:16px;">
+      <div class="reveal ag" onclick="document.getElementById('q4-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">1</span><span class="ag-l">Q4 Outcomes & Updates</span><span class="ag-b">6 takeaways</span></div>
+      <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('plg-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Treasure AI Studio & PLG</span><span class="ag-b">New launch</span></div>
+      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('gap-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Product Gap Council</span><span class="ag-b">Process</span></div>
+      <div class="reveal reveal-delay-3 ag" onclick="document.getElementById('comp-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">4</span><span class="ag-l">Composable Deep Dive</span><span class="ag-b">Roadmap</span></div>
+      <div class="reveal reveal-delay-4 ag" onclick="document.getElementById('faq-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">5</span><span class="ag-l">FAQ & Q&A</span><span class="ag-b">Open</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: Q4 -->
+<section class="divider bg-dusk" id="q4-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Q4 Outcomes<br>& Updates</div>
+    <div class="reveal section-subtitle">Major takeaways from the quarter</div>
+  </div>
+</section>
+
+<!-- TAKEAWAYS -->
+<section id="takeaways" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Q4 Highlights</div>
+    <h2 class="reveal section-title">Major Takeaways</h2>
+    <p class="reveal section-subtitle">Rebrand, PLG, and strategic consolidation</p>
+    <div class="g3 reveal" style="margin-top:24px;">
+      <div class="card"><div class="ci">AI</div><h4>Rebrand on 4/20</h4><p>Treasure Data becomes <strong>Treasure AI</strong>, repositioned as an "Agentic Experience Platform" for customer retention and growth.</p></div>
+      <div class="card"><div class="ci">PLG</div><h4>PLG is FY27 Priority</h4><p>Customers experience the product before sales. Target: <strong>10x value in under 60 seconds</strong>.</p></div>
+      <div class="card"><div class="ci">S</div><h4>New Studio Launches 4/20</h4><p>Fresh architecture across <strong>web, iOS, Mac desktop</strong>. Current Studio moves to internal-only.</p></div>
+      <div class="card"><div class="ci">W</div><h4>PLG Web Experience</h4><p>Guided, sandbox-powered demo tailored to ICP verticals. High-conviction conversations.</p></div>
+      <div class="card"><div class="ci">X</div><h4>MSA Retired</h4><p>Decommissioned by end of May. Studio covers all capabilities. Under 5 accounts impacted.</p></div>
+      <div class="card"><div class="ci">13</div><h4>Internal Access 4/13</h4><p>PLG and new Studio available internally a week before launch for feedback.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NAMING -->
+<section id="naming" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Product Structure</div>
+    <h2 class="reveal section-title">Product Naming & Architecture</h2>
+    <div class="g4 reveal" style="margin-top:20px;">
+      <div class="nc" style="border-top:3px solid var(--soft-purple);"><h4>TREASURE AI<br>SUITES</h4><p>Outcome-driven apps activating customer intelligence across channels.</p></div>
+      <div class="nc" style="border-top:3px solid var(--orchid);"><h4>TREASURE AI<br>STUDIO</h4><p>Unified interface for AI Skills and workflow orchestration.</p></div>
+      <div class="nc" style="border-top:3px solid var(--sky-blue);"><h4>TREASURE AI<br>INTELLIGENCE</h4><p>Composable data foundation unifying data into trusted context.</p></div>
+      <div class="nc" style="border-top:3px solid var(--coral);"><h4>TREASURE AI<br>AGENTIC EXP.</h4><p>End-to-end platform combining intelligence, agents, skills and activation.</p></div>
+    </div>
+    <div class="reveal" style="margin-top:20px;display:flex;flex-direction:column;gap:5px;">
+      <div class="al" style="background:rgba(132,123,242,.03);"><div class="al-l">Interface</div><div class="al-b"><div class="ab ab-h">Treasure AI Studio</div><div class="ab">Web</div><div class="ab">Desktop</div><div class="ab">Mobile</div><div class="ab">CLI</div></div></div>
+      <div class="al" style="background:rgba(196,102,212,.03);"><div class="al-l">Super Agent</div><div class="al-b"><div class="ab">For Marketers</div><div class="ab">For Data Analysts</div></div></div>
+      <div class="al" style="background:rgba(128,179,250,.03);"><div class="al-l">Activation</div><div class="al-b"><div class="ab">Engagement</div><div class="ab">Personalization</div><div class="ab">Creative</div><div class="ab">Paid Media</div><div class="ab">Service</div></div></div>
+      <div class="al" style="background:rgba(253,184,147,.05);"><div class="al-l">Context</div><div class="al-b"><div class="ab">AI Decisioning</div><div class="ab">Unified Profiles</div><div class="ab">Real-Time Signals</div><div class="ab">Model Intelligence</div><div class="ab">Governance</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY OUTCOMES -->
+<section id="outcomes" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Performance</div>
+    <h2 class="reveal section-title">Key Q4 Outcomes</h2>
+    <div class="g2 reveal" style="margin-top:20px;">
+      <div class="card"><div class="col-hdr">Roadmap Delivery</div><div class="metric">100%</div><p style="font-size:13px;color:#666;margin-top:6px;">Q4 commitment delivery. TreasureCode, Engage SFMC/MA, four pillars strategic reframe.</p></div>
+      <div class="card"><div class="col-hdr">Revenue Impact</div><div class="metric">>$1M</div><p style="font-size:13px;color:#666;margin-top:6px;">ARR in late-stage/closed-won deals. PMI, Thomson Reuters, JCB, Volvo, Hilton, Nordstrom.</p></div>
+      <div class="card"><div class="col-hdr">AI Adoption</div><div class="metric">~300K</div><p style="font-size:13px;color:#666;margin-top:6px;">LLM conversations/week across Studio, Agent Foundry, Audience Agent, MSA, Treasure Code.</p></div>
+      <div class="card">
+        <div class="col-hdr">Engineering Mix Shift</div>
+        <div style="display:flex;align-items:center;gap:16px;margin:8px 0;">
+          <div style="text-align:center;"><div style="font-size:11px;color:#999;">FY26</div><div style="font-size:20px;font-weight:800;">70/30</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
+          <div style="font-size:20px;color:var(--soft-purple);">→</div>
+          <div style="text-align:center;"><div style="font-size:11px;color:#999;">CY27</div><div style="font-size:20px;font-weight:800;color:var(--soft-purple);">50/50</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
+        </div>
+        <p style="font-size:13px;color:#666;">Sustained investment into AI-native products vs legacy ICDP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: PLG -->
+<section class="divider bg-lavender" id="plg-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Treasure AI Studio<br>& PLG</div>
+    <div class="reveal section-subtitle">Product update & strategic shifts</div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="identity" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Rebrand</div>
+    <h2 class="reveal section-title">Evolving into Treasure AI</h2>
+    <p class="reveal section-subtitle">The Agentic Experience Platform</p>
+    <div class="reveal body" style="margin-top:16px;max-width:800px;">Treasure AI combines machine intelligence with human creativity to transform how brands retain and grow their most valuable customers 24/7.</div>
+    <div class="cols reveal" style="margin-top:24px;">
+      <div><div class="col-hdr">The FY27 Priority: Product-Led Growth</div><div class="body"><ul><li><strong>Goal:</strong> 10x value in under one minute</li><li><strong>Shift:</strong> Product before traditional awareness stages</li><li><strong>Win:</strong> Discovery calls → high-conviction conversations</li></ul></div></div>
+      <div><div class="col-hdr">The New Website Experience</div><div class="body"><ul><li><strong>Interactive Discovery:</strong> Guided experience via Studio GA</li><li><strong>Vertical-Specific:</strong> Sandbox data for key ICP personas</li><li><strong>Authentic:</strong> True product power — no "vaporware"</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIC SHIFTS -->
+<section id="shifts" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Consolidation</div>
+    <h2 class="reveal section-title">Product Strategic Shifts</h2>
+    <p class="reveal section-subtitle">Consolidating for velocity and scalability</p>
+    <div class="g3 reveal" style="margin-top:24px;">
+      <div class="card"><div class="col-hdr">New Treasure AI Studio</div><div class="body"><ul><li><strong>Multi-Platform:</strong> Web, iOS, macOS</li><li><strong>New Architecture:</strong> Enterprise governance + max velocity</li><li><strong>Legacy:</strong> Current Studio → internal-only</li></ul></div></div>
+      <div class="card"><div class="col-hdr">Strategic Consolidation</div><div class="body"><ul><li><strong>Retiring MSA:</strong> Decommissioned end of May</li><li><strong>Studio Supremacy:</strong> All MSA capabilities absorbed</li><li><strong>No Changes:</strong> AI Agent Foundry remains as-is</li></ul></div></div>
+      <div class="card"><div class="col-hdr">Key Dates</div><div style="display:flex;flex-direction:column;gap:12px;margin-top:8px;"><div style="display:flex;align-items:center;gap:9px;"><span class="pill pb">4/13</span><span style="font-size:13px;">Internal Access</span></div><div style="display:flex;align-items:center;gap:9px;"><span class="pill pp">4/20</span><span style="font-size:13px;">GA Launch</span></div><div style="display:flex;align-items:center;gap:9px;"><span class="pill po">End May</span><span style="font-size:13px;">MSA decommissioned</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GTM ACTIONS -->
+<section id="gtm" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Action Required</div>
+    <h2 class="reveal section-title">GTM Action Items</h2>
+    <p class="reveal section-subtitle">What you need to know and do from 4/20</p>
+    <div class="g2 reveal" style="margin-top:20px;">
+      <div class="card"><div class="ci" style="background:linear-gradient(135deg,#ef4444,#f97316);">!</div><h4>Studio Loses SLA Support</h4><p>Current desktop app no longer receives SLA-backed development after 4/20.</p></div>
+      <div class="card"><div class="ci" style="background:linear-gradient(135deg,#22c55e,#16a34a);">&#10003;</div><h4>Treasure AI Studio Is Primary</h4><p>Sole SLA-supported product across web, desktop, mobile from 4/20.</p></div>
+      <div class="card"><div class="ci">&#9651;</div><h4>Feature Parity Gap at Launch</h4><p>Won't match all current features on day one. Old Studio may be needed in specific cases.</p></div>
+      <div class="card"><div class="ci" style="background:linear-gradient(135deg,var(--sky-blue),var(--indigo));">&#8635;</div><h4>No Commercial Changes</h4><p>AI Credits, licensing, AI Foundry / ICDP agreements all remain as-is.</p></div>
+    </div>
+    <div class="reveal callout"><h5>Action Required</h5><p>Share with your teams, flag accounts needing support, and <strong>stop recommending Treasure Studio as the default from 4/20</strong>.</p></div>
+  </div>
+</section>
+
+<!-- DIVIDER: GAP COUNCIL -->
+<section class="divider bg-sunset" id="gap-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Product Gap<br>Council</div>
+    <div class="reveal section-subtitle">Process, top requests & how to influence the roadmap</div>
+  </div>
+</section>
+
+<!-- TOP 5 -->
+<section id="top5" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Regional Priorities</div>
+    <h2 class="reveal section-title">NALA/EMEA Top 5 Requests</h2>
+    <table class="dt reveal" style="margin-top:16px;">
+      <thead><tr><th style="width:30px;">#</th><th>Gap Area</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">1</td><td style="font-weight:600;">Zero Copy / Composable</td><td>DBX, Snowflake, BQ. Behavior activations, templates, Audience Agent, RT Personalization.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">2</td><td style="font-weight:600;">RT 2.0 Improvements</td><td>Docs gaps, delete configs in UI, provision reactor, batch changes, progress bar, error debugging.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">3</td><td style="font-weight:600;">Engage</td><td>Unsubscribe pages, data collection pages, SMS in UK, bounce reporting, folder structure.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">4</td><td style="font-weight:600;">AI Foundry</td><td>Admin ability to cap AI conversation usage per users/policies — daily and/or weekly.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">5</td><td style="font-weight:600;">Studio / Treasure Code</td><td>Usage tracking across products and user level. Policy-based permissions.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Escalation Path</div>
+    <h2 class="reveal section-title">How GTM Influences Product</h2>
+    <p class="reveal section-subtitle">End-to-end process for product gap escalation</p>
+    <div class="steps reveal">
+      <div class="sb"><div class="num">Step 1</div><h4>Log in HubSpot</h4><p>Any AD, CSM, or SE submits a gap. Tie to Company or Deal. Always attach dollar value.</p></div>
+      <div class="sb"><div class="num">Step 2</div><h4>Regional Top 5</h4><p>NALA, EMEA, JP leads select top 5. Posted to #product-gap-council on Slack.</p></div>
+      <div class="sb"><div class="num">Step 3</div><h4>Monthly Council</h4><p>PMs respond with status, timelines, questions. Accepted gaps → PRP tickets in Jira.</p></div>
+      <div class="sb"><div class="num">Step 4</div><h4>Office Hours</h4><p>Bi-weekly Thu 9–10 AM PST. Open forum for timelines, demos. "When is X shipping?" channel.</p></div>
+      <div class="sb"><div class="num">Step 5</div><h4>Escalation</h4><p>Deal-critical gaps bypass monthly cadence. GTM leader escalates directly to CPO.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: COMPOSABLE -->
+<section class="divider bg-rainbow" id="comp-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Composable<br>Deep Dive</div>
+    <div class="reveal section-subtitle">What makes Composable, Composable</div>
+  </div>
+</section>
+
+<!-- COMPLETE VS COMPOSABLE -->
+<section id="comp-vs" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Data Architecture</div>
+    <h2 class="reveal section-title">Complete vs Composable Mode</h2>
+    <div class="cols reveal" style="margin-top:20px;">
+      <div>
+        <div class="col-hdr">Complete Mode (Traditional)</div>
+        <div style="padding:16px;background:rgba(132,123,242,.03);border-radius:12px;margin-top:6px;">
+          <div class="body"><p style="margin-bottom:10px;">Data ingested and unified within TD. Parent Segment + child segments + decisioning prior to activation.</p>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><span class="pill pb">Sources</span><span style="color:#bbb;">→</span><span class="pill pp">Source DB</span><span style="color:#bbb;">→</span><span class="pill pp">PS Data DB</span><span style="color:#bbb;">→</span><span class="pill pp">Audience DB</span><span style="color:#bbb;">→</span><span class="pill pg">Activation</span></div>
+          <p style="margin-top:10px;font-size:12px;color:#999;"><em>All processing within Treasure Data workflows.</em></p></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-hdr">Composable Mode</div>
+        <div style="padding:16px;background:rgba(253,184,147,.04);border-radius:12px;margin-top:6px;">
+          <div class="body"><p style="margin-bottom:10px;">CDW is source-of-truth. TD serves as virtual governance and decisioning/intelligence layer.</p>
+          <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;"><span class="pill pb">Sources</span><span style="color:#bbb;">→</span><span class="pill po">CDW</span><span style="color:#bbb;">→</span><span class="pill pp">Audience Studio</span><span style="color:#bbb;">→</span><span class="pill pg">Activation</span></div>
+          <p style="margin-top:10px;font-size:12px;color:#999;"><em>Data pipeline in CDW. TD provides governance + intelligence.</em></p></div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:18px;"><div class="col-hdr">Key Setup Differences</div><div class="body"><ul><li>Import all data into CDW from all source systems</li><li>Build Audience DB tables (Customers, Behaviors) in CDW</li><li>Setup Composable PS Config with CDW connection</li></ul></div></div>
+  </div>
+</section>
+
+<!-- PARENT SEGMENT -->
+<section id="ps" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Governance</div>
+    <h2 class="reveal section-title">Composable Parent Segment</h2>
+    <p class="reveal section-subtitle">Semantic & Governance Component</p>
+    <div class="g3 reveal" style="margin-top:24px;">
+      <div class="card" style="border-top:3px solid var(--sky-blue);"><div class="col-hdr">Schema/DB/Table Level</div><h4>CDW Access Control</h4><p>Which databases/tables CAS can access as Parent Segment datasources.</p></div>
+      <div class="card" style="border-top:3px solid var(--soft-purple);"><div class="col-hdr">Table Column Level</div><h4>Attribute Control</h4><p>Which columns CAS can use as attributes or behaviors.</p></div>
+      <div class="card" style="border-top:3px solid var(--orchid);"><div class="col-hdr">PS Level</div><h4>User Permissions</h4><p>Which users access which Parent Segment and columns within it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSABLE ROADMAP -->
+<section id="comp-road" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Delivery Timeline</div>
+    <h2 class="reveal section-title">Composable Roadmap</h2>
+    <div class="tl reveal" style="margin-top:24px;">
+      <div class="tp done"><div class="lbl">Phase 1 — End of April</div><h4>Core Composable</h4><ul><li>Segmentations (Snowflake + DBX)</li><li>Standard & Behavior Activations</li><li>Treasure AI Studio + Skills</li></ul></div>
+      <div class="tp now"><div class="lbl">Phase 1.1 — End of May</div><h4>Governance</h4><ul><li>Permission Controls on PS</li><li>Audit log of CAS operations</li></ul></div>
+      <div class="tp"><div class="lbl">Phase 2 — End of June</div><h4>Journeys + BigQuery</h4><ul><li>Core Journey Capabilities</li><li>BigQuery parity with DBX/SNOW</li><li>Iceberg Support (AWS DBX)</li></ul></div>
+      <div class="tp"><div class="lbl">Phase 3 — End of Sep</div><h4>RT2 + Audience Agent</h4><ul><li>RT2 Integrations</li><li>Audience Agent on CAS</li><li>Composable KBs</li></ul></div>
+      <div class="tp"><div class="lbl">Phase 4 — End of Oct</div><h4>Full Journeys</h4><ul><li>End-to-End Journeys</li><li>Journey simulator</li><li>Version control</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARITY -->
+<section id="parity" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Competitive</div>
+    <h2 class="reveal section-title">Parity vs Hightouch</h2>
+    <p class="reveal section-subtitle">Progressive competitive positioning</p>
+    <table class="dt reveal" style="margin-top:20px;">
+      <thead><tr><th>Phase</th><th>Timeline</th><th>Parity</th><th>Differentiator</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:600;">Phase 1</td><td>End Apr '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:65%;"></div></div><div class="pm-p">65%</div></div></td><td><span class="pill pp">+ AI-Native Interface</span></td></tr>
+        <tr><td style="font-weight:600;">Phase 1.1</td><td>End May '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:75%;"></div></div><div class="pm-p">75%</div></div></td><td><span class="pill pp">+ Composable IDU</span></td></tr>
+        <tr><td style="font-weight:600;">Phase 2</td><td>End Jun '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:80%;"></div></div><div class="pm-p">80%</div></div></td><td><span class="pill pp">+ Engage Studio</span></td></tr>
+        <tr><td style="font-weight:600;">Phase 3</td><td>End Sep '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:95%;"></div></div><div class="pm-p">95%</div></div></td><td><span class="pill pg">Near parity</span></td></tr>
+        <tr><td style="font-weight:600;">Phase 4</td><td>End Oct '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:100%;"></div></div><div class="pm-p">100%</div></div></td><td><span class="pill pg">Full parity</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PILOT -->
+<section id="pilot" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Implementation</div>
+    <h2 class="reveal section-title">3-Week Pilot Checklist</h2>
+    <p class="reveal section-subtitle">Example: Composable implementation for enterprise</p>
+    <div class="cl-g reveal" style="margin-top:20px;">
+      <div>
+        <h4>Customer Responsibilities</h4>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Verify unified profile in CDW</span><span class="cw">Week 1</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Accept CDW compute cost model</span><span class="cw">Week 1</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Confirm identity stitching</span><span class="cw">Week 1-2</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Provision CDW service principal</span><span class="cw">Week 2</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure CDW read credentials</span><span class="cw">Week 2</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Define initial segment schemas</span><span class="cw">Week 2-3</span></div>
+      </div>
+      <div>
+        <h4>Treasure Data Responsibilities</h4>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Set up composable connection</span><span class="cw">Week 2</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Create parent segment from CDW</span><span class="cw">Week 2-3</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Build pilot segments</span><span class="cw">Week 3</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure activation destinations</span><span class="cw">Week 3</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Run campaign pilot</span><span class="cw">Week 4</span></div>
+        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Monitor & optimize performance</span><span class="cw">Week 4</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT STEPS -->
+<section id="next" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">What's Ahead</div>
+    <h2 class="reveal section-title">Composable Next Steps</h2>
+    <div class="cols reveal" style="margin-top:20px;">
+      <div><div class="col-hdr">In Progress</div><div class="body" style="margin-top:6px;"><ul><li><strong>Ongoing:</strong> Development continues</li><li><strong>Ongoing:</strong> Partnership alignment — DBX, Snowflake, Google</li><li><strong>Coming Soon:</strong> Pricing (Board Approval)</li><li><strong>Coming Soon:</strong> Technical Enablement for SEs, TAMs (April)</li><li><strong>Coming Soon:</strong> Sales Enablement planning (May)</li></ul></div></div>
+      <div><div class="col-hdr">Top Priority Gaps</div><div style="margin-top:6px;">
+        <div style="padding:14px;background:rgba(132,123,242,.03);border-radius:10px;margin-bottom:8px;"><div style="font-weight:700;font-size:14px;">Composable / Zero Copy</div><div style="font-size:12px;color:#666;margin-top:3px;">Most commercially urgent gap across all regions.</div></div>
+        <div style="padding:14px;background:rgba(196,102,212,.03);border-radius:10px;margin-bottom:8px;"><div style="font-weight:700;font-size:14px;">Engage Studio Parity</div><div style="font-size:12px;color:#666;margin-top:3px;">Most broadly raised gap, particularly JP and EMEA.</div></div>
+        <div style="padding:14px;background:rgba(128,179,250,.03);border-radius:10px;"><div style="font-weight:700;font-size:14px;">Support Self-Service Tooling</div><div style="font-size:12px;color:#666;margin-top:3px;">Operational overhead addressable with targeted tooling.</div></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: FAQ -->
+<section class="divider bg-dusk" id="faq-div">
+  <div class="section-inner">
+    <div class="reveal section-title">FAQ & Q&A</div>
+    <div class="reveal section-subtitle">Common questions from the field</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Questions</div>
+    <h2 class="reveal section-title">Frequently Asked Questions</h2>
+    <div class="reveal" style="margin-top:16px;">
+      <details class="faq"><summary>When episodic data lives outside DBX/SNOW, what's the recommendation?</summary><div class="ans">Use TD as interim data transfer layer (Data Connector → import → workflow → result export to CDW). Alternatively, implement Iceberg table support for 'golden records' within the CDW.</div></details>
+      <details class="faq"><summary>Where should IDU (Identity Unification) live?</summary><div class="ans">TD can own the IDU workflow and run queries on CDWs to establish unified profile IDs while keeping data and query resources within the CDW environment.</div></details>
+      <details class="faq"><summary>What if an existing customer wants to go composable?</summary><div class="ans">Migration is needed. Customer/Partner should own it (CDW is their asset). PS team can do it at premium cost.</div></details>
+      <details class="faq"><summary>How will RT use cases work with Composable?</summary><div class="ans">Same as Complete mode — except batch data stream is composable. RT ID stitching executes within the Reactor Engine, consistent with RT2 Complete mode.</div></details>
+      <details class="faq"><summary>What is Agentic Audience Studio?</summary><div class="ans">AI-Native Audience Studio is being planned on the new Agent Architecture. Full enablement scheduled for 4/16.</div></details>
+      <details class="faq"><summary>When a capability is delayed, how are GTM teams informed?</summary><div class="ans">Product Org publishes a diff and covers it in Product Office Hours. GTM members should attend or review recordings. Questions on #product.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Full Year View</div>
+    <h2 class="reveal section-title">FY27 Product Roadmap</h2>
+    <table class="dt reveal" style="margin-top:16px;font-size:12px;">
+      <thead><tr><th style="width:150px;">Product Area</th><th>Apr–Jun</th><th>Jul–Sep</th><th>Oct–Dec</th><th>Jan–Mar</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;">Treasure AI Studio</td><td><span class="pill pg" style="font-size:9px;">GA</span> Web, iOS, Mac<br>PLG Web Experience<br>Web Search, Image Creation<br>Skills Catalog</td><td>Android, Windows<br>Collaborative Workspace<br>Long-Term Memory<br>Agent Scheduling</td><td><span class="pill pg" style="font-size:9px;">GA</span> AI-Native Audience Studio<br>Composable AS (AI-Native)</td><td></td></tr>
+        <tr><td style="font-weight:700;">Engagement AI</td><td>Web Pop-up & Personalization<br>SMS (M1)</td><td>Always-On Campaign Improvements</td><td></td><td>WhatsApp</td></tr>
+        <tr><td style="font-weight:700;">Personalization AI</td><td>RT Lookup Catalog<br><span class="pill po" style="font-size:9px;">BETA</span> Personalization Studio<br>RT Self-Service Config</td><td><span class="pill pg" style="font-size:9px;">GA</span> Personalization Studio</td><td></td><td>RT + Composable AS</td></tr>
+        <tr><td style="font-weight:700;">Creative AI</td><td>Brand Guideline Agent<br>Creative Brief Architect</td><td><span class="pill po" style="font-size:9px;">BETA</span> Creative Studio</td><td></td><td><span class="pill pg" style="font-size:9px;">GA</span> Creative Studio</td></tr>
+        <tr><td style="font-weight:700;">Agentic Experience</td><td>Composable AS (BQ)<br>Composable CJO (MVP)<br>Multi-Table Activations</td><td>Composable CJO (E2E)<br>On-demand Journey Trigger<br>Composable Audience Agent</td><td>Journey Traffic Control</td><td></td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="closing">
+  <div class="section-inner" style="text-align:center;">
+    <div class="reveal section-title" style="font-size:clamp(38px,5vw,64px);">Thank you</div>
+    <div class="reveal" style="margin-top:16px;font-size:18px;color:#555;">Let's build something</div>
+    <div class="reveal" style="margin-top:8px;font-size:16px;color:var(--soft-purple);font-weight:600;">treasure.ai</div>
+  </div>
+</section>
+
+<script>
+// ===== Section tracking =====
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-section');
+const topBarSection = document.getElementById('topBarSection');
+const topBar = document.getElementById('topBar');
+const keyHint = document.getElementById('keyHint');
+
+let currentSectionIndex = 0;
+let hideHintTimer;
+
+// Build a map: slide id → nav item
+const slideToNav = {};
+navItems.forEach(item => {
+  const owned = item.dataset.sections ? item.dataset.sections.split(',') : [item.dataset.section];
+  owned.forEach(id => { slideToNav[id] = item; });
+});
+
+// Scroll observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      currentSectionIndex = Array.from(sections).indexOf(entry.target);
+
+      // Highlight matching nav group
+      navItems.forEach(n => n.classList.remove('active'));
+      const activeNav = slideToNav[id];
+      if (activeNav) activeNav.classList.add('active');
+
+      // Update top bar
+      const label = activeNav ? activeNav.querySelector('.nav-label') : null;
+      topBarSection.textContent = label ? label.textContent : '';
+
+      // Hide top bar on hero
+      topBar.style.transform = id === 'hero' ? 'translateY(-100%)' : 'translateY(0)';
+    }
+  });
+}, { threshold: 0.35 });
+
+sections.forEach(s => observer.observe(s));
+
+// Nav clicks → jump to section divider
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const target = document.getElementById(item.dataset.section);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+// Keyboard nav
+document.addEventListener('keydown', (e) => {
+  if (!keyHint.classList.contains('hidden')) {
+    clearTimeout(hideHintTimer);
+    hideHintTimer = setTimeout(() => keyHint.classList.add('hidden'), 3000);
+  }
+
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (currentSectionIndex < sections.length - 1) {
+      sections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (currentSectionIndex > 0) {
+      sections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  const num = parseInt(e.key);
+  if (num >= 1 && num <= 9 && num <= sections.length) {
+    e.preventDefault();
+    sections[num - 1].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+hideHintTimer = setTimeout(() => keyHint.classList.add('hidden'), 8000);
+
+// Scroll reveal
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+</script>
+</body>
+</html>
