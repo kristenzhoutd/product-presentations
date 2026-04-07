@@ -328,6 +328,40 @@ section.divider { align-items: flex-start; }
 .cw { font-size:10px; color:var(--soft-purple); font-weight:700; margin-left:auto; white-space:nowrap; }
 @media(max-width:768px) { .cl-g { grid-template-columns:1fr; } }
 
+/* ===== EXPANDABLE CARDS ===== */
+.xcard {
+  border: 1px solid #e8e8f0; border-radius: 14px; overflow: hidden;
+  transition: box-shadow 0.3s; margin-bottom: 10px;
+}
+.xcard:hover { box-shadow: 0 4px 16px rgba(132,123,242,0.07); }
+.xcard summary {
+  padding: 18px 22px; cursor: pointer; list-style: none;
+  display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px;
+}
+.xcard summary .xnum {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--soft-purple); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.xcard summary::after { content: '▾'; margin-left: auto; color: #ccc; font-size: 14px; transition: transform 0.2s; }
+.xcard[open] summary::after { transform: rotate(180deg); }
+.xcard .xbody {
+  padding: 0 22px 18px 62px; font-size: 13px; line-height: 1.7; color: #555;
+}
+.xcard .xbody ul { padding-left: 18px; margin: 6px 0; }
+.xcard .xbody li { list-style: none; position: relative; padding-left: 4px; margin-bottom: 4px; }
+.xcard .xbody li::before { content: ''; position: absolute; left: -14px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--soft-purple); }
+
+.tips-card {
+  border: 1px solid #e8e8f0; border-radius: 14px; padding: 22px;
+  background: rgba(132,123,242,0.02);
+}
+.tips-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--soft-purple); }
+.tips-card li {
+  list-style: none; position: relative; padding-left: 18px; margin-bottom: 6px;
+  font-size: 13px; line-height: 1.6; color: #555;
+}
+.tips-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--soft-purple); }
+
 /* ===== CALLOUT ===== */
 .callout { margin-top:16px; padding:16px 20px; border-radius:12px; border-left:4px solid #ef4444; background:rgba(239,68,68,.04); }
 .callout h5 { font-weight:700; font-size:13px; margin-bottom:3px; }
@@ -364,28 +398,23 @@ section.closing {
     <span class="nav-label">Cover</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="q4-div" data-sections="q4-div,takeaways,naming,outcomes">
+  <div class="nav-section" data-section="q4-div" data-sections="q4-div,outcomes,takeaways,naming,identity,shifts,gtm">
     <span class="nav-num">1</span>
-    <span class="nav-label">Q4 Outcomes</span>
+    <span class="nav-label">Q4 & Product Strategy</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="plg-div" data-sections="plg-div,identity,shifts,gtm">
+  <div class="nav-section" data-section="gap-div" data-sections="gap-div,top5,add-gap,process">
     <span class="nav-num">2</span>
-    <span class="nav-label">Studio & PLG</span>
-    <div class="nav-dot"></div>
-  </div>
-  <div class="nav-section" data-section="gap-div" data-sections="gap-div,top5,process">
-    <span class="nav-num">3</span>
     <span class="nav-label">Gap Council</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="comp-div" data-sections="comp-div,comp-vs,ps,comp-road,parity,pilot,next">
-    <span class="nav-num">4</span>
+  <div class="nav-section" data-section="comp-div" data-sections="comp-div,comp-vs,ps,comp-today,comp-road,parity,pilot,next">
+    <span class="nav-num">3</span>
     <span class="nav-label">Composable</span>
     <div class="nav-dot"></div>
   </div>
   <div class="nav-section" data-section="faq-div" data-sections="faq-div,faq,roadmap">
-    <span class="nav-num">5</span>
+    <span class="nav-num">4</span>
     <span class="nav-label">FAQ & Q&A</span>
     <div class="nav-dot"></div>
   </div>
@@ -419,11 +448,10 @@ section.closing {
     <div class="reveal section-label">Overview</div>
     <h2 class="reveal section-title">Agenda</h2>
     <div style="margin-top:16px;">
-      <div class="reveal ag" onclick="document.getElementById('q4-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">1</span><span class="ag-l">Q4 Outcomes & Updates</span><span class="ag-b">6 takeaways</span></div>
-      <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('plg-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Treasure AI Studio & PLG</span><span class="ag-b">New launch</span></div>
-      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('gap-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Product Gap Council</span><span class="ag-b">Process</span></div>
-      <div class="reveal reveal-delay-3 ag" onclick="document.getElementById('comp-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">4</span><span class="ag-l">Composable Deep Dive</span><span class="ag-b">Roadmap</span></div>
-      <div class="reveal reveal-delay-4 ag" onclick="document.getElementById('faq-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">5</span><span class="ag-l">FAQ & Q&A</span><span class="ag-b">Open</span></div>
+      <div class="reveal ag" onclick="document.getElementById('q4-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">1</span><span class="ag-l">Q4 Outcomes & Product Strategy Update</span><span class="ag-b">Metrics + PLG</span></div>
+      <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('gap-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Product Gap Council</span><span class="ag-b">Process</span></div>
+      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('comp-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Composable Deep Dive</span><span class="ag-b">Roadmap</span></div>
+      <div class="reveal reveal-delay-3 ag" onclick="document.getElementById('faq-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">4</span><span class="ag-l">FAQ & Q&A</span><span class="ag-b">Open</span></div>
     </div>
   </div>
 </section>
@@ -431,8 +459,30 @@ section.closing {
 <!-- DIVIDER: Q4 -->
 <section class="divider bg-dusk" id="q4-div">
   <div class="section-inner">
-    <div class="reveal section-title">Q4 Outcomes<br>& Updates</div>
-    <div class="reveal section-subtitle">Major takeaways from the quarter</div>
+    <div class="reveal section-title">Q4 Outcomes &<br>Product Strategy Update</div>
+    <div class="reveal section-subtitle">Key metrics, rebrand, PLG, and strategic consolidation</div>
+  </div>
+</section>
+
+<!-- KEY OUTCOMES -->
+<section id="outcomes" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Performance</div>
+    <h2 class="reveal section-title">Key Q4 Outcomes</h2>
+    <div class="g2 reveal" style="margin-top:20px;">
+      <div class="card"><div class="col-hdr">Roadmap Delivery</div><div class="metric">100%</div><p style="font-size:13px;color:#666;margin-top:6px;">Q4 commitment delivery. TreasureCode, Engage SFMC/MA, four pillars strategic reframe.</p></div>
+      <div class="card"><div class="col-hdr">Revenue Impact</div><div class="metric">>$1M</div><p style="font-size:13px;color:#666;margin-top:6px;">ARR in late-stage/closed-won deals. PMI, Thomson Reuters, JCB, Volvo, Hilton, Nordstrom.</p></div>
+      <div class="card"><div class="col-hdr">AI Adoption</div><div class="metric">~300K</div><p style="font-size:13px;color:#666;margin-top:6px;">LLM conversations/week across Studio, Agent Foundry, Audience Agent, MSA, Treasure Code.</p></div>
+      <div class="card">
+        <div class="col-hdr">Engineering Mix Shift</div>
+        <div style="display:flex;align-items:center;gap:16px;margin:8px 0;">
+          <div style="text-align:center;"><div style="font-size:11px;color:#999;">FY26</div><div style="font-size:20px;font-weight:800;">70/30</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
+          <div style="font-size:20px;color:var(--soft-purple);">→</div>
+          <div style="text-align:center;"><div style="font-size:11px;color:#999;">CY27</div><div style="font-size:20px;font-weight:800;color:var(--soft-purple);">50/50</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
+        </div>
+        <p style="font-size:13px;color:#666;">Sustained investment into AI-native products vs legacy ICDP.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -470,36 +520,6 @@ section.closing {
       <div class="al" style="background:rgba(128,179,250,.03);"><div class="al-l">Activation</div><div class="al-b"><div class="ab">Engagement</div><div class="ab">Personalization</div><div class="ab">Creative</div><div class="ab">Paid Media</div><div class="ab">Service</div></div></div>
       <div class="al" style="background:rgba(253,184,147,.05);"><div class="al-l">Context</div><div class="al-b"><div class="ab">AI Decisioning</div><div class="ab">Unified Profiles</div><div class="ab">Real-Time Signals</div><div class="ab">Model Intelligence</div><div class="ab">Governance</div></div></div>
     </div>
-  </div>
-</section>
-
-<!-- KEY OUTCOMES -->
-<section id="outcomes" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">Performance</div>
-    <h2 class="reveal section-title">Key Q4 Outcomes</h2>
-    <div class="g2 reveal" style="margin-top:20px;">
-      <div class="card"><div class="col-hdr">Roadmap Delivery</div><div class="metric">100%</div><p style="font-size:13px;color:#666;margin-top:6px;">Q4 commitment delivery. TreasureCode, Engage SFMC/MA, four pillars strategic reframe.</p></div>
-      <div class="card"><div class="col-hdr">Revenue Impact</div><div class="metric">>$1M</div><p style="font-size:13px;color:#666;margin-top:6px;">ARR in late-stage/closed-won deals. PMI, Thomson Reuters, JCB, Volvo, Hilton, Nordstrom.</p></div>
-      <div class="card"><div class="col-hdr">AI Adoption</div><div class="metric">~300K</div><p style="font-size:13px;color:#666;margin-top:6px;">LLM conversations/week across Studio, Agent Foundry, Audience Agent, MSA, Treasure Code.</p></div>
-      <div class="card">
-        <div class="col-hdr">Engineering Mix Shift</div>
-        <div style="display:flex;align-items:center;gap:16px;margin:8px 0;">
-          <div style="text-align:center;"><div style="font-size:11px;color:#999;">FY26</div><div style="font-size:20px;font-weight:800;">70/30</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
-          <div style="font-size:20px;color:var(--soft-purple);">→</div>
-          <div style="text-align:center;"><div style="font-size:11px;color:#999;">CY27</div><div style="font-size:20px;font-weight:800;color:var(--soft-purple);">50/50</div><div style="font-size:10px;color:#999;">Core / AI</div></div>
-        </div>
-        <p style="font-size:13px;color:#666;">Sustained investment into AI-native products vs legacy ICDP.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIVIDER: PLG -->
-<section class="divider bg-lavender" id="plg-div">
-  <div class="section-inner">
-    <div class="reveal section-title">Treasure AI Studio<br>& PLG</div>
-    <div class="reveal section-subtitle">Product update & strategic shifts</div>
   </div>
 </section>
 
@@ -573,18 +593,126 @@ section.closing {
   </div>
 </section>
 
+<!-- ADDING A GAP -->
+<section id="add-gap" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">How To</div>
+    <h2 class="reveal section-title"><a href="https://docs.google.com/presentation/d/1bQJIew6vKFNYRZndYfKLabRqq-c8pMjuEwTCNULGLU0/edit?slide=id.g3d0f6c387d7_0_0#slide=id.g3d0f6c387d7_0_0" target="_blank" style="color:var(--soft-purple);text-decoration:underline;text-underline-offset:4px;">Adding a Product Gap</a>: List View</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:28px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">1</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;">Please check for an existing Gap!</div>
+            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">If one exists, please add to the Description and link your relevant Deal/Company.</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">2</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;">Make a name that works as a descriptive summary</div>
+            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">
+              <span class="pill pg">Good</span> <span style="font-size:13px;">Salesforce Marketing Cloud v2 Data Extension</span><br>
+              <span class="pill" style="background:rgba(239,68,68,.1);color:#dc2626;">Bad</span> <span style="font-size:13px;">Real Time Requests</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">3</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;">Add a long form description for your gap</div>
+            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">This is the place to be verbose!</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">4</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;">Finally, link to the relevant Company</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="tips-card">
+          <h4>Key Tips for the Field</h4>
+          <ul style="padding:0;">
+            <li><strong>Attach revenue to every gap</strong> — ARR is the primary prioritisation signal for Product</li>
+            <li><strong>Aggregate similar gaps</strong> — one gap with five accounts and $500k attached beats five separate $100k submissions</li>
+            <li><strong>Don't skip the regional lead</strong> — they are the voice of the field in the council; work with them, not around them</li>
+            <li><strong>Bugs go through Support</strong>, not the product gap process</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- PROCESS -->
 <section id="process" style="background:#fff;">
   <div class="section-inner">
-    <div class="reveal section-label">Escalation Path</div>
+    <div class="reveal section-label">Field ↔ Product Collaboration</div>
     <h2 class="reveal section-title">How GTM Influences Product</h2>
-    <p class="reveal section-subtitle">End-to-end process for product gap escalation</p>
-    <div class="steps reveal">
-      <div class="sb"><div class="num">Step 1</div><h4>Log in HubSpot</h4><p>Any AD, CSM, or SE submits a gap. Tie to Company or Deal. Always attach dollar value.</p></div>
-      <div class="sb"><div class="num">Step 2</div><h4>Regional Top 5</h4><p>NALA, EMEA, JP leads select top 5. Posted to #product-gap-council on Slack.</p></div>
-      <div class="sb"><div class="num">Step 3</div><h4>Monthly Council</h4><p>PMs respond with status, timelines, questions. Accepted gaps → PRP tickets in Jira.</p></div>
-      <div class="sb"><div class="num">Step 4</div><h4>Office Hours</h4><p>Bi-weekly Thu 9–10 AM PST. Open forum for timelines, demos. "When is X shipping?" channel.</p></div>
-      <div class="sb"><div class="num">Step 5</div><h4>Escalation</h4><p>Deal-critical gaps bypass monthly cadence. GTM leader escalates directly to CPO.</p></div>
+    <p class="reveal section-subtitle">How the field can better work with Product on deals, and influence the roadmap via feature enhancement requests</p>
+    <div class="cols reveal" style="margin-top:20px;gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <details class="xcard" open>
+          <summary><span class="xnum">1</span>Log Product Gaps in HubSpot</summary>
+          <div class="xbody">
+            <p>The primary mechanism for field influence — replaced Vivun earlier in 2026.</p>
+            <ul>
+              <li>Any AD, CSM, or SE can submit a product gap</li>
+              <li>Tie each gap to a Company (account gap) or Deal (deal-specific)</li>
+              <li>Always attach a dollar value / ARR — gaps without revenue carry far less weight</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">2</span>Product Gap Council (Monthly)</summary>
+          <div class="xbody">
+            <p>GTM leaders surface the field's most impactful gaps directly to PMs.</p>
+            <ul>
+              <li>Each regional lead (NALA: David Choi, EMEA: Charles Vatin, Post-Sales: Scott Mitchell, JP: Kohei Yamamori) brings top 5 gaps</li>
+              <li>Gaps posted to #product-gap-council on Slack ahead of meeting</li>
+              <li>PMs respond with prioritisation status and timelines</li>
+              <li>Accepted gaps become PRP tickets in Jira Polaris</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">3</span>Product Office Hours (Bi-Weekly)</summary>
+          <div class="xbody">
+            <p>Every other Thursday, 9:00–10:00 AM PST — open forum for timelines, roadmap items, and releases.</p>
+            <ul>
+              <li>Roadmap updates, prototypes, demos, and open Q&A</li>
+              <li>Official "when is X shipping?" channel — PMs won't join individual SBR/account meetings</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <details class="xcard">
+          <summary><span class="xnum">4</span>Escalation for Deal-Critical Gaps</summary>
+          <div class="xbody">
+            <p>For a feature gap actively blocking or threatening a deal:</p>
+            <ul>
+              <li>Raise with your GTM leader immediately</li>
+              <li>They escalate directly to Kristen Zhou (CPO)</li>
+              <li>Don't use the monthly council for time-sensitive deal escalations</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">5</span>Top 50 Accounts — Named PM</summary>
+          <div class="xbody">
+            <p>Strategic accounts have a dedicated PM assigned. Account team should still log gaps in HubSpot, but can co-review gap status periodically with the assigned PM directly.</p>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">6</span>On-site Support</summary>
+          <div class="xbody">
+            <p>At the request of a GTM Team, PMs can be dispatched to a prospect or customer for on-site demos, walk-throughs and presentations. Reach out to Kristen for Product Approval.</p>
+          </div>
+        </details>
+      </div>
     </div>
   </div>
 </section>
@@ -638,6 +766,41 @@ section.closing {
   </div>
 </section>
 
+<!-- TODAY: STATE OF FUNCTIONALITY -->
+<section id="comp-today" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Current State</div>
+    <h2 class="reveal section-title">Today (Beginning of April): State of Functionality</h2>
+    <div class="cols reveal" style="margin-top:24px;">
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:12px;">Today, you can:</div>
+        <div class="body">
+          <ul>
+            <li><strong>Segmentations</strong> (Attribute/Behavior conditions, Advanced logic, existing segments)
+              <ul style="margin-top:4px;"><li style="font-size:12px;"><strong>Snowflake and Databricks</strong></li></ul>
+            </li>
+            <li><strong>Activations</strong>
+              <ul style="margin-top:4px;">
+                <li style="font-size:12px;">Standard Activation — Snowflake and Databricks</li>
+                <li style="font-size:12px;">Behavior Activation — Snowflake (Databricks ver will support by April 22)</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:12px;">How do you enable/get access to this?</div>
+        <div class="body">
+          <ul>
+            <li>10602 already enabled the features</li>
+            <li>Lani will assign someone to become SME in EMEA region. Yasu/Dan will work closely with them</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- COMPOSABLE ROADMAP -->
 <section id="comp-road" style="background:#fff;">
   <div class="section-inner">
@@ -657,16 +820,51 @@ section.closing {
 <section id="parity" style="background:#fff;">
   <div class="section-inner">
     <div class="reveal section-label">Competitive</div>
-    <h2 class="reveal section-title">Parity vs Hightouch</h2>
-    <p class="reveal section-subtitle">Progressive competitive positioning</p>
-    <table class="dt reveal" style="margin-top:20px;">
-      <thead><tr><th>Phase</th><th>Timeline</th><th>Parity</th><th>Differentiator</th></tr></thead>
+    <h2 class="reveal section-title">Milestones: Parity versus Hightouch</h2>
+    <p class="reveal section-subtitle">Progressive competitive positioning with feature details</p>
+    <table class="dt reveal" style="margin-top:20px;font-size:12px;">
+      <thead><tr><th>Timeframe</th><th>Available Features</th><th>What Marketers Can Do</th><th>Limitations</th><th style="width:70px;">Parity</th><th>Differentiator</th></tr></thead>
       <tbody>
-        <tr><td style="font-weight:600;">Phase 1</td><td>End Apr '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:65%;"></div></div><div class="pm-p">65%</div></div></td><td><span class="pill pp">+ AI-Native Interface</span></td></tr>
-        <tr><td style="font-weight:600;">Phase 1.1</td><td>End May '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:75%;"></div></div><div class="pm-p">75%</div></div></td><td><span class="pill pp">+ Composable IDU</span></td></tr>
-        <tr><td style="font-weight:600;">Phase 2</td><td>End Jun '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:80%;"></div></div><div class="pm-p">80%</div></div></td><td><span class="pill pp">+ Engage Studio</span></td></tr>
-        <tr><td style="font-weight:600;">Phase 3</td><td>End Sep '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:95%;"></div></div><div class="pm-p">95%</div></div></td><td><span class="pill pg">Near parity</span></td></tr>
-        <tr><td style="font-weight:600;">Phase 4</td><td>End Oct '26</td><td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:100%;"></div></div><div class="pm-p">100%</div></div></td><td><span class="pill pg">Full parity</span></td></tr>
+        <tr>
+          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 1</strong><br><span style="color:#888;font-size:11px;">End of Apr '26</span></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Segmentations</li><li style="list-style:disc;margin-bottom:3px;">Activations</li><li style="list-style:disc;">Treasure AI Studio + Skills</li></ul></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create segments based on attributes/behaviors</li><li style="list-style:disc;margin-bottom:3px;">Activate segments to downstream systems</li><li style="list-style:disc;">Use Data in AI Use Cases</li></ul></td>
+          <td style="font-size:11px;color:#888;">Composable Parent Segments available to anyone with Audience Studio access</td>
+          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:65%;"></div></div><div class="pm-p">65%</div></div></td>
+          <td><span class="pill pp">+ AI-Native Interface</span></td>
+        </tr>
+        <tr>
+          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 1.1</strong><br><span style="color:#888;font-size:11px;">End of May '26</span></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Permission Controls on Composable Parent Segment</li><li style="list-style:disc;">Audit log of Composable Audience Studio</li></ul></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Configure per parent segment access control</li><li style="list-style:disc;">Logging activity of operations with CAS</li></ul></td>
+          <td></td>
+          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:75%;"></div></div><div class="pm-p">75%</div></div></td>
+          <td><span class="pill pp">+ Composable IDU Solutions</span></td>
+        </tr>
+        <tr>
+          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 2</strong><br><span style="color:#888;font-size:11px;">End of Jun '26</span></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Core Journey Capabilities</li><li style="list-style:disc;margin-bottom:3px;">BigQuery Support (parity with DBX, SNOW)</li><li style="list-style:disc;">Iceberg Support (AWS DBX)</li></ul></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create Journeys with Activation, Wait Steps, End, Decision points, Merge</li><li style="list-style:disc;">Composable Support for BQ</li></ul></td>
+          <td style="font-size:11px;color:#888;">Advanced capabilities (Jump, journey simulator) and journey management (version control) not available</td>
+          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:80%;"></div></div><div class="pm-p">80%</div></div></td>
+          <td><span class="pill pp">+ Engage Studio</span></td>
+        </tr>
+        <tr>
+          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 3</strong><br><span style="color:#888;font-size:11px;">End of Sep '26</span></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">RT2 Integrations</li><li style="list-style:disc;">Audience Agent</li></ul></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Use RT2 features with Composable Audience Studio</li><li style="list-style:disc;">Use Audience Agent on Composable Audience Studio</li></ul></td>
+          <td></td>
+          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:95%;"></div></div><div class="pm-p">95%</div></div></td>
+          <td><span class="pill pg">Near parity</span></td>
+        </tr>
+        <tr>
+          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 4</strong><br><span style="color:#888;font-size:11px;">End of Oct '26</span></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;">End-to-End Journey Capabilities</li></ul></td>
+          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create a Journey with Jump</li><li style="list-style:disc;margin-bottom:3px;">Run Journey simulator</li><li style="list-style:disc;">Control versions with Journey</li></ul></td>
+          <td></td>
+          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:100%;"></div></div><div class="pm-p">100%</div></div></td>
+          <td><span class="pill pg">Full parity</span></td>
+        </tr>
       </tbody>
     </table>
   </div>
