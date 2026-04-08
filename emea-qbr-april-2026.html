@@ -265,6 +265,19 @@ section.divider { align-items: flex-start; }
 .dt td { padding:10px 14px; border-bottom:1px solid #eee; vertical-align:top; }
 .dt tr:hover td { background:rgba(132,123,242,.02); }
 
+/* Expandable table rows */
+.dt-expand .dt-row:hover td { background:rgba(132,123,242,.06); }
+.dt-chevron { text-align:center; color:#ccc; font-size:14px; transition:transform .2s; }
+.dt-row.open .dt-chevron { transform:rotate(180deg); color:var(--soft-purple); }
+.dt-detail { display:none; }
+.dt-detail.open { display:table-row; }
+.dt-detail td { padding:0 14px 0 14px; border-bottom:1px solid #eee; background:rgba(132,123,242,.03); }
+.dt-detail-body { padding:12px 0 16px 42px; font-size:13px; line-height:1.7; color:#333; }
+.dt-detail-body p { margin-bottom:6px; font-weight:500; color:var(--soft-purple); font-size:12px; }
+.dt-detail-body ul { padding-left:18px; margin:0; }
+.dt-detail-body li { list-style:none; position:relative; padding-left:4px; margin-bottom:4px; }
+.dt-detail-body li::before { content:''; position:absolute; left:-14px; top:8px; width:5px; height:5px; border-radius:50%; background:var(--soft-purple); }
+
 /* ===== NAMING CARDS ===== */
 .nc {
   padding: 20px; border-radius: 16px; border: 1px solid #e8e8f0; text-align: center;
@@ -1057,14 +1070,84 @@ section.closing {
   <div class="section-inner">
     <div class="reveal section-label">Regional Priorities</div>
     <h2 class="reveal section-title">NALA/EMEA Top 5 Requests</h2>
-    <table class="dt reveal" style="margin-top:16px;">
-      <thead><tr><th style="width:30px;">#</th><th>Gap Area</th><th>Key Details</th></tr></thead>
+    <table class="dt dt-expand reveal" style="margin-top:16px;">
+      <thead><tr><th style="width:30px;">#</th><th>Gap Area</th><th>Key Details</th><th style="width:30px;"></th></tr></thead>
       <tbody>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">1</td><td style="font-weight:600;">Zero Copy / Composable</td><td>DBX, Snowflake, BQ. Behavior activations, templates, Audience Agent, RT Personalization.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">2</td><td style="font-weight:600;">RT 2.0 Improvements</td><td>Docs gaps, delete configs in UI, provision reactor, batch changes, progress bar, error debugging.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">3</td><td style="font-weight:600;">Engage</td><td>Unsubscribe pages, data collection pages, SMS in UK, bounce reporting, folder structure.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">4</td><td style="font-weight:600;">AI Foundry</td><td>Admin ability to cap AI conversation usage per users/policies — daily and/or weekly.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">5</td><td style="font-weight:600;">Studio / Treasure Code</td><td>Usage tracking across products and user level. Policy-based permissions.</td></tr>
+        <tr class="dt-row" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');" style="cursor:pointer;">
+          <td style="font-weight:700;color:var(--soft-purple);">1</td><td style="font-weight:600;">Zero Copy / Composable</td><td>DBX, Snowflake, BQ. Behavior activations, templates, Audience Agent, RT Personalization.</td><td class="dt-chevron">▾</td>
+        </tr>
+        <tr class="dt-detail">
+          <td colspan="4">
+            <div class="dt-detail-body">
+              <p>Composable capability for Databricks, Snowflake, and BigQuery.</p>
+              <ul>
+                <li>Behavior-based activations, activation actions, and activation templates</li>
+                <li>Audience Agent and AI Agent Foundry support</li>
+                <li>RT Personalization and Triggers</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr class="dt-row" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');" style="cursor:pointer;">
+          <td style="font-weight:700;color:var(--soft-purple);">2</td><td style="font-weight:600;">RT 2.0 Improvements</td><td>Docs gaps, delete configs in UI, provision reactor, batch changes, progress bar, error debugging.</td><td class="dt-chevron">▾</td>
+        </tr>
+        <tr class="dt-detail">
+          <td colspan="4">
+            <div class="dt-detail-body">
+              <p>RT 2.0 Documentation (Batch ID Graph, Best Practices, Public Docs have Gaps and Errors).</p>
+              <ul>
+                <li>Ability to delete configurations on RT 2.0 on UI</li>
+                <li>Ability for the user to provision/refresh a reactor</li>
+                <li>Ability to add multiple changes and then trigger the update</li>
+                <li>Progress bar for RT configuration: UI to configure your golden record (RT attributes, Batch attribute, IDU rules)</li>
+                <li>Ability to debug the reactor, improve error messages and access to data</li>
+                <li>Push batch ID graph to reactor part of the product using UI (not custom workflow)</li>
+                <li>Ability to do simple RT transformation (apply regex, hash, simple data standardization)</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr class="dt-row" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');" style="cursor:pointer;">
+          <td style="font-weight:700;color:var(--soft-purple);">3</td><td style="font-weight:600;">Engage</td><td>Unsubscribe pages, data collection pages, SMS in UK, bounce reporting, folder structure.</td><td class="dt-chevron">▾</td>
+        </tr>
+        <tr class="dt-detail">
+          <td colspan="4">
+            <div class="dt-detail-body">
+              <ul>
+                <li>Landing Pages for Unsubscribe Management Pages for Unsubscribe Management</li>
+                <li>Landing Page to manage collect of data (surveys, etc…)</li>
+                <li>SMS in UK</li>
+                <li>Performance attributes available for reporting including Comprehensive bounce reporting showing hard/soft bounces, emails that have bounced with bounce reason</li>
+                <li>Folder structure within workspaces w/ ability to move certain assets like templates across workspaces</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr class="dt-row" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');" style="cursor:pointer;">
+          <td style="font-weight:700;color:var(--soft-purple);">4</td><td style="font-weight:600;">AI Foundry</td><td>Admin ability to cap AI conversation usage per users/policies — daily and/or weekly.</td><td class="dt-chevron">▾</td>
+        </tr>
+        <tr class="dt-detail">
+          <td colspan="4">
+            <div class="dt-detail-body">
+              <ul>
+                <li>Ability for Admin to cap usage of AI conversation per users/policies daily and or weekly</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
+        <tr class="dt-row" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');" style="cursor:pointer;">
+          <td style="font-weight:700;color:var(--soft-purple);">5</td><td style="font-weight:600;">Studio / Treasure Code</td><td>Usage tracking across products and user level. Policy-based permissions.</td><td class="dt-chevron">▾</td>
+        </tr>
+        <tr class="dt-detail">
+          <td colspan="4">
+            <div class="dt-detail-body">
+              <ul>
+                <li>Usage across individual products like Treasure Studio/ Audience Agent and at user level</li>
+                <li>Policy based permission for Treasure Code and Treasure Studio</li>
+              </ul>
+            </div>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
