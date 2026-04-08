@@ -22,7 +22,6 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-snap-type: y proximity;
   font-size: 16px;
 }
 
@@ -83,7 +82,6 @@ section {
   justify-content: center;
   padding: 80px 60px;
   position: relative;
-  scroll-snap-align: start;
 }
 
 @media (max-width: 768px) { section { padding: 60px 24px; } }
@@ -499,7 +497,7 @@ section.closing {
     <div class="reveal section-label">New Product Launch</div>
     <h2 class="reveal section-title">New Treasure AI Studio</h2>
     <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-      <!-- Col 1: Studio + Consolidation -->
+      <!-- Col 1: What's New + Feature Parity -->
       <div style="display:flex;flex-direction:column;gap:14px;">
         <div style="padding:20px 22px;border:1px solid #e8e8f0;border-radius:14px;">
           <div class="col-hdr" style="font-size:11px;">What's New (compared to existing Treasure Studio)</div>
@@ -509,9 +507,35 @@ section.closing {
               <li><strong>Voice Input:</strong> Mobile</li>
               <li><strong>New Architecture:</strong> Enterprise-grade governance and security, Claude Agent SDK-based Agent Framework</li>
               <li><strong>New UI Design:</strong> Refreshed visual experience</li>
+              <li><strong>New Domain/URL:</strong> With console SSO login option</li>
             </ul>
           </div>
         </div>
+        <div style="padding:20px 22px;border-radius:14px;border:1px solid #e8e8f0;">
+          <div class="col-hdr" style="font-size:11px;">Feature Parity vs Treasure Studio</div>
+          <div class="body" style="font-size:13.5px;line-height:1.75;margin-top:8px;">
+            <ul>
+              <li><strong>Feature parity by 4/20 launch date:</strong>
+                <ul style="margin-top:4px;">
+                  <li style="font-size:12.5px;color:#555;">Chat history, SSO, all TD skills (pre-installed)</li>
+                  <li style="font-size:12.5px;color:#555;">TDX layer, query execution</li>
+                  <li style="font-size:12.5px;color:#555;">File viewers (PDF, PowerPoint, Excel, HTML, Code/Syntax Highlighting)</li>
+                  <li style="font-size:12.5px;color:#555;">Basic charts, file upload, in-session memory</li>
+                </ul>
+              </li>
+              <li><strong>Missing at launch (coming FYQ1):</strong>
+                <ul style="margin-top:4px;">
+                  <li style="font-size:12.5px;color:#555;">Custom skill marketplace</li>
+                  <li style="font-size:12.5px;color:#555;">MCP servers/integrations</li>
+                  <li style="font-size:12.5px;color:#555;">Web search, image generation via OpenAI</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Col 2: Consolidation + Customer Migration -->
+      <div style="display:flex;flex-direction:column;gap:14px;">
         <div style="padding:20px 22px;border:1px solid #e8e8f0;border-radius:14px;">
           <div class="col-hdr" style="font-size:11px;">Strategic Consolidation</div>
           <div class="body" style="margin-top:8px;font-size:13.5px;line-height:1.75;">
@@ -519,47 +543,23 @@ section.closing {
               <li><strong>Treasure Studio → Treasure Work:</strong> Internal innovation lab</li>
               <li><strong>Retiring MSA:</strong> End of May — capabilities absorbed into Studio</li>
               <li><strong>AI Agent Foundry:</strong> Remains as-is</li>
+              <li><strong>New Treasure AI Studio:</strong> Same user permissions as configured in console</li>
             </ul>
           </div>
         </div>
-      </div>
-      <!-- Col 2: Feature Parity -->
-      <div style="display:flex;flex-direction:column;gap:14px;">
-        <div style="padding:20px 22px;border-radius:14px;background:rgba(34,197,94,.03);border:1px solid rgba(34,197,94,.12);flex:1;">
-          <div style="font-size:11px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:.05em;">Ready at GA (4/20)</div>
-          <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
-            <span class="pill pg" style="font-size:10px;">Web</span>
-            <span class="pill pg" style="font-size:10px;">iOS</span>
-            <span class="pill pg" style="font-size:10px;">Mac Desktop</span>
-            <span class="pill pg" style="font-size:10px;">Chat + History</span>
-            <span class="pill pg" style="font-size:10px;">SSO Login</span>
-            <span class="pill pg" style="font-size:10px;">Skills Marketplace</span>
-            <span class="pill pg" style="font-size:10px;">TDX / CLI</span>
-            <span class="pill pg" style="font-size:10px;">Query Execution</span>
-            <span class="pill pg" style="font-size:10px;">File Viewers</span>
-            <span class="pill pg" style="font-size:10px;">Charts / Viz</span>
-            <span class="pill pg" style="font-size:10px;">File Upload</span>
-            <span class="pill pg" style="font-size:10px;">In-Session Memory</span>
-            <span class="pill pg" style="font-size:10px;">Doc Outputs</span>
-            <span class="pill pg" style="font-size:10px;">Agent SDK</span>
-          </div>
-        </div>
-        <div style="padding:20px 22px;border-radius:14px;background:rgba(249,115,22,.03);border:1px solid rgba(249,115,22,.12);flex:1;">
-          <div style="font-size:11px;font-weight:700;color:#ea580c;text-transform:uppercase;letter-spacing:.05em;">Post-GA (Short Follow)</div>
-          <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
-            <span class="pill po" style="font-size:10px;">Android</span>
-            <span class="pill po" style="font-size:10px;">Windows</span>
-            <span class="pill po" style="font-size:10px;">MCP Servers</span>
-            <span class="pill po" style="font-size:10px;">MCP App UI</span>
-            <span class="pill po" style="font-size:10px;">Slack / Relay</span>
-            <span class="pill po" style="font-size:10px;">Web Search</span>
-            <span class="pill po" style="font-size:10px;">Image Gen</span>
-            <span class="pill po" style="font-size:10px;">Deep Linking</span>
-            <span class="pill po" style="font-size:10px;">Extended Thinking</span>
-            <span class="pill po" style="font-size:10px;">File Attachments</span>
-            <span class="pill po" style="font-size:10px;">Multi-Account</span>
-            <span class="pill po" style="font-size:10px;">Mermaid Diagrams</span>
-            <span class="pill po" style="font-size:10px;">API Key Auth</span>
+        <div style="padding:20px 22px;border:1px solid #e8e8f0;border-radius:14px;">
+          <div class="col-hdr" style="font-size:11px;">Customer Strategy & Migration</div>
+          <div class="body" style="margin-top:8px;font-size:13.5px;line-height:1.75;">
+            <ul>
+              <li><strong>New customers:</strong> Push Treasure AI Studio if they can use Anthropic models</li>
+              <li><strong>Existing Foundry customers:</strong>
+                <ul style="margin-top:4px;">
+                  <li style="font-size:12.5px;color:#555;">Continue current usage — no forced migration until all custom agents have been migrated to Skills</li>
+                  <li style="font-size:12.5px;color:#555;">Showcase Treasure AI Studio's new capabilities for additional use cases. If customers are comfortable running both apps, encourage them to try Skills in Treasure AI Studio</li>
+                </ul>
+              </li>
+              <li><strong>Foundry remains</strong> for customers requiring non-Anthropic models (UMG, SoftBank) until we have a solution to enable non-Anthropic models in Treasure AI Studio</li>
+            </ul>
           </div>
         </div>
       </div>
