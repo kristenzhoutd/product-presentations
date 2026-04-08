@@ -394,6 +394,33 @@ section.closing {
 </head>
 <body>
 
+<!-- Password Gate -->
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;padding:40px;">
+    <svg viewBox="0 0 24 24" width="32" height="32" style="margin-bottom:20px;"><path d="M12 2L3 9L12 22L21 9Z" fill="#847BF2"/><path d="M12 2L3 9L12 13L21 9Z" fill="#80B3FA" opacity=".7"/></svg>
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px;">EMEA QBR Product Update</div>
+    <div style="font-size:13px;color:#999;margin-bottom:24px;">Enter password to continue</div>
+    <form onsubmit="return checkPw()">
+      <input id="pwInput" type="password" placeholder="Password" autofocus style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:10px;font-size:15px;font-family:inherit;outline:none;text-align:center;transition:border .2s;" onfocus="this.style.borderColor='#847BF2'" onblur="this.style.borderColor='#ddd'">
+      <div id="pwErr" style="color:#ef4444;font-size:12px;margin-top:8px;opacity:0;transition:opacity .2s;">Incorrect password</div>
+      <button type="submit" style="margin-top:12px;width:100%;padding:12px;background:#847BF2;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s;">Enter</button>
+    </form>
+  </div>
+</div>
+<script>
+function checkPw(){
+  if(document.getElementById('pwInput').value==='TDsuperhuman'){
+    document.getElementById('pwGate').style.display='none';
+    sessionStorage.setItem('pw_ok','1');
+  } else {
+    document.getElementById('pwErr').style.opacity='1';
+    document.getElementById('pwInput').style.borderColor='#ef4444';
+  }
+  return false;
+}
+if(sessionStorage.getItem('pw_ok')==='1') document.getElementById('pwGate').style.display='none';
+</script>
+
 <!-- Top Bar -->
 <div class="top-bar" id="topBar">
   <div class="top-bar-logo">
