@@ -403,19 +403,14 @@ section.closing {
     <span class="nav-label">Q4 & Product Strategy</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="gap-div" data-sections="gap-div,top5,add-gap,process">
+  <div class="nav-section" data-section="comp-div" data-sections="comp-div,comp-vs,comp-today,comp-road,pilot,next,comp-faq1,comp-faq2,comp-faq3,comp-faq4">
     <span class="nav-num">2</span>
-    <span class="nav-label">Gap Council</span>
-    <div class="nav-dot"></div>
-  </div>
-  <div class="nav-section" data-section="comp-div" data-sections="comp-div,comp-vs,ps,comp-today,comp-road,parity,pilot,next">
-    <span class="nav-num">3</span>
     <span class="nav-label">Composable</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="faq-div" data-sections="faq-div,faq,roadmap">
-    <span class="nav-num">4</span>
-    <span class="nav-label">FAQ & Q&A</span>
+  <div class="nav-section" data-section="gap-div" data-sections="gap-div,top5,add-gap,process,faq,roadmap">
+    <span class="nav-num">3</span>
+    <span class="nav-label">Gap Council & Q&A</span>
     <div class="nav-dot"></div>
   </div>
   <div class="nav-section" data-section="closing">
@@ -449,9 +444,8 @@ section.closing {
     <h2 class="reveal section-title">Agenda</h2>
     <div style="margin-top:16px;">
       <div class="reveal ag" onclick="document.getElementById('q4-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">1</span><span class="ag-l">Q4 Outcomes & Product Strategy Update</span><span class="ag-b">Metrics + PLG</span></div>
-      <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('gap-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Product Gap Council</span><span class="ag-b">Process</span></div>
-      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('comp-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Composable Deep Dive</span><span class="ag-b">Roadmap</span></div>
-      <div class="reveal reveal-delay-3 ag" onclick="document.getElementById('faq-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">4</span><span class="ag-l">FAQ & Q&A</span><span class="ag-b">Open</span></div>
+      <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('comp-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Composable Deep Dive</span><span class="ag-b">Roadmap</span></div>
+      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('gap-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Product Gap Council & Q&A</span><span class="ag-b">Process + FAQ</span></div>
     </div>
   </div>
 </section>
@@ -567,156 +561,6 @@ section.closing {
   </div>
 </section>
 
-<!-- DIVIDER: GAP COUNCIL -->
-<section class="divider bg-sunset" id="gap-div">
-  <div class="section-inner">
-    <div class="reveal section-title">Product Gap<br>Council</div>
-    <div class="reveal section-subtitle">Process, top requests & how to influence the roadmap</div>
-  </div>
-</section>
-
-<!-- TOP 5 -->
-<section id="top5" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">Regional Priorities</div>
-    <h2 class="reveal section-title">NALA/EMEA Top 5 Requests</h2>
-    <table class="dt reveal" style="margin-top:16px;">
-      <thead><tr><th style="width:30px;">#</th><th>Gap Area</th><th>Key Details</th></tr></thead>
-      <tbody>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">1</td><td style="font-weight:600;">Zero Copy / Composable</td><td>DBX, Snowflake, BQ. Behavior activations, templates, Audience Agent, RT Personalization.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">2</td><td style="font-weight:600;">RT 2.0 Improvements</td><td>Docs gaps, delete configs in UI, provision reactor, batch changes, progress bar, error debugging.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">3</td><td style="font-weight:600;">Engage</td><td>Unsubscribe pages, data collection pages, SMS in UK, bounce reporting, folder structure.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">4</td><td style="font-weight:600;">AI Foundry</td><td>Admin ability to cap AI conversation usage per users/policies — daily and/or weekly.</td></tr>
-        <tr><td style="font-weight:700;color:var(--soft-purple);">5</td><td style="font-weight:600;">Studio / Treasure Code</td><td>Usage tracking across products and user level. Policy-based permissions.</td></tr>
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<!-- ADDING A GAP -->
-<section id="add-gap" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">How To</div>
-    <h2 class="reveal section-title"><a href="https://docs.google.com/presentation/d/1bQJIew6vKFNYRZndYfKLabRqq-c8pMjuEwTCNULGLU0/edit?slide=id.g3d0f6c387d7_0_0#slide=id.g3d0f6c387d7_0_0" target="_blank" style="color:var(--soft-purple);text-decoration:underline;text-underline-offset:4px;">Adding a Product Gap</a>: List View</h2>
-    <div class="cols reveal" style="margin-top:24px;gap:28px;">
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <div style="display:flex;gap:14px;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">1</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;">Please check for an existing Gap!</div>
-            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">If one exists, please add to the Description and link your relevant Deal/Company.</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">2</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;">Make a name that works as a descriptive summary</div>
-            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">
-              <span class="pill pg">Good</span> <span style="font-size:13px;">Salesforce Marketing Cloud v2 Data Extension</span><br>
-              <span class="pill" style="background:rgba(239,68,68,.1);color:#dc2626;">Bad</span> <span style="font-size:13px;">Real Time Requests</span>
-            </div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">3</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;">Add a long form description for your gap</div>
-            <div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">This is the place to be verbose!</div>
-          </div>
-        </div>
-        <div style="display:flex;gap:14px;align-items:flex-start;">
-          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">4</div>
-          <div>
-            <div style="font-size:15px;font-weight:700;">Finally, link to the relevant Company</div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="tips-card">
-          <h4>Key Tips for the Field</h4>
-          <ul style="padding:0;">
-            <li><strong>Attach revenue to every gap</strong> — ARR is the primary prioritisation signal for Product</li>
-            <li><strong>Aggregate similar gaps</strong> — one gap with five accounts and $500k attached beats five separate $100k submissions</li>
-            <li><strong>Don't skip the regional lead</strong> — they are the voice of the field in the council; work with them, not around them</li>
-            <li><strong>Bugs go through Support</strong>, not the product gap process</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section id="process" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">Field ↔ Product Collaboration</div>
-    <h2 class="reveal section-title">How GTM Influences Product</h2>
-    <p class="reveal section-subtitle">How the field can better work with Product on deals, and influence the roadmap via feature enhancement requests</p>
-    <div class="cols reveal" style="margin-top:20px;gap:16px;">
-      <div style="display:flex;flex-direction:column;gap:0;">
-        <details class="xcard" open>
-          <summary><span class="xnum">1</span>Log Product Gaps in HubSpot</summary>
-          <div class="xbody">
-            <p>The primary mechanism for field influence — replaced Vivun earlier in 2026.</p>
-            <ul>
-              <li>Any AD, CSM, or SE can submit a product gap</li>
-              <li>Tie each gap to a Company (account gap) or Deal (deal-specific)</li>
-              <li>Always attach a dollar value / ARR — gaps without revenue carry far less weight</li>
-            </ul>
-          </div>
-        </details>
-        <details class="xcard">
-          <summary><span class="xnum">2</span>Product Gap Council (Monthly)</summary>
-          <div class="xbody">
-            <p>GTM leaders surface the field's most impactful gaps directly to PMs.</p>
-            <ul>
-              <li>Each regional lead (NALA: David Choi, EMEA: Charles Vatin, Post-Sales: Scott Mitchell, JP: Kohei Yamamori) brings top 5 gaps</li>
-              <li>Gaps posted to #product-gap-council on Slack ahead of meeting</li>
-              <li>PMs respond with prioritisation status and timelines</li>
-              <li>Accepted gaps become PRP tickets in Jira Polaris</li>
-            </ul>
-          </div>
-        </details>
-        <details class="xcard">
-          <summary><span class="xnum">3</span>Product Office Hours (Bi-Weekly)</summary>
-          <div class="xbody">
-            <p>Every other Thursday, 9:00–10:00 AM PST — open forum for timelines, roadmap items, and releases.</p>
-            <ul>
-              <li>Roadmap updates, prototypes, demos, and open Q&A</li>
-              <li>Official "when is X shipping?" channel — PMs won't join individual SBR/account meetings</li>
-            </ul>
-          </div>
-        </details>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:0;">
-        <details class="xcard">
-          <summary><span class="xnum">4</span>Escalation for Deal-Critical Gaps</summary>
-          <div class="xbody">
-            <p>For a feature gap actively blocking or threatening a deal:</p>
-            <ul>
-              <li>Raise with your GTM leader immediately</li>
-              <li>They escalate directly to Kristen Zhou (CPO)</li>
-              <li>Don't use the monthly council for time-sensitive deal escalations</li>
-            </ul>
-          </div>
-        </details>
-        <details class="xcard">
-          <summary><span class="xnum">5</span>Top 50 Accounts — Named PM</summary>
-          <div class="xbody">
-            <p>Strategic accounts have a dedicated PM assigned. Account team should still log gaps in HubSpot, but can co-review gap status periodically with the assigned PM directly.</p>
-          </div>
-        </details>
-        <details class="xcard">
-          <summary><span class="xnum">6</span>On-site Support</summary>
-          <div class="xbody">
-            <p>At the request of a GTM Team, PMs can be dispatched to a prospect or customer for on-site demos, walk-throughs and presentations. Reach out to Kristen for Product Approval.</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- DIVIDER: COMPOSABLE -->
 <section class="divider bg-rainbow" id="comp-div">
   <div class="section-inner">
@@ -749,20 +593,6 @@ section.closing {
       </div>
     </div>
     <div class="reveal" style="margin-top:18px;"><div class="col-hdr">Key Setup Differences</div><div class="body"><ul><li>Import all data into CDW from all source systems</li><li>Build Audience DB tables (Customers, Behaviors) in CDW</li><li>Setup Composable PS Config with CDW connection</li></ul></div></div>
-  </div>
-</section>
-
-<!-- PARENT SEGMENT -->
-<section id="ps" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">Governance</div>
-    <h2 class="reveal section-title">Composable Parent Segment</h2>
-    <p class="reveal section-subtitle">Semantic & Governance Component</p>
-    <div class="g3 reveal" style="margin-top:24px;">
-      <div class="card" style="border-top:3px solid var(--sky-blue);"><div class="col-hdr">Schema/DB/Table Level</div><h4>CDW Access Control</h4><p>Which databases/tables CAS can access as Parent Segment datasources.</p></div>
-      <div class="card" style="border-top:3px solid var(--soft-purple);"><div class="col-hdr">Table Column Level</div><h4>Attribute Control</h4><p>Which columns CAS can use as attributes or behaviors.</p></div>
-      <div class="card" style="border-top:3px solid var(--orchid);"><div class="col-hdr">PS Level</div><h4>User Permissions</h4><p>Which users access which Parent Segment and columns within it.</p></div>
-    </div>
   </div>
 </section>
 
@@ -806,67 +636,96 @@ section.closing {
   <div class="section-inner">
     <div class="reveal section-label">Delivery Timeline</div>
     <h2 class="reveal section-title">Composable Roadmap</h2>
-    <div class="tl reveal" style="margin-top:24px;">
-      <div class="tp done"><div class="lbl">Phase 1 — End of April</div><h4>Core Composable</h4><ul><li>Segmentations (Snowflake + DBX)</li><li>Standard & Behavior Activations</li><li>Treasure AI Studio + Skills</li></ul></div>
-      <div class="tp now"><div class="lbl">Phase 1.1 — End of May</div><h4>Governance</h4><ul><li>Permission Controls on PS</li><li>Audit log of CAS operations</li></ul></div>
-      <div class="tp"><div class="lbl">Phase 2 — End of June</div><h4>Journeys + BigQuery</h4><ul><li>Core Journey Capabilities</li><li>BigQuery parity with DBX/SNOW</li><li>Iceberg Support (AWS DBX)</li></ul></div>
-      <div class="tp"><div class="lbl">Phase 3 — End of Sep</div><h4>RT2 + Audience Agent</h4><ul><li>RT2 Integrations</li><li>Audience Agent on CAS</li><li>Composable KBs</li></ul></div>
-      <div class="tp"><div class="lbl">Phase 4 — End of Oct</div><h4>Full Journeys</h4><ul><li>End-to-End Journeys</li><li>Journey simulator</li><li>Version control</li></ul></div>
-    </div>
-  </div>
-</section>
+    <div class="reveal" style="margin-top:24px; display:grid; grid-template-columns:repeat(5,1fr); gap:0; font-size:11.5px;">
+      <!-- Row: Timeline with dots aligned to columns -->
+      <div style="grid-column:1/-1;padding:0 0 0;position:relative;height:4px;margin-bottom:0;">
+        <div style="position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#22c55e 20%,var(--soft-purple) 40%,rgba(132,123,242,.3) 100%);border-radius:2px;"></div>
+      </div>
 
-<!-- PARITY -->
-<section id="parity" style="background:#fff;">
-  <div class="section-inner">
-    <div class="reveal section-label">Competitive</div>
-    <h2 class="reveal section-title">Milestones: Parity versus Hightouch</h2>
-    <p class="reveal section-subtitle">Progressive competitive positioning with feature details</p>
-    <table class="dt reveal" style="margin-top:20px;font-size:12px;">
-      <thead><tr><th>Timeframe</th><th>Available Features</th><th>What Marketers Can Do</th><th>Limitations</th><th style="width:70px;">Parity</th><th>Differentiator</th></tr></thead>
-      <tbody>
-        <tr>
-          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 1</strong><br><span style="color:#888;font-size:11px;">End of Apr '26</span></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Segmentations</li><li style="list-style:disc;margin-bottom:3px;">Activations</li><li style="list-style:disc;">Treasure AI Studio + Skills</li></ul></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create segments based on attributes/behaviors</li><li style="list-style:disc;margin-bottom:3px;">Activate segments to downstream systems</li><li style="list-style:disc;">Use Data in AI Use Cases</li></ul></td>
-          <td style="font-size:11px;color:#888;">Composable Parent Segments available to anyone with Audience Studio access</td>
-          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:65%;"></div></div><div class="pm-p">65%</div></div></td>
-          <td><span class="pill pp">+ AI-Native Interface</span></td>
-        </tr>
-        <tr>
-          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 1.1</strong><br><span style="color:#888;font-size:11px;">End of May '26</span></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Permission Controls on Composable Parent Segment</li><li style="list-style:disc;">Audit log of Composable Audience Studio</li></ul></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Configure per parent segment access control</li><li style="list-style:disc;">Logging activity of operations with CAS</li></ul></td>
-          <td></td>
-          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:75%;"></div></div><div class="pm-p">75%</div></div></td>
-          <td><span class="pill pp">+ Composable IDU Solutions</span></td>
-        </tr>
-        <tr>
-          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 2</strong><br><span style="color:#888;font-size:11px;">End of Jun '26</span></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Core Journey Capabilities</li><li style="list-style:disc;margin-bottom:3px;">BigQuery Support (parity with DBX, SNOW)</li><li style="list-style:disc;">Iceberg Support (AWS DBX)</li></ul></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create Journeys with Activation, Wait Steps, End, Decision points, Merge</li><li style="list-style:disc;">Composable Support for BQ</li></ul></td>
-          <td style="font-size:11px;color:#888;">Advanced capabilities (Jump, journey simulator) and journey management (version control) not available</td>
-          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:80%;"></div></div><div class="pm-p">80%</div></div></td>
-          <td><span class="pill pp">+ Engage Studio</span></td>
-        </tr>
-        <tr>
-          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 3</strong><br><span style="color:#888;font-size:11px;">End of Sep '26</span></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">RT2 Integrations</li><li style="list-style:disc;">Audience Agent</li></ul></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Use RT2 features with Composable Audience Studio</li><li style="list-style:disc;">Use Audience Agent on Composable Audience Studio</li></ul></td>
-          <td></td>
-          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:95%;"></div></div><div class="pm-p">95%</div></div></td>
-          <td><span class="pill pg">Near parity</span></td>
-        </tr>
-        <tr>
-          <td><strong style="border-bottom:2px solid var(--soft-purple);">Phase 4</strong><br><span style="color:#888;font-size:11px;">End of Oct '26</span></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;">End-to-End Journey Capabilities</li></ul></td>
-          <td><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:3px;">Create a Journey with Jump</li><li style="list-style:disc;margin-bottom:3px;">Run Journey simulator</li><li style="list-style:disc;">Control versions with Journey</li></ul></td>
-          <td></td>
-          <td><div class="pm"><div class="pm-t"><div class="pm-f" style="width:100%;"></div></div><div class="pm-p">100%</div></div></td>
-          <td><span class="pill pg">Full parity</span></td>
-        </tr>
-      </tbody>
-    </table>
+      <!-- Row: Dots + month labels (each in its column) -->
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px 8px;margin-top:-8px;">
+        <div style="width:15px;height:15px;border-radius:50%;background:#22c55e;border:3px solid rgba(34,197,94,.25);z-index:1;"></div>
+        <span style="font-size:9px;color:#22c55e;font-weight:700;margin-top:4px;">END APR</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px 8px;margin-top:-8px;">
+        <div style="width:15px;height:15px;border-radius:50%;background:var(--soft-purple);border:3px solid rgba(132,123,242,.25);z-index:1;"></div>
+        <span style="font-size:9px;color:var(--soft-purple);font-weight:700;margin-top:4px;">END MAY</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px 8px;margin-top:-8px;">
+        <div style="width:15px;height:15px;border-radius:50%;background:var(--soft-purple);opacity:.6;z-index:1;"></div>
+        <span style="font-size:9px;color:#999;font-weight:700;margin-top:4px;">END JUN</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px 8px;margin-top:-8px;">
+        <div style="width:15px;height:15px;border-radius:50%;background:var(--soft-purple);opacity:.4;z-index:1;"></div>
+        <span style="font-size:9px;color:#bbb;font-weight:700;margin-top:4px;">END SEP</span>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 12px 8px;margin-top:-8px;">
+        <div style="width:15px;height:15px;border-radius:50%;background:var(--soft-purple);opacity:.3;z-index:1;"></div>
+        <span style="font-size:9px;color:#bbb;font-weight:700;margin-top:4px;">END OCT</span>
+      </div>
+
+      <!-- Row: Phase headers -->
+      <div style="padding:10px 12px;border-left:3px solid #22c55e;background:rgba(34,197,94,.04);border-radius:8px 0 0 0;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:#22c55e;letter-spacing:.05em;">Phase 1</div>
+        <div style="font-weight:700;font-size:13px;margin-top:4px;">Core Composable</div>
+      </div>
+      <div style="padding:10px 12px;border-left:3px solid var(--soft-purple);background:rgba(132,123,242,.03);">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--soft-purple);letter-spacing:.05em;">Phase 1.1</div>
+        <div style="font-weight:700;font-size:13px;margin-top:4px;">Governance</div>
+      </div>
+      <div style="padding:10px 12px;border-left:3px solid var(--soft-purple);background:rgba(132,123,242,.02);">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--soft-purple);letter-spacing:.05em;">Phase 2</div>
+        <div style="font-weight:700;font-size:13px;margin-top:4px;">Journeys + BQ + Iceberg + Engage</div>
+      </div>
+      <div style="padding:10px 12px;border-left:3px solid var(--soft-purple);background:rgba(132,123,242,.02);">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--soft-purple);letter-spacing:.05em;">Phase 3</div>
+        <div style="font-weight:700;font-size:13px;margin-top:4px;">RT2 + Audience Agent</div>
+      </div>
+      <div style="padding:10px 12px;border-left:3px solid var(--soft-purple);background:rgba(132,123,242,.02);border-radius:0 8px 0 0;">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;color:var(--soft-purple);letter-spacing:.05em;">Phase 4</div>
+        <div style="font-weight:700;font-size:13px;margin-top:4px;">Full Journeys</div>
+      </div>
+
+      <!-- Row label: Features -->
+      <div style="grid-column:1/-1;padding:8px 12px 4px;font-size:9px;font-weight:700;text-transform:uppercase;color:#999;letter-spacing:.08em;border-top:1px solid #eee;margin-top:2px;">Available Features</div>
+
+      <!-- Row: Features (with bullets) -->
+      <div style="padding:4px 12px 10px;color:#555;line-height:1.7;"><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:2px;">Segmentations (Snowflake + DBX)</li><li style="list-style:disc;margin-bottom:2px;">Standard & Behavior Activations</li><li style="list-style:disc;">Treasure AI Studio + Skills</li></ul></div>
+      <div style="padding:4px 12px 10px;color:#555;line-height:1.7;"><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:2px;">Permission Controls on Composable PS</li><li style="list-style:disc;">Audit log of CAS operations</li></ul></div>
+      <div style="padding:4px 12px 10px;color:#555;line-height:1.7;"><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:2px;">Core Journey Capabilities</li><li style="list-style:disc;margin-bottom:2px;">BigQuery Support (DBX/SNOW parity)</li><li style="list-style:disc;margin-bottom:2px;">Iceberg Support (AWS DBX)</li><li style="list-style:disc;">Composable Audience in Engage Campaign</li></ul></div>
+      <div style="padding:4px 12px 10px;color:#555;line-height:1.7;"><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:2px;">RT2 Integrations</li><li style="list-style:disc;margin-bottom:2px;">Audience Agent on CAS</li><li style="list-style:disc;">Composable Knowledge Bases</li></ul></div>
+      <div style="padding:4px 12px 10px;color:#555;line-height:1.7;"><ul style="padding-left:14px;margin:0;"><li style="list-style:disc;margin-bottom:2px;">End-to-End Journey Capabilities</li><li style="list-style:disc;margin-bottom:2px;">Journey simulator</li><li style="list-style:disc;">Version control</li></ul></div>
+
+      <!-- Row label: Marketers can -->
+      <div style="grid-column:1/-1;padding:8px 12px 4px;font-size:9px;font-weight:700;text-transform:uppercase;color:#999;letter-spacing:.08em;border-top:1px solid #eee;">What Marketers Can Do</div>
+
+      <!-- Row: Marketers can -->
+      <div style="padding:4px 12px 10px;color:#888;line-height:1.55;font-size:11px;">Create segments on attributes/behaviors, activate to downstream, use data in AI use cases</div>
+      <div style="padding:4px 12px 10px;color:#888;line-height:1.55;font-size:11px;">Configure per-PS access control, log CAS activity</div>
+      <div style="padding:4px 12px 10px;color:#888;line-height:1.55;font-size:11px;">Create Journeys (Activation, Wait, End, Decision, Merge). Composable for BQ<br><span style="color:#c44;font-size:10px;">Limitation: Jump, simulator, version control not yet available</span></div>
+      <div style="padding:4px 12px 10px;color:#888;line-height:1.55;font-size:11px;">Use RT2 with Composable AS, Audience Agent on CAS + Composable KBs</div>
+      <div style="padding:4px 12px 10px;color:#888;line-height:1.55;font-size:11px;">Journey with Jump, run simulator, control versions</div>
+
+      <!-- Row label: Parity -->
+      <div style="grid-column:1/-1;padding:8px 12px 4px;font-size:9px;font-weight:700;text-transform:uppercase;color:#999;letter-spacing:.08em;border-top:1px solid #eee;">Parity vs Hightouch</div>
+
+      <!-- Row: Parity bars -->
+      <div style="padding:4px 12px 10px;"><div class="pm"><div class="pm-t"><div class="pm-f" style="width:65%;"></div></div><div class="pm-p" style="font-size:12px;">65%</div></div></div>
+      <div style="padding:4px 12px 10px;"><div class="pm"><div class="pm-t"><div class="pm-f" style="width:75%;"></div></div><div class="pm-p" style="font-size:12px;">75%</div></div></div>
+      <div style="padding:4px 12px 10px;"><div class="pm"><div class="pm-t"><div class="pm-f" style="width:80%;"></div></div><div class="pm-p" style="font-size:12px;">80%</div></div></div>
+      <div style="padding:4px 12px 10px;"><div class="pm"><div class="pm-t"><div class="pm-f" style="width:95%;"></div></div><div class="pm-p" style="font-size:12px;">95%</div></div></div>
+      <div style="padding:4px 12px 10px;"><div class="pm"><div class="pm-t"><div class="pm-f" style="width:100%;"></div></div><div class="pm-p" style="font-size:12px;">100%</div></div></div>
+
+      <!-- Row label: Differentiator -->
+      <div style="grid-column:1/-1;padding:8px 12px 4px;font-size:9px;font-weight:700;text-transform:uppercase;color:var(--orchid);letter-spacing:.08em;border-top:1px solid #eee;">TD Differentiator vs Hightouch</div>
+
+      <!-- Row: Differentiators -->
+      <div style="padding:4px 12px 10px;"><span class="pill pp" style="font-size:10px;">+ AI-Native Interface</span></div>
+      <div style="padding:4px 12px 10px;"><span class="pill pp" style="font-size:10px;">+ Composable IDU</span></div>
+      <div style="padding:4px 12px 10px;"><span class="pill pp" style="font-size:10px;">+ Engage Studio</span></div>
+      <div style="padding:4px 12px 10px;"><span class="pill pg" style="font-size:10px;">Near parity</span></div>
+      <div style="padding:4px 12px 10px;"><span class="pill pg" style="font-size:10px;">Full parity + differentiation</span></div>
+    </div>
   </div>
 </section>
 
@@ -875,25 +734,69 @@ section.closing {
   <div class="section-inner">
     <div class="reveal section-label">Implementation</div>
     <h2 class="reveal section-title">3-Week Pilot Checklist</h2>
-    <p class="reveal section-subtitle">Example: Composable implementation for enterprise</p>
-    <div class="cl-g reveal" style="margin-top:20px;">
-      <div>
-        <h4>Customer Responsibilities</h4>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Verify unified profile in CDW</span><span class="cw">Week 1</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Accept CDW compute cost model</span><span class="cw">Week 1</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Confirm identity stitching</span><span class="cw">Week 1-2</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Provision CDW service principal</span><span class="cw">Week 2</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure CDW read credentials</span><span class="cw">Week 2</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Define initial segment schemas</span><span class="cw">Week 2-3</span></div>
+    <p class="reveal section-subtitle">Example designed for Stellantis EE</p>
+    <div class="reveal" style="margin-top:20px;">
+      <!-- Column headers -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;margin-bottom:0;">
+        <div></div>
+        <div style="padding:8px 14px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;">Customer Responsibilities</div>
+        <div style="padding:8px 14px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;">Treasure Data Responsibilities</div>
       </div>
-      <div>
-        <h4>Treasure Data Responsibilities</h4>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Set up composable connection</span><span class="cw">Week 2</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Create parent segment from CDW</span><span class="cw">Week 2-3</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Build pilot segments</span><span class="cw">Week 3</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure activation destinations</span><span class="cw">Week 3</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Run campaign pilot</span><span class="cw">Week 4</span></div>
-        <div class="ci-row"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Monitor & optimize performance</span><span class="cw">Week 4</span></div>
+      <!-- Week 1 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 1</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Verify unified profile in CDW</span></div>
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Accept CDW compute cost model</span></div>
+        </div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;color:#999;font-size:12px;display:flex;align-items:center;">—</div>
+      </div>
+      <!-- Week 1-2 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 1–2</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Confirm 14-brand identity stitching</span></div>
+        </div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;color:#999;font-size:12px;display:flex;align-items:center;">—</div>
+      </div>
+      <!-- Week 2 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 2</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Provision CDW service principal</span></div>
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure CDW read credentials for TD</span></div>
+        </div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Set up composable connection</span></div>
+        </div>
+      </div>
+      <!-- Week 2-3 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 2–3</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Define initial segment schemas</span></div>
+        </div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Create parent segment from CDW</span></div>
+        </div>
+      </div>
+      <!-- Week 3 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 3</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;color:#999;font-size:12px;display:flex;align-items:center;">—</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Build pilot segments</span></div>
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Configure activation destinations</span></div>
+        </div>
+      </div>
+      <!-- Week 4 -->
+      <div style="display:grid;grid-template-columns:100px 1fr 1fr;gap:0;border-top:1px solid #eee;border-bottom:1px solid #eee;">
+        <div style="padding:12px 14px;font-size:13px;font-weight:700;color:var(--soft-purple);background:rgba(132,123,242,.03);display:flex;align-items:center;">Week 4</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;color:#999;font-size:12px;display:flex;align-items:center;">—</div>
+        <div style="padding:8px 14px;border-left:1px solid #eee;">
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Run campaign pilot</span></div>
+          <div class="ci-row" style="border:0;padding:4px 0;"><div class="cb" onclick="this.classList.toggle('ck')">&#10003;</div><span>Monitor & optimize performance</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -915,24 +818,342 @@ section.closing {
   </div>
 </section>
 
-<!-- DIVIDER: FAQ -->
-<section class="divider bg-dusk" id="faq-div">
+<!-- COMPOSABLE FAQ 1 -->
+<section id="comp-faq1" style="background:#fff;">
   <div class="section-inner">
-    <div class="reveal section-title">FAQ & Q&A</div>
-    <div class="reveal section-subtitle">Common questions from the field</div>
+    <div class="reveal section-label">Composable FAQ</div>
+    <h2 class="reveal section-title" style="font-size:clamp(20px,2.8vw,32px);">When episodic data lives outside DBX/SNOW, what's the recommendation?</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:20px;">
+      <div style="padding:24px;background:rgba(132,123,242,.03);border-radius:14px;border-left:4px solid var(--soft-purple);">
+        <div class="col-hdr">Approach 1: TD as Transfer Layer</div>
+        <div class="body" style="font-size:14px;line-height:1.8;">
+          <p>Use Treasure Data as an interim data transfer layer to move data from source into the CDW.</p>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:16px 0;">
+            <span class="pill pp">Data Connector</span><span style="color:#bbb;">→</span>
+            <span class="pill pp">Import</span><span style="color:#bbb;">→</span>
+            <span class="pill pp">Workflow</span><span style="color:#bbb;">→</span>
+            <span class="pill pp">Result Export to CDW</span>
+          </div>
+          <p style="font-size:12px;color:#888;">Best when the primary requirement is simply to transfer data from a source to CDWs.</p>
+        </div>
+      </div>
+      <div style="padding:24px;background:rgba(132,123,242,.03);border-radius:14px;border-left:4px solid var(--orchid);">
+        <div class="col-hdr" style="color:var(--orchid);">Approach 2: Iceberg Table Support</div>
+        <div class="body" style="font-size:14px;line-height:1.8;">
+          <p>If the customer is comfortable with the dataset residing within TD but still needs to expose it to a CDW, implement <strong>Iceberg table support</strong>.</p>
+          <p style="margin-top:12px;">This allows the dataset to be incorporated as a data source for <strong>"golden records"</strong> within the CDW environment.</p>
+          <p style="font-size:12px;color:#888;margin-top:12px;">Best when data can live in TD but needs to be queryable from the CDW.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- FAQ -->
+<!-- COMPOSABLE FAQ 2 -->
+<section id="comp-faq2" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Composable FAQ</div>
+    <h2 class="reveal section-title" style="font-size:clamp(20px,2.8vw,32px);">Where should IDU (Identity Unification) live?</h2>
+    <div class="reveal" style="margin-top:24px;padding:28px;background:rgba(132,123,242,.03);border-radius:14px;border-left:4px solid var(--soft-purple);">
+      <div class="body" style="font-size:15px;line-height:1.8;max-width:860px;">
+        <p><strong>Treasure Data can own the IDU workflow process</strong> and run queries on CDWs to establish unified profile IDs — while keeping data and query resources within the CDW environment at all times.</p>
+        <ul style="margin-top:12px;">
+          <li>TD manages the IDU workflow</li>
+          <li>Queries run directly on CDWs</li>
+          <li>Unified profile IDs are established in-place</li>
+          <li>Data and compute stay within the customer's CDW</li>
+        </ul>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:20px;padding:24px;background:rgba(253,184,147,.04);border-radius:14px;border-left:4px solid var(--coral);">
+      <div class="col-hdr" style="color:var(--coral);">IDU Skill — Current Status & Next Steps</div>
+      <div class="body" style="font-size:14px;line-height:1.75;max-width:860px;">
+        <p>The APS team has an existing <strong>IDU Skill</strong> that converts <code style="background:rgba(0,0,0,.05);padding:2px 6px;border-radius:4px;font-size:12px;">unify.yml</code> to ID unification workflows on Snowflake/Databricks.</p>
+        <ul style="margin-top:10px;">
+          <li><strong>Current capability:</strong> APS IDU skill generates SQL-based unification workflows for Snow/DBX from a <code style="background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;font-size:12px;">unify.yml</code> config</li>
+          <li><strong>Output files:</strong> <code style="background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;font-size:12px;">snowflake_idu.dig</code>, <code style="background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;font-size:12px;">config.yml</code>, <code style="background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;font-size:12px;">snowflake_sql/</code></li>
+          <li><strong>Next step:</strong> Build a skill to generate <code style="background:rgba(0,0,0,.05);padding:1px 5px;border-radius:3px;font-size:12px;">unify.yml</code> interactively via Treasure Work (in progress, Yasu)</li>
+          <li><strong>Goal:</strong> End-to-end IDU setup through conversational interaction in Treasure Work — demo to follow</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSABLE FAQ 3 -->
+<section id="comp-faq3" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Composable FAQ</div>
+    <h2 class="reveal section-title" style="font-size:clamp(20px,2.8vw,32px);">What if an existing customer wants to go composable?</h2>
+    <div class="reveal" style="margin-top:24px;padding:28px;background:rgba(132,123,242,.03);border-radius:14px;border-left:4px solid var(--soft-purple);">
+      <div class="body" style="font-size:15px;line-height:1.8;max-width:860px;">
+        <p><strong>Yes, migration would be needed.</strong></p>
+        <ul style="margin-top:12px;">
+          <li><strong>Customer/Partner should own the migration</strong> — because CDW is the customer's asset</li>
+          <li>Our PS team can do it, but <strong>at a premium cost</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSABLE FAQ 4 -->
+<section id="comp-faq4" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Composable FAQ</div>
+    <h2 class="reveal section-title" style="font-size:clamp(20px,2.8vw,32px);">How will RT use cases work with Composable?</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:24px;">
+      <div style="padding:24px;background:rgba(132,123,242,.03);border-radius:14px;border-left:4px solid var(--soft-purple);">
+        <div class="body" style="font-size:15px;line-height:1.8;">
+          <p><strong>Same as Complete mode</strong> — except the batch data stream is composable.</p>
+          <ul style="margin-top:12px;">
+            <li>Real-time and batch processes unified through integration of RT system and Composable Audience Studio</li>
+            <li><strong>RT ID stitching executes within the Reactor Engine</strong>, consistent with RT2 Complete mode</li>
+          </ul>
+        </div>
+      </div>
+      <!-- Batch and Real-Time in One CDP diagram -->
+      <div style="padding:16px;background:#fafafe;border-radius:14px;border:1px solid #e8e8f0;">
+        <div style="font-size:13px;font-weight:700;text-align:center;margin-bottom:14px;">Batch and Real-Time in One CDP</div>
+        <svg viewBox="0 0 520 340" style="width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg" font-family="Manrope,sans-serif">
+          <!-- Real-Time 2.0 box -->
+          <rect x="250" y="8" width="260" height="120" rx="8" fill="none" stroke="#847BF2" stroke-width="1.5" stroke-dasharray="4"/>
+          <text x="380" y="24" font-size="8" fill="#847BF2" font-weight="700" text-anchor="middle">Real Time 2.0</text>
+
+          <!-- RT Event -->
+          <rect x="10" y="35" width="80" height="34" rx="6" fill="#f0edff" stroke="#847BF2" stroke-width="1.2"/>
+          <text x="50" y="50" font-size="7.5" fill="#847BF2" font-weight="600" text-anchor="middle">REAL-TIME</text>
+          <text x="50" y="60" font-size="7.5" fill="#847BF2" font-weight="600" text-anchor="middle">EVENT</text>
+
+          <!-- Arrow RT Event → RT Event Ingest -->
+          <line x1="90" y1="52" x2="140" y2="52" stroke="#847BF2" stroke-width="1" marker-end="url(#arrowP)"/>
+
+          <!-- RT Event Ingest -->
+          <rect x="140" y="35" width="80" height="34" rx="6" fill="#f0edff" stroke="#847BF2" stroke-width="1.2"/>
+          <text x="180" y="50" font-size="7" fill="#847BF2" font-weight="600" text-anchor="middle">RT EVENT</text>
+          <text x="180" y="59" font-size="7" fill="#847BF2" font-weight="600" text-anchor="middle">INGEST</text>
+
+          <!-- Arrow → Reactor Engine -->
+          <line x1="220" y1="52" x2="280" y2="52" stroke="#847BF2" stroke-width="1" marker-end="url(#arrowP)"/>
+
+          <!-- Reactor Engine -->
+          <rect x="280" y="35" width="80" height="34" rx="6" fill="#f0edff" stroke="#847BF2" stroke-width="1.2"/>
+          <text x="320" y="50" font-size="7" fill="#847BF2" font-weight="600" text-anchor="middle">REACTOR</text>
+          <text x="320" y="59" font-size="7" fill="#847BF2" font-weight="600" text-anchor="middle">ENGINE</text>
+
+          <!-- Arrow → RT Activation -->
+          <line x1="360" y1="42" x2="420" y2="42" stroke="#847BF2" stroke-width="1" marker-end="url(#arrowP)"/>
+
+          <!-- RT Activation -->
+          <rect x="420" y="28" width="85" height="30" rx="6" fill="#f0edff" stroke="#847BF2" stroke-width="1.2"/>
+          <text x="462" y="41" font-size="6.5" fill="#847BF2" font-weight="600" text-anchor="middle">REAL-TIME</text>
+          <text x="462" y="50" font-size="6.5" fill="#847BF2" font-weight="600" text-anchor="middle">ACTIVATION</text>
+
+          <!-- Real Time Storage -->
+          <rect x="290" y="80" width="70" height="28" rx="5" fill="#f0edff" stroke="#847BF2" stroke-width="1"/>
+          <text x="325" y="93" font-size="6" fill="#847BF2" font-weight="600" text-anchor="middle">REAL TIME</text>
+          <text x="325" y="101" font-size="6" fill="#847BF2" font-weight="600" text-anchor="middle">STORAGE</text>
+          <line x1="320" y1="69" x2="325" y2="80" stroke="#847BF2" stroke-width="1"/>
+
+          <!-- Personalization API -->
+          <rect x="420" y="68" width="85" height="28" rx="6" fill="#f0edff" stroke="#847BF2" stroke-width="1"/>
+          <text x="462" y="80" font-size="6" fill="#847BF2" font-weight="600" text-anchor="middle">PERSONALIZATION</text>
+          <text x="462" y="89" font-size="6" fill="#847BF2" font-weight="600" text-anchor="middle">API</text>
+          <line x1="360" y1="94" x2="420" y2="82" stroke="#847BF2" stroke-width="1" marker-end="url(#arrowP)"/>
+
+          <!-- Sync to Batch label -->
+          <text x="190" y="82" font-size="5.5" fill="#999" text-anchor="middle">Sync raw events to</text>
+          <text x="190" y="89" font-size="5.5" fill="#999" text-anchor="middle">Batch stream</text>
+          <line x1="180" y1="69" x2="180" y2="95" stroke="#999" stroke-width="0.8" stroke-dasharray="3"/>
+
+          <!-- Iceberg label -->
+          <text x="190" y="108" font-size="5.5" fill="#999" text-anchor="middle">Expose raw event data via</text>
+          <text x="190" y="115" font-size="5.5" fill="#999" text-anchor="middle">Iceberg Table</text>
+          <line x1="180" y1="95" x2="115" y2="130" stroke="#999" stroke-width="0.8" stroke-dasharray="3"/>
+
+          <!-- Copy ID Graph label -->
+          <text x="385" y="118" font-size="5.5" fill="#999" text-anchor="middle">Copy ID Graph</text>
+          <text x="385" y="125" font-size="5.5" fill="#999" text-anchor="middle">and Attributes</text>
+          <line x1="340" y1="108" x2="385" y2="140" stroke="#999" stroke-width="0.8" stroke-dasharray="3"/>
+
+          <!-- Databricks label -->
+          <text x="80" y="145" font-size="8" fill="#e97319" font-weight="700" font-style="italic">Databricks</text>
+
+          <!-- Composable AS label -->
+          <text x="460" y="145" font-size="8" fill="#22c55e" font-weight="700" text-anchor="middle">Composable AS</text>
+
+          <!-- Batch stream: compact inline -->
+          <rect x="10" y="175" width="52" height="20" rx="4" fill="#fff5f0" stroke="#e97319" stroke-width="1"/>
+          <text x="36" y="188" font-size="5.5" fill="#e97319" font-weight="600" text-anchor="middle">BATCH DATA</text>
+          <text x="68" y="188" font-size="7" fill="#999">→</text>
+          <rect x="75" y="175" width="42" height="20" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="0.8"/>
+          <text x="96" y="188" font-size="5" fill="#666" font-weight="600" text-anchor="middle">SOURCE</text>
+          <text x="122" y="188" font-size="7" fill="#999">→</text>
+          <rect x="128" y="175" width="45" height="20" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="0.8"/>
+          <text x="150" y="188" font-size="5" fill="#666" font-weight="600" text-anchor="middle">STAGING</text>
+          <text x="178" y="188" font-size="7" fill="#999">→</text>
+          <rect x="185" y="175" width="62" height="20" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="0.8"/>
+          <text x="216" y="188" font-size="5" fill="#666" font-weight="600" text-anchor="middle">UNIFICATION</text>
+          <text x="252" y="188" font-size="7" fill="#999">→</text>
+          <rect x="258" y="175" width="45" height="20" rx="4" fill="#f8f8f8" stroke="#ccc" stroke-width="0.8"/>
+          <text x="280" y="188" font-size="5" fill="#666" font-weight="600" text-anchor="middle">GOLDEN</text>
+          <line x1="303" y1="185" x2="420" y2="175" stroke="#666" stroke-width="0.8" marker-end="url(#arrowG)"/>
+
+          <!-- Composable Parent Segment -->
+          <rect x="420" y="155" width="80" height="24" rx="5" fill="#e7f7f1" stroke="#22c55e" stroke-width="1.2"/>
+          <text x="460" y="166" font-size="5.5" fill="#16a34a" font-weight="600" text-anchor="middle">COMPOSABLE</text>
+          <text x="460" y="173" font-size="5.5" fill="#16a34a" font-weight="600" text-anchor="middle">PARENT SEGMENT</text>
+
+          <!-- Batch Segs -->
+          <rect x="420" y="185" width="55" height="14" rx="3" fill="#e7f7f1" stroke="#22c55e" stroke-width="0.8"/>
+          <text x="447" y="194" font-size="5" fill="#16a34a" font-weight="600" text-anchor="middle">BATCH SEG 1</text>
+          <rect x="420" y="201" width="55" height="14" rx="3" fill="#e7f7f1" stroke="#22c55e" stroke-width="0.8"/>
+          <text x="447" y="210" font-size="5" fill="#16a34a" font-weight="600" text-anchor="middle">BATCH SEG 2</text>
+          <rect x="420" y="217" width="55" height="14" rx="3" fill="#e7f7f1" stroke="#22c55e" stroke-width="0.8"/>
+          <text x="447" y="226" font-size="5" fill="#16a34a" font-weight="600" text-anchor="middle">BATCH SEG 3</text>
+
+          <!-- Batch Activation -->
+          <line x1="475" y1="200" x2="500" y2="200" stroke="#666" stroke-width="1" marker-end="url(#arrowG)"/>
+          <text x="510" y="196" font-size="5.5" fill="#666" font-weight="600" text-anchor="start">BATCH</text>
+          <text x="510" y="204" font-size="5.5" fill="#666" font-weight="600" text-anchor="start">ACTIVATION</text>
+
+          <!-- Legend -->
+          <rect x="10" y="250" width="120" height="40" rx="6" fill="#fff" stroke="#eee" stroke-width="1"/>
+          <text x="20" y="264" font-size="6.5" fill="#666" font-weight="700">LEGEND</text>
+          <line x1="20" y1="275" x2="40" y2="275" stroke="#666" stroke-width="1.5"/>
+          <text x="45" y="278" font-size="5.5" fill="#888">Batch Stream</text>
+          <line x1="20" y1="284" x2="40" y2="284" stroke="#847BF2" stroke-width="1.5" stroke-dasharray="3"/>
+          <text x="45" y="287" font-size="5.5" fill="#888">Real-time Stream</text>
+
+          <!-- Note -->
+          <text x="150" y="268" font-size="6" fill="#c44" font-weight="600">&#x2757; Realtime use cases work the same way as Complete mode.</text>
+          <text x="160" y="278" font-size="6" fill="#888">Batch data stream is composable (via CDW).</text>
+
+          <!-- Arrow markers -->
+          <defs>
+            <marker id="arrowP" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6" fill="none" stroke="#847BF2" stroke-width="1"/>
+            </marker>
+            <marker id="arrowG" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6" fill="none" stroke="#666" stroke-width="1"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVIDER: GAP COUNCIL & FAQ -->
+<section class="divider bg-sunset" id="gap-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Product Gap Council<br>& Q&A</div>
+    <div class="reveal section-subtitle">Process, top requests & how to influence the roadmap</div>
+  </div>
+</section>
+
+<!-- TOP 5 -->
+<section id="top5" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Regional Priorities</div>
+    <h2 class="reveal section-title">NALA/EMEA Top 5 Requests</h2>
+    <table class="dt reveal" style="margin-top:16px;">
+      <thead><tr><th style="width:30px;">#</th><th>Gap Area</th><th>Key Details</th></tr></thead>
+      <tbody>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">1</td><td style="font-weight:600;">Zero Copy / Composable</td><td>DBX, Snowflake, BQ. Behavior activations, templates, Audience Agent, RT Personalization.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">2</td><td style="font-weight:600;">RT 2.0 Improvements</td><td>Docs gaps, delete configs in UI, provision reactor, batch changes, progress bar, error debugging.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">3</td><td style="font-weight:600;">Engage</td><td>Unsubscribe pages, data collection pages, SMS in UK, bounce reporting, folder structure.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">4</td><td style="font-weight:600;">AI Foundry</td><td>Admin ability to cap AI conversation usage per users/policies — daily and/or weekly.</td></tr>
+        <tr><td style="font-weight:700;color:var(--soft-purple);">5</td><td style="font-weight:600;">Studio / Treasure Code</td><td>Usage tracking across products and user level. Policy-based permissions.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ADDING A GAP -->
+<section id="add-gap" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">How To</div>
+    <h2 class="reveal section-title"><a href="https://docs.google.com/presentation/d/1bQJIew6vKFNYRZndYfKLabRqq-c8pMjuEwTCNULGLU0/edit?slide=id.g3d0f6c387d7_0_0#slide=id.g3d0f6c387d7_0_0" target="_blank" style="color:var(--soft-purple);text-decoration:underline;text-underline-offset:4px;">Adding a Product Gap</a>: List View</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:28px;">
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">1</div>
+          <div><div style="font-size:15px;font-weight:700;">Please check for an existing Gap!</div><div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">If one exists, please add to the Description and link your relevant Deal/Company.</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">2</div>
+          <div><div style="font-size:15px;font-weight:700;">Make a name that works as a descriptive summary</div><div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;"><span class="pill pg">Good</span> Salesforce Marketing Cloud v2 Data Extension<br><span class="pill" style="background:rgba(239,68,68,.1);color:#dc2626;">Bad</span> Real Time Requests</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">3</div>
+          <div><div style="font-size:15px;font-weight:700;">Add a long form description for your gap</div><div style="font-size:13px;color:#666;margin-top:4px;line-height:1.6;">This is the place to be verbose!</div></div>
+        </div>
+        <div style="display:flex;gap:14px;align-items:flex-start;">
+          <div style="width:32px;height:32px;border-radius:50%;background:var(--soft-purple);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;">4</div>
+          <div><div style="font-size:15px;font-weight:700;">Finally, link to the relevant Company</div></div>
+        </div>
+      </div>
+      <div>
+        <div class="tips-card">
+          <h4>Key Tips for the Field</h4>
+          <ul style="padding:0;">
+            <li><strong>Attach revenue to every gap</strong> — ARR is the primary prioritisation signal for Product</li>
+            <li><strong>Aggregate similar gaps</strong> — one gap with five accounts and $500k attached beats five separate $100k submissions</li>
+            <li><strong>Don't skip the regional lead</strong> — they are the voice of the field in the council; work with them, not around them</li>
+            <li><strong>Bugs go through Support</strong>, not the product gap process</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Field ↔ Product Collaboration</div>
+    <h2 class="reveal section-title">How GTM Influences Product</h2>
+    <p class="reveal section-subtitle">How the field can better work with Product on deals, and influence the roadmap via feature enhancement requests</p>
+    <div class="cols reveal" style="margin-top:20px;gap:16px;">
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <details class="xcard" open>
+          <summary><span class="xnum">1</span>Log Product Gaps in HubSpot</summary>
+          <div class="xbody"><p>The primary mechanism for field influence — replaced Vivun earlier in 2026.</p><ul><li>Any AD, CSM, or SE can submit a product gap</li><li>Tie each gap to a Company (account gap) or Deal (deal-specific)</li><li>Always attach a dollar value / ARR — gaps without revenue carry far less weight</li></ul></div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">2</span>Product Gap Council (Monthly)</summary>
+          <div class="xbody"><p>GTM leaders surface the field's most impactful gaps directly to PMs.</p><ul><li>Each regional lead (NALA: David Choi, EMEA: Charles Vatin, Post-Sales: Scott Mitchell, JP: Kohei Yamamori) brings top 5 gaps</li><li>Gaps posted to #product-gap-council on Slack ahead of meeting</li><li>PMs respond with prioritisation status and timelines</li><li>Accepted gaps become PRP tickets in Jira Polaris</li></ul></div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">3</span>Product Office Hours (Bi-Weekly)</summary>
+          <div class="xbody"><p>Every other Thursday, 9:00–10:00 AM PST — open forum for timelines, roadmap items, and releases.</p><ul><li>Roadmap updates, prototypes, demos, and open Q&A</li><li>Official "when is X shipping?" channel — PMs won't join individual SBR/account meetings</li></ul></div>
+        </details>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;">
+        <details class="xcard">
+          <summary><span class="xnum">4</span>Escalation for Deal-Critical Gaps</summary>
+          <div class="xbody"><p>For a feature gap actively blocking or threatening a deal:</p><ul><li>Raise with your GTM leader immediately</li><li>They escalate directly to Kristen Zhou (CPO)</li><li>Don't use the monthly council for time-sensitive deal escalations</li></ul></div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">5</span>Top 50 Accounts — Named PM</summary>
+          <div class="xbody"><p>Strategic accounts have a dedicated PM assigned. Account team should still log gaps in HubSpot, but can co-review gap status periodically with the assigned PM directly.</p></div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">6</span>On-site Support</summary>
+          <div class="xbody"><p>At the request of a GTM Team, PMs can be dispatched to a prospect or customer for on-site demos, walk-throughs and presentations. Reach out to Kristen for Product Approval.</p></div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDITIONAL FAQ -->
 <section id="faq" style="background:#fff;">
   <div class="section-inner">
     <div class="reveal section-label">Questions</div>
-    <h2 class="reveal section-title">Frequently Asked Questions</h2>
+    <h2 class="reveal section-title">Additional Questions</h2>
     <div class="reveal" style="margin-top:16px;">
-      <details class="faq"><summary>When episodic data lives outside DBX/SNOW, what's the recommendation?</summary><div class="ans">Use TD as interim data transfer layer (Data Connector → import → workflow → result export to CDW). Alternatively, implement Iceberg table support for 'golden records' within the CDW.</div></details>
-      <details class="faq"><summary>Where should IDU (Identity Unification) live?</summary><div class="ans">TD can own the IDU workflow and run queries on CDWs to establish unified profile IDs while keeping data and query resources within the CDW environment.</div></details>
-      <details class="faq"><summary>What if an existing customer wants to go composable?</summary><div class="ans">Migration is needed. Customer/Partner should own it (CDW is their asset). PS team can do it at premium cost.</div></details>
-      <details class="faq"><summary>How will RT use cases work with Composable?</summary><div class="ans">Same as Complete mode — except batch data stream is composable. RT ID stitching executes within the Reactor Engine, consistent with RT2 Complete mode.</div></details>
       <details class="faq"><summary>What is Agentic Audience Studio?</summary><div class="ans">AI-Native Audience Studio is being planned on the new Agent Architecture. Full enablement scheduled for 4/16.</div></details>
       <details class="faq"><summary>When a capability is delayed, how are GTM teams informed?</summary><div class="ans">Product Org publishes a diff and covers it in Product Office Hours. GTM members should attend or review recordings. Questions on #product.</div></details>
     </div>
