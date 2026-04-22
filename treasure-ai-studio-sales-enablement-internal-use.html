@@ -1,0 +1,2359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Treasure AI Studio — Sales Enablement</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #000000;
+  --white: #FFFFFF;
+  --soft-purple: #847BF2;
+  --orchid: #C466D4;
+  --sky-blue: #80B3FA;
+  --light-pink: #F3CCF2;
+  --peach: #FFE2BD;
+  --coral: #FDB893;
+  --indigo: #2D40AA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--black);
+  background: var(--white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 { font-weight: 700; line-height: 1.2; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--soft-purple);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.section-subtitle {
+  font-size: 17px;
+  color: var(--soft-purple);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.body { font-size: 14.5px; line-height: 1.72; color: var(--black); }
+.body ul { padding-left: 22px; margin: 6px 0; }
+.body li { list-style: none; position: relative; padding-left: 4px; margin-bottom: 5px; }
+.body li::before { content: ''; position: absolute; left: -16px; top: 9px; width: 6px; height: 6px; border-radius: 50%; background: var(--soft-purple); }
+
+.col-hdr {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; color: var(--soft-purple); margin-bottom: 8px;
+}
+
+.metric { font-size: clamp(36px, 4vw, 56px); font-weight: 800; color: var(--soft-purple); }
+
+/* ===== LAYOUT ===== */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 60px;
+  position: relative;
+}
+
+@media (max-width: 768px) { section { padding: 60px 24px; } }
+
+.section-inner {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 99;
+  padding: 14px 40px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+  transition: transform 0.3s ease;
+}
+
+.top-bar-logo {
+  font-size: 14px; font-weight: 700; color: var(--black);
+  display: flex; align-items: center; gap: 8px;
+}
+
+.top-bar-logo svg { width: 18px; height: 18px; }
+.top-bar-logo span { color: var(--soft-purple); }
+
+.top-bar-section {
+  font-size: 12px; font-weight: 500; color: #999;
+  transition: color 0.3s ease;
+}
+
+/* ===== SECTION NAV ===== */
+.nav {
+  position: fixed; right: 28px; top: 50%; transform: translateY(-50%);
+  z-index: 100; display: flex; flex-direction: column; gap: 0; align-items: flex-end;
+  transition: opacity 0.4s ease;
+  opacity: 0.25;
+}
+
+.nav:hover { opacity: 1; }
+
+.nav-section {
+  display: flex; align-items: center; gap: 10px; cursor: pointer;
+  padding: 9px 0; transition: all 0.25s ease; position: relative;
+}
+
+.nav-section:hover .nav-label { color: var(--soft-purple); }
+
+.nav-dot {
+  width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(0,0,0,0.15); transition: all 0.3s ease;
+}
+
+.nav-section.active .nav-dot {
+  background: var(--soft-purple); transform: scale(1.4);
+  box-shadow: 0 0 0 3px rgba(132,123,242,0.18);
+}
+
+.nav-section:hover .nav-dot { background: var(--soft-purple); }
+
+.nav-label {
+  font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.25);
+  white-space: nowrap; transition: all 0.3s ease; letter-spacing: 0.01em;
+  opacity: 0; transform: translateX(4px);
+}
+
+.nav:hover .nav-label { opacity: 1; transform: translateX(0); }
+.nav-section.active .nav-label { color: var(--soft-purple); font-weight: 700; }
+
+.nav-num {
+  font-size: 10px; font-weight: 700; color: rgba(0,0,0,0.15);
+  width: 14px; text-align: right; flex-shrink: 0;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.nav:hover .nav-num { opacity: 1; }
+.nav-section.active .nav-num { color: var(--soft-purple); }
+
+/* ===== KEY HINT ===== */
+.key-hint {
+  position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 100;
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(0,0,0,0.72); backdrop-filter: blur(8px);
+  color: rgba(255,255,255,0.55); font-size: 11px;
+  padding: 8px 16px; border-radius: 100px;
+  opacity: 1; transition: opacity 0.5s ease; pointer-events: none;
+}
+
+.key-hint kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 22px; height: 22px; padding: 0 6px; border-radius: 4px;
+  background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.14);
+  font-size: 10px; font-family: inherit; font-weight: 600; color: rgba(255,255,255,0.75);
+}
+
+.key-hint.hidden { opacity: 0; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ===== HERO ===== */
+section.hero {
+  background: linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);
+  text-align: left; align-items: flex-start; position: relative; overflow: hidden;
+}
+
+.hero-shapes {
+  position: absolute; right: 60px; top: 50%; transform: translateY(-50%); width: 200px; height: 200px;
+}
+.hero-shapes div { position: absolute; border-radius: 24px; width: 100px; height: 140px; }
+.hero-shapes div:nth-child(1) { background: rgba(128,179,250,.45); left: 0; top: 20px; transform: rotate(-5deg); }
+.hero-shapes div:nth-child(2) { background: rgba(196,102,212,.35); left: 40px; top: 10px; transform: rotate(3deg); }
+.hero-shapes div:nth-child(3) { background: rgba(243,204,242,.45); left: 80px; top: 0; transform: rotate(8deg); }
+
+.scroll-hint {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(0,0,0,0.25); font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  animation: floatHint 2s ease-in-out infinite;
+}
+@keyframes floatHint { 0%,100%{ transform:translateX(-50%) translateY(0); } 50%{ transform:translateX(-50%) translateY(6px); } }
+
+/* ===== DIVIDERS ===== */
+section.divider { align-items: flex-start; }
+section.divider .section-inner { max-width: 1400px; }
+.bg-dusk     { background: linear-gradient(135deg,#d5c8e8,#c8d0f0 50%,#d5e0f5); }
+.bg-lavender { background: linear-gradient(135deg,#d5c8e8,#e8d0e0 50%,#f0c8d8); }
+.bg-rainbow  { background: linear-gradient(135deg,#f5d5c8,#f5e6d0 33%,#d5e8f5 66%,#d0d5f5); }
+.bg-sunset   { background: linear-gradient(135deg,#e8d5f0,#f5e6d0 50%,#f5deb3); }
+
+/* ===== CARDS ===== */
+.card {
+  background: #fff; border: 1px solid #e8e8f0; border-radius: 16px;
+  padding: 24px; transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+.card:hover { box-shadow: 0 8px 24px rgba(132,123,242,0.08); transform: translateY(-2px); border-color: rgba(132,123,242,0.2); }
+.card h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+.card p { font-size: 12.5px; line-height: 1.6; color: #555; }
+
+.ci {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg,var(--soft-purple),var(--orchid));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 13px; font-weight: 700; margin-bottom: 14px;
+}
+
+/* ===== GRIDS ===== */
+.g2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 18px; }
+.g3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+.g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+@media (max-width:900px) { .g3,.g4 { grid-template-columns: repeat(2,1fr); } }
+@media (max-width:600px) { .g2,.g3,.g4 { grid-template-columns: 1fr; } }
+
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+@media (max-width:768px) { .cols { grid-template-columns: 1fr; } }
+
+/* ===== PILLS ===== */
+.pill { display:inline-block; padding:3px 10px; border-radius:20px; font-size:10.5px; font-weight:600; margin:2px; }
+.pp { background:rgba(132,123,242,.11); color:var(--soft-purple); }
+.pg { background:rgba(34,197,94,.11); color:#16a34a; }
+.po { background:rgba(249,115,22,.11); color:#ea580c; }
+.pb { background:rgba(59,130,246,.11); color:#2563eb; }
+
+/* ===== TABLE ===== */
+.dt { width:100%; border-collapse:collapse; font-size:13px; margin-top:12px; }
+.dt th { background:var(--soft-purple); color:#fff; padding:10px 14px; text-align:left; font-weight:600; font-size:11px; text-transform:uppercase; letter-spacing:.3px; }
+.dt th:first-child { border-radius:8px 0 0 0; } .dt th:last-child { border-radius:0 8px 0 0; }
+.dt td { padding:10px 14px; border-bottom:1px solid #eee; vertical-align:top; }
+.dt tr:hover td { background:rgba(132,123,242,.02); }
+
+/* ===== STEPS ===== */
+.steps { display:flex; align-items:flex-end; gap:6px; margin-top:20px; min-height:340px; padding-bottom:16px; }
+.sb { flex:1; background:linear-gradient(180deg,rgba(132,123,242,.07),rgba(132,123,242,.015)); border:1px solid rgba(132,123,242,.13); border-radius:12px 12px 4px 4px; padding:16px 12px; display:flex; flex-direction:column; transition:transform .2s,box-shadow .2s; }
+.sb:nth-child(1){min-height:22%} .sb:nth-child(2){min-height:36%} .sb:nth-child(3){min-height:50%} .sb:nth-child(4){min-height:64%} .sb:nth-child(5){min-height:78%}
+.sb:hover { transform:translateY(-4px); box-shadow:0 8px 20px rgba(132,123,242,.1); }
+.sb .num { font-size:10.5px; font-weight:700; color:var(--soft-purple); text-transform:uppercase; margin-bottom:5px; }
+.sb h4 { font-size:13px; font-weight:700; margin-bottom:4px; }
+.sb p { font-size:11px; color:#666; line-height:1.5; }
+
+/* ===== FAQ ===== */
+.faq { border:1px solid #eee; border-radius:12px; margin-bottom:8px; overflow:hidden; transition:box-shadow .2s; background:#fff; }
+.faq:hover { box-shadow:0 2px 12px rgba(132,123,242,.06); }
+.faq summary { padding:14px 18px; font-size:14px; font-weight:600; cursor:pointer; list-style:none; display:flex; align-items:center; gap:10px; }
+.faq summary::before { content:'❝'; color:var(--soft-purple); font-size:18px; flex-shrink:0; }
+.faq summary::after { content:'▾'; margin-left:auto; color:#ccc; }
+.faq[open] summary::after { content:'▴'; }
+.faq .ans { padding:0 18px 14px; font-size:13px; line-height:1.7; color:#555; }
+
+/* ===== EXPANDABLE CARDS ===== */
+.xcard {
+  border: 1px solid #e8e8f0; border-radius: 14px; overflow: hidden;
+  transition: box-shadow 0.3s; margin-bottom: 10px;
+}
+.xcard:hover { box-shadow: 0 4px 16px rgba(132,123,242,0.07); }
+.xcard summary {
+  padding: 18px 22px; cursor: pointer; list-style: none;
+  display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 14px;
+}
+.xcard summary .xnum {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--soft-purple); color: #fff;
+  display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0;
+}
+.xcard summary::after { content: '▾'; margin-left: auto; color: #ccc; font-size: 14px; transition: transform 0.2s; }
+.xcard[open] summary::after { transform: rotate(180deg); }
+.xcard .xbody {
+  padding: 0 22px 18px 62px; font-size: 13px; line-height: 1.7; color: #555;
+}
+.xcard .xbody ul { padding-left: 18px; margin: 6px 0; }
+.xcard .xbody li { list-style: none; position: relative; padding-left: 4px; margin-bottom: 4px; }
+.xcard .xbody li::before { content: ''; position: absolute; left: -14px; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--soft-purple); }
+
+.tips-card {
+  border: 1px solid #e8e8f0; border-radius: 14px; padding: 22px;
+  background: rgba(132,123,242,0.02);
+}
+.tips-card h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--soft-purple); }
+.tips-card li {
+  list-style: none; position: relative; padding-left: 18px; margin-bottom: 6px;
+  font-size: 13px; line-height: 1.6; color: #555;
+}
+.tips-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 5px; height: 5px; border-radius: 50%; background: var(--soft-purple); }
+
+/* ===== CALLOUT ===== */
+.callout { margin-top:16px; padding:16px 20px; border-radius:12px; border-left:4px solid #ef4444; background:rgba(239,68,68,.04); }
+.callout h5 { font-weight:700; font-size:13px; margin-bottom:3px; }
+.callout p { font-size:12.5px; color:#555; line-height:1.6; }
+
+.callout-green { border-left-color:#22c55e; background:rgba(34,197,94,.04); }
+
+/* ===== AGENDA ===== */
+.ag { display:flex; align-items:center; padding:16px 14px; border-bottom:1px solid #eee; cursor:pointer; border-radius:8px; transition:background .2s; }
+.ag:hover { background:rgba(132,123,242,.04); }
+.ag-n { font-size:20px; font-weight:700; color:var(--soft-purple); width:42px; flex-shrink:0; }
+.ag-l { font-size:16px; font-weight:500; flex:1; }
+.ag-b { font-size:11px; padding:3px 10px; border-radius:20px; background:rgba(132,123,242,.08); color:var(--soft-purple); font-weight:600; }
+
+/* ===== BRAND LINE ===== */
+section:not(.hero):not(.closing):not(.divider)::before {
+  content: '';
+  position: absolute; left: 28px; top: 0; bottom: 48px;
+  width: 1.5px;
+  background: linear-gradient(180deg, rgba(132,123,242,0.08), rgba(132,123,242,0.18));
+  z-index: 1;
+}
+section:not(.hero):not(.closing):not(.divider) .brand-gem {
+  position: absolute; left: 14px; bottom: 20px; z-index: 2;
+  width: 30px; height: auto;
+}
+
+/* ===== SLIDE NUMBERS ===== */
+body { counter-reset: slide; }
+section:not(.hero):not(.closing) { counter-increment: slide; }
+section:not(.hero):not(.closing)::after {
+  content: counter(slide);
+  position: absolute; bottom: 24px; left: 60px;
+  font-size: 11px; font-weight: 600; color: rgba(0,0,0,0.18);
+  font-family: 'Manrope', sans-serif;
+}
+@media (max-width: 768px) { section:not(.hero):not(.closing)::after { left: 24px; } }
+
+/* ===== THANK YOU ===== */
+section.closing {
+  background: linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);
+  text-align: center; align-items: center;
+}
+</style>
+</head>
+<body>
+
+<!-- Password Gate -->
+<div id="pwGate" style="position:fixed;inset:0;z-index:9999;background:#fff;display:flex;align-items:center;justify-content:center;">
+  <div style="text-align:center;max-width:360px;padding:40px;">
+    <svg viewBox="0 0 24 24" width="32" height="32" style="margin-bottom:20px;"><path d="M12 2L3 9L12 22L21 9Z" fill="#847BF2"/><path d="M12 2L3 9L12 13L21 9Z" fill="#80B3FA" opacity=".7"/></svg>
+    <div style="font-size:20px;font-weight:700;margin-bottom:6px;">Treasure AI Studio</div>
+    <div style="font-size:13px;color:#999;margin-bottom:24px;">Enter password to continue</div>
+    <form onsubmit="return checkPw()">
+      <input id="pwInput" type="password" placeholder="Password" autofocus style="width:100%;padding:12px 16px;border:1px solid #ddd;border-radius:10px;font-size:15px;font-family:inherit;outline:none;text-align:center;transition:border .2s;" onfocus="this.style.borderColor='#847BF2'" onblur="this.style.borderColor='#ddd'">
+      <div id="pwErr" style="color:#ef4444;font-size:12px;margin-top:8px;opacity:0;transition:opacity .2s;">Incorrect password</div>
+      <button type="submit" style="margin-top:12px;width:100%;padding:12px;background:#847BF2;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;transition:background .2s;">Enter</button>
+    </form>
+  </div>
+</div>
+<script>
+function checkPw(){
+  if(document.getElementById('pwInput').value==='TAIsuperhuman'){
+    document.getElementById('pwGate').style.display='none';
+    sessionStorage.setItem('pw_ok_se','1');
+  } else {
+    document.getElementById('pwErr').style.opacity='1';
+    document.getElementById('pwInput').style.borderColor='#ef4444';
+  }
+  return false;
+}
+if(sessionStorage.getItem('pw_ok_se')==='1') document.getElementById('pwGate').style.display='none';
+</script>
+
+<!-- Top Bar -->
+<div class="top-bar" id="topBar">
+  <div class="top-bar-logo">
+    <img src="assets/primary-logo.svg" alt="Treasure AI" style="height:16px;width:auto;">
+  </div>
+  <div class="top-bar-section" id="topBarSection">Sales Enablement</div>
+</div>
+
+<!-- Section Nav -->
+<nav class="nav" id="sideNav">
+  <div class="nav-section active" data-section="hero">
+    <span class="nav-label">Cover</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="overview-div" data-sections="overview-div,agentic-platform,single-interface,mobile-experience,whats-new,architecture,skills-catalog,visualization,security-deep-dive,product-map,roadmap">
+    <span class="nav-num">1</span>
+    <span class="nav-label">Product Overview</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="value-div" data-sections="value-div,value-props,differentiators,icp">
+    <span class="nav-num">2</span>
+    <span class="nav-label">Value & ICP</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="compete-div" data-sections="compete-div,model-tiers,landscape,comp-intel,top-threats,hightouch-positioning,hightouch-tactics">
+    <span class="nav-num">3</span>
+    <span class="nav-label">Competitive</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="demo-div" data-sections="demo-div,use-cases,demo-flow,demo-planner,discovery,objections,pricing,credit-boost,product-docs">
+    <span class="nav-num">4</span>
+    <span class="nav-label">Sales Toolkit</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="closing">
+    <span class="nav-label">Close</span>
+    <div class="nav-dot"></div>
+  </div>
+</nav>
+
+<!-- Keyboard hint -->
+<div class="key-hint" id="keyHint">
+  <kbd>&darr;</kbd> <kbd>&uarr;</kbd> navigate &nbsp;
+  <kbd>1</kbd>&ndash;<kbd>9</kbd> jump to section
+</div>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- HERO                                       -->
+<!-- ══════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="section-inner" style="position:relative;z-index:2;">
+    <div class="reveal section-label">Sales Enablement &middot; April 2026</div>
+    <h1 class="reveal section-title" style="font-size:clamp(36px,5vw,58px);">Treasure AI Studio<br>Sales Enablement</h1>
+    <p class="reveal section-subtitle" style="margin-top:12px;">Everything you need to position, demo, and sell the new Treasure AI Studio</p>
+  </div>
+  <div class="hero-shapes"><div></div><div></div><div></div></div>
+  <div class="scroll-hint"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>Scroll</div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Overview</div>
+    <h2 class="reveal section-title">Agenda</h2>
+    <div style="margin-top:16px;">
+      <div class="reveal" onclick="document.getElementById('overview-div').scrollIntoView({behavior:'smooth'})" style="padding:14px;border-bottom:1px solid #eee;cursor:pointer;border-radius:8px;transition:background .2s;">
+        <div style="display:flex;align-items:center;">
+          <span class="ag-n">1</span>
+          <span class="ag-l" style="flex:1;">Product Overview</span>
+          <span class="ag-b">25 min</span>
+        </div>
+        <div style="font-size:11px;color:#999;padding-left:42px;margin-top:4px;">Platform, Architecture, Skills, Artifacts, Security, Roadmap</div>
+      </div>
+      <div class="reveal reveal-delay-1" onclick="document.getElementById('value-div').scrollIntoView({behavior:'smooth'})" style="padding:14px;border-bottom:1px solid #eee;cursor:pointer;border-radius:8px;transition:background .2s;">
+        <div style="display:flex;align-items:center;">
+          <span class="ag-n">2</span>
+          <span class="ag-l" style="flex:1;">Value Propositions & Ideal Customer</span>
+          <span class="ag-b">10 min</span>
+        </div>
+        <div style="font-size:11px;color:#999;padding-left:42px;margin-top:4px;">Value Props, Key Differentiators, ICP</div>
+      </div>
+      <div class="reveal reveal-delay-2" onclick="document.getElementById('compete-div').scrollIntoView({behavior:'smooth'})" style="padding:14px;border-bottom:1px solid #eee;cursor:pointer;border-radius:8px;transition:background .2s;">
+        <div style="display:flex;align-items:center;">
+          <span class="ag-n">3</span>
+          <span class="ag-l" style="flex:1;">Competitive Positioning</span>
+          <span class="ag-b">15 min</span>
+        </div>
+        <div style="font-size:11px;color:#999;padding-left:42px;margin-top:4px;">AI Stack, Landscape, Threat Assessment, Hightouch Battle Cards</div>
+      </div>
+      <div class="reveal reveal-delay-3" onclick="document.getElementById('demo-div').scrollIntoView({behavior:'smooth'})" style="padding:14px;border-bottom:1px solid #eee;cursor:pointer;border-radius:8px;transition:background .2s;">
+        <div style="display:flex;align-items:center;">
+          <span class="ag-n">4</span>
+          <span class="ag-l" style="flex:1;">Sales Toolkit</span>
+          <span class="ag-b">25 min</span>
+        </div>
+        <div style="font-size:11px;color:#999;padding-left:42px;margin-top:4px;">Use Cases, Live Demo, Discovery, Objections, Pricing, Resources</div>
+      </div>
+      <div style="padding:14px;display:flex;align-items:center;">
+        <span class="ag-n" style="color:#999;"></span>
+        <span style="font-size:16px;font-weight:500;flex:1;color:#999;">Q&A</span>
+        <span class="ag-b" style="background:rgba(34,197,94,.08);color:#16a34a;">15 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 1: PRODUCT OVERVIEW                -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-dusk" id="overview-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Product Overview</div>
+    <div class="reveal section-subtitle">The next-generation AI interface for Treasure Data</div>
+  </div>
+</section>
+
+<!-- AGENTIC EXPERIENCE PLATFORM -->
+<section id="agentic-platform" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">The Agentic Experience Platform</div>
+    <div class="reveal">
+      <img src="assets/agentic-platform.png" alt="Treasure AI — Agentic Experience Platform" style="width:100%;display:block;">
+    </div>
+  </div>
+</section>
+
+<!-- SINGLE INTERFACE -->
+<section id="single-interface" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal">
+      <div class="section-label">Positioning</div>
+      <h2 class="section-title" style="font-size:clamp(26px,3.5vw,40px);">Treasure AI Studio: the single interface to your AI agents and customer data</h2>
+    </div>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;">
+      <div>
+        <img src="assets/studio-desktop-ui.png" alt="Treasure AI Studio desktop interface" style="width:100%;display:block;border-radius:12px;box-shadow:0 12px 40px rgba(132,123,242,.1);">
+      </div>
+      <div>
+        <div style="font-size:19px;font-weight:700;line-height:1.4;margin-bottom:24px;">One app to explore, build, and ship — from any device, any environment.</div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:14.5px;line-height:1.6;color:#333;">It is a conversational interface to your entire CDP</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:14.5px;line-height:1.6;color:#333;">It is a visual canvas for journeys, charts, and segments</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:14.5px;line-height:1.6;color:#333;">It is a strategy translator — brief in, live logic out</div>
+          </div>
+          <div style="display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:14.5px;line-height:1.6;color:#333;">It is natively wired to your schemas, data, and operations</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARKETING IN MOTION -->
+<section id="mobile-experience" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Mobile Experience</div>
+    <div class="reveal" style="margin-top:16px;display:grid;grid-template-columns:1fr 0.7fr 1.1fr;gap:36px;align-items:center;">
+      <!-- Left text -->
+      <div>
+        <h2 style="font-size:clamp(28px,3.5vw,42px);font-weight:800;line-height:1.1;margin-bottom:20px;">Marketing,<br>In Motion</h2>
+        <p style="font-size:15px;line-height:1.7;color:#555;">On your morning commute, open Treasure AI Studio on iOS and last night's campaigns are already analyzed — what worked, what didn't, and the fixes ready to deploy before you even reach the office (Android coming soon).</p>
+      </div>
+      <!-- Phone photo -->
+      <div style="display:flex;justify-content:center;">
+        <img src="assets/studio-mobile-photo.png" alt="Treasure AI Studio on mobile" style="width:100%;max-width:280px;display:block;border-radius:16px;">
+      </div>
+      <!-- Right features -->
+      <div style="display:flex;flex-direction:column;gap:24px;">
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(132,123,242,.08);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--soft-purple)" stroke-width="2"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h4 style="font-size:15px;font-weight:700;margin:0;">Always-On Optimization</h4>
+          </div>
+          <p style="font-size:13px;line-height:1.65;color:#555;">While you sleep, Treasure AI Studio continuously monitors performance, reallocates spend, and optimizes campaigns — so you wake up to better results without lifting a finger</p>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(196,102,212,.08);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--orchid)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h4 style="font-size:15px;font-weight:700;margin:0;">Instant Audience Activation</h4>
+          </div>
+          <p style="font-size:13px;line-height:1.65;color:#555;">A high-value customer segment emerges in real time — Treasure AI Studio instantly builds the audience and launches personalized campaigns across channels</p>
+        </div>
+        <div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:rgba(128,179,250,.08);display:flex;align-items:center;justify-content:center;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--sky-blue)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h4 style="font-size:15px;font-weight:700;margin:0;">Real-Time Revenue Recovery</h4>
+          </div>
+          <p style="font-size:13px;line-height:1.65;color:#555;">A customer abandons their cart — within seconds, Treasure AI Studio triggers the right message, on the right channel, to win them back before they're gone</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S NEW -->
+<section id="whats-new" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Key Changes</div>
+    <h2 class="reveal section-title">Treasure AI Studio vs. Treasure Work</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:20px;">
+      <div>
+        <div class="col-hdr">New Capabilities</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+          <div class="card" style="padding:18px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="pill pg">New</span>
+              <h4 style="margin:0;">Multi-Interface Access</h4>
+            </div>
+            <p>Web, desktop, and mobile apps — users can interact from anywhere</p>
+          </div>
+          <div class="card" style="padding:18px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="pill pg">New</span>
+              <h4 style="margin:0;">Voice Input on Mobile</h4>
+            </div>
+            <p>Speak queries naturally — ideal for on-the-go executives and field teams</p>
+          </div>
+          <div class="card" style="padding:18px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="pill pg">New</span>
+              <h4 style="margin:0;">Enterprise Agent Architecture</h4>
+            </div>
+            <p>Built on Claude Agent SDK with enterprise-grade governance and security controls</p>
+          </div>
+          <div class="card" style="padding:18px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <span class="pill pg">New</span>
+              <h4 style="margin:0;">Refreshed UI & New Domain</h4>
+            </div>
+            <p>Modern visual experience with console SSO login option</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-hdr">Available at Launch (4/20)</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+          <div style="padding:16px 20px;border:1px solid rgba(34,197,94,.15);border-radius:12px;background:rgba(34,197,94,.03);">
+            <div style="font-size:13px;line-height:1.7;color:#555;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> Chat history &amp; SSO</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> Selected TD Skills (pre-installed)</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> TDX layer &amp; query execution</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> File viewers (PDF, PPT, Excel, HTML, Code)</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> Basic charts &amp; file upload</div>
+              <div style="display:flex;align-items:center;gap:6px;"><span style="color:#16a34a;font-size:14px;">&#10003;</span> In-session memory</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Architecture</div>
+    <h2 class="reveal section-title">Under the Hood</h2>
+    <p class="reveal section-subtitle">How the pieces fit together — from user input to data-grounded output</p>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:1fr 1.4fr;gap:28px;align-items:start;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="padding:20px;border-radius:14px;border:1px solid rgba(132,123,242,.12);background:rgba(132,123,242,.02);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+            </div>
+            <h4 style="font-size:14px;margin:0;">Conversational AI</h4>
+          </div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Two-phase processing (thinking + streaming). Expandable tool call cards show exact queries. Message editing, rewind, and mid-generation stopping.</p>
+        </div>
+        <div style="padding:20px;border-radius:14px;border:1px solid rgba(128,179,250,.12);background:rgba(128,179,250,.02);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--sky-blue),var(--soft-purple));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <h4 style="font-size:14px;margin:0;">Multi-Interface</h4>
+          </div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Web (no setup), macOS Desktop (Apple Silicon M1+), and iOS mobile with voice dictation and swipe navigation.</p>
+        </div>
+        <div style="padding:20px;border-radius:14px;border:1px solid rgba(196,102,212,.12);background:rgba(196,102,212,.02);">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+            <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--orchid),var(--coral));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h4 style="font-size:14px;margin:0;">Enterprise Security</h4>
+          </div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">OAuth 2.0 with PKCE, SAML/OIDC/Native credentials, server-side sandbox, Network Audit Log, IP Allowlist, encrypted token storage.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:0;position:relative;">
+        <div style="position:absolute;left:24px;top:28px;bottom:28px;width:2px;background:linear-gradient(180deg,var(--soft-purple),var(--sky-blue),rgba(0,0,0,.1));z-index:0;"></div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;position:relative;z-index:1;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(132,123,242,.2);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--soft-purple);margin-bottom:4px;">User Layer</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Web</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Desktop</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Mobile</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Voice</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;position:relative;z-index:1;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--soft-purple),var(--sky-blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(132,123,242,.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--soft-purple);margin-bottom:4px;">Agent Orchestrator</div>
+            <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center;">
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Context</span>
+              <span style="color:var(--soft-purple);font-size:10px;">→</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Decompose</span>
+              <span style="color:var(--soft-purple);font-size:10px;">→</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Tools</span>
+              <span style="color:var(--soft-purple);font-size:10px;">→</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Execute</span>
+              <span style="color:var(--soft-purple);font-size:10px;">→</span>
+              <span style="padding:4px 10px;background:rgba(132,123,242,.06);border-radius:6px;font-size:11px;font-weight:600;">Assemble</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;position:relative;z-index:1;">
+          <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--sky-blue),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 4px 12px rgba(128,179,250,.15);">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin-bottom:4px;">Skills & Platform</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="padding:4px 10px;background:rgba(45,64,170,.05);border-radius:6px;font-size:11px;font-weight:600;">30 TD Skills</span>
+              <span style="padding:4px 10px;background:rgba(45,64,170,.05);border-radius:6px;font-size:11px;font-weight:600;">SSO</span>
+              <span style="padding:4px 10px;background:rgba(45,64,170,.05);border-radius:6px;font-size:11px;font-weight:600;">Permissions</span>
+              <span style="padding:4px 10px;background:rgba(45,64,170,.05);border-radius:6px;font-size:11px;font-weight:600;">Chat History</span>
+              <span style="padding:4px 10px;background:rgba(45,64,170,.05);border-radius:6px;font-size:11px;font-weight:600;">File Viewers</span>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 0;position:relative;z-index:1;">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(0,0,0,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#999;margin-bottom:4px;">Data Layer</div>
+            <div style="display:flex;gap:6px;flex-wrap:wrap;">
+              <span style="padding:4px 10px;background:rgba(0,0,0,.03);border-radius:6px;font-size:11px;font-weight:600;">Treasure Data CDP</span>
+              <span style="padding:4px 10px;background:rgba(0,0,0,.03);border-radius:6px;font-size:11px;font-weight:600;">Snowflake</span>
+              <span style="padding:4px 10px;background:rgba(0,0,0,.03);border-radius:6px;font-size:11px;font-weight:600;">Databricks</span>
+              <span style="padding:4px 10px;background:rgba(0,0,0,.03);border-radius:6px;font-size:11px;font-weight:600;">BigQuery</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS CATALOG -->
+<section id="skills-catalog" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Product Depth</div>
+    <h2 class="reveal section-title">Skills Catalog</h2>
+    <p class="reveal section-subtitle">30 pre-installed skills across 2 categories — every one ready on day one</p>
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+      <!-- TDX Skills -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div class="ci" style="margin-bottom:0;">13</div>
+          <div>
+            <h4 style="font-size:14px;margin:0;">TDX Skills</h4>
+            <div style="font-size:10px;color:#888;">CDP operations</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">tdx-basic</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">CLI commands — databases, tables, queries, auth</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">parent-segment / segment / validate-segment</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Create, manage, and validate CDP segments</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">journey / validate-journey</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Create and validate customer journeys</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">agent / agent-test / agent-prompt</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Build, test, and prompt LLM agents</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">connector-config / workflow / engage</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Activations, workflows, email campaigns</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">parent-segment-analysis</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Query and analyze segment output data</div>
+          </div>
+        </div>
+      </div>
+      <!-- Document & Design -->
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div class="ci" style="margin-bottom:0;">17</div>
+          <div>
+            <h4 style="font-size:14px;margin:0;">Document & Design</h4>
+            <div style="font-size:10px;color:#888;">Content & artifact creation</div>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">pptx / docx / xlsx / pdf</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Create, read, edit Office & PDF files</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">web-artifacts-builder</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Multi-component HTML (React, Tailwind)</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">frontend-design / canvas-design</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Production-grade UI & visual art</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">theme-factory / brand-guidelines</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Branded styling, colors, typography</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">mcp-builder / skill-creator</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Build MCP servers and custom skills</div>
+          </div>
+          <div class="card" style="padding:10px 14px;">
+            <div style="font-size:12px;font-weight:600;">internal-comms / doc-coauthoring / slack-gif-creator</div>
+            <div style="font-size:10px;color:#888;margin-top:2px;">Internal docs, co-authoring, GIFs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Total + callout -->
+    <div class="reveal" style="margin-top:16px;display:flex;gap:16px;align-items:stretch;">
+      <div style="padding:18px 24px;background:#fff;border:1px solid rgba(132,123,242,.15);border-radius:14px;display:flex;align-items:center;gap:16px;flex-shrink:0;">
+        <div style="font-size:36px;font-weight:800;color:var(--soft-purple);">30</div>
+        <div style="font-size:13px;color:#666;line-height:1.4;">Skills pre-installed<br><strong>No configuration required</strong></div>
+      </div>
+      <div class="callout callout-green" style="margin-top:0;flex:1;">
+        <h5 style="color:#16a34a;">Sales Talking Point</h5>
+        <p>Skills are pre-installed — no configuration, no setup, no waiting. Ask the competition: "Do they have 30 domain-specific skills pre-installed?"</p>
+        <p style="margin-top:8px;font-size:11px;color:#999;line-height:1.5;"><strong style="color:#888;">Availability note:</strong> The skills listed above are the curated set available on Treasure AI Studio at GA. Each skill goes through quality validation before being enabled on customer-facing platforms. Additional skills from the full catalog will be released progressively as they pass QA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VISUALIZATION & FILES -->
+<section id="visualization" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Capabilities</div>
+    <h2 class="reveal section-title">Artifacts & Output Types</h2>
+    <p class="reveal section-subtitle">Charts, files, reports, and visualizations generated directly from conversation</p>
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1.3fr;gap:28px;align-items:start;">
+      <!-- Left: Text content -->
+      <div>
+        <div class="col-hdr">Interactive Charts</div>
+        <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
+          <span class="pill pp">Bar</span>
+          <span class="pill pp">Stacked Bar</span>
+          <span class="pill pp">Line</span>
+          <span class="pill pp">Area</span>
+          <span class="pill pp">Pie</span>
+          <span class="pill pp">Treemap</span>
+          <span class="pill pp">Sankey</span>
+          <span class="pill pp">Funnel</span>
+          <span class="pill pp">Scatter</span>
+          <span class="pill pp">Radar</span>
+          <span class="pill po">Coming: Grid Dashboards</span>
+        </div>
+        <div style="margin-top:14px;font-size:12.5px;line-height:1.7;color:#555;">
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Hover tooltips and legend toggling</div>
+          <div style="display:flex;align-items:center;gap:6px;margin-bottom:3px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> AI selects optimal chart type automatically</div>
+          <div style="display:flex;align-items:center;gap:6px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Self-contained portable HTML output</div>
+        </div>
+        <div style="margin-top:20px;">
+          <div class="col-hdr">Upload & View Any File</div>
+          <div style="margin-top:8px;display:flex;align-items:baseline;gap:10px;">
+            <div style="font-size:28px;font-weight:800;color:var(--soft-purple);">100 MB</div>
+            <div style="font-size:11px;color:#888;">max upload</div>
+          </div>
+          <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:5px;">
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg> Spreadsheets</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg> Documents</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg> Presentations</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> Images</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Code</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> Data / JSON</span>
+            <span class="pill pb" style="display:inline-flex;align-items:center;gap:4px;font-size:10px;"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Journeys</span>
+          </div>
+          <div style="margin-top:10px;font-size:11.5px;line-height:1.6;color:#666;">
+            <div><strong>PDF:</strong> Zoom 50-300%, page nav</div>
+            <div><strong>Spreadsheets:</strong> Multi-sheet, sorting</div>
+            <div><strong>Presentations:</strong> Thumbnails, speaker notes</div>
+            <div><strong>Code:</strong> Syntax highlighting</div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: Visual collage -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:auto auto auto;gap:8px;">
+        <!-- Row 1 -->
+        <div style="padding:10px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">Bar Chart</div>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:50px;">
+            <div style="flex:1;background:linear-gradient(180deg,var(--soft-purple),rgba(132,123,242,.3));border-radius:2px 2px 0 0;height:85%;"></div>
+            <div style="flex:1;background:linear-gradient(180deg,var(--orchid),rgba(196,102,212,.3));border-radius:2px 2px 0 0;height:55%;"></div>
+            <div style="flex:1;background:linear-gradient(180deg,var(--sky-blue),rgba(128,179,250,.3));border-radius:2px 2px 0 0;height:95%;"></div>
+            <div style="flex:1;background:linear-gradient(180deg,var(--coral),rgba(253,184,147,.3));border-radius:2px 2px 0 0;height:40%;"></div>
+            <div style="flex:1;background:linear-gradient(180deg,var(--soft-purple),rgba(132,123,242,.3));border-radius:2px 2px 0 0;height:68%;"></div>
+          </div>
+        </div>
+        <div style="padding:10px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;display:flex;flex-direction:column;align-items:center;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;align-self:flex-start;">Pie</div>
+          <div style="width:50px;height:50px;border-radius:50%;background:conic-gradient(var(--soft-purple) 0% 35%,var(--orchid) 35% 55%,var(--sky-blue) 55% 78%,var(--peach) 78% 100%);"></div>
+        </div>
+        <div style="padding:10px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px;">Funnel</div>
+          <div style="display:flex;flex-direction:column;gap:3px;">
+            <div style="background:linear-gradient(90deg,var(--soft-purple),rgba(132,123,242,.2));height:10px;border-radius:3px;width:100%;"></div>
+            <div style="background:linear-gradient(90deg,var(--orchid),rgba(196,102,212,.2));height:10px;border-radius:3px;width:75%;"></div>
+            <div style="background:linear-gradient(90deg,var(--sky-blue),rgba(128,179,250,.2));height:10px;border-radius:3px;width:48%;"></div>
+          </div>
+        </div>
+        <!-- Row 2 -->
+        <div style="padding:10px;background:#1e1e2e;border-radius:10px;border:1px solid #333;">
+          <div style="font-size:8px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">SQL</div>
+          <div style="font-family:monospace;font-size:8px;line-height:1.5;">
+            <span style="color:#c792ea;">SELECT</span> <span style="color:#82aaff;">id</span><span style="color:#888;">,</span> <span style="color:#82aaff;">ltv</span><br>
+            <span style="color:#c792ea;">FROM</span> <span style="color:#c3e88d;">profiles</span><br>
+            <span style="color:#c792ea;">WHERE</span> <span style="color:#82aaff;">risk</span> <span style="color:#89ddff;">></span> <span style="color:#f78c6c;">.7</span>
+          </div>
+        </div>
+        <div style="padding:10px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Spreadsheet</div>
+          <div style="font-size:7px;">
+            <div style="display:grid;grid-template-columns:1fr 1fr;background:rgba(132,123,242,.06);padding:3px 4px;border-radius:2px 2px 0 0;font-weight:700;color:var(--soft-purple);gap:2px;">
+              <div>Name</div><div>LTV</div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;padding:2px 4px;border-bottom:1px solid #f0f0f0;color:#888;gap:2px;"><div>Acme</div><div>$42K</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;padding:2px 4px;border-bottom:1px solid #f0f0f0;color:#888;gap:2px;"><div>Beta</div><div>$18K</div></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;padding:2px 4px;color:#888;gap:2px;"><div>Delta</div><div>$55K</div></div>
+          </div>
+        </div>
+        <div style="padding:10px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Presentation</div>
+          <div style="background:linear-gradient(135deg,#e8dff5,#f5e0f0 40%,#d0e0f8);border-radius:4px;padding:8px 6px;text-align:center;">
+            <div style="font-size:8px;font-weight:800;color:#333;">Q1 Results</div>
+            <div style="font-size:6px;color:#888;">Treasure AI</div>
+          </div>
+        </div>
+        <!-- Row 3: Journey + Document spanning full width -->
+        <div style="padding:8px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;grid-column:span 2;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Journey Canvas</div>
+          <img src="assets/journey-canvas.png" alt="Journey Canvas" style="width:100%;display:block;border-radius:4px;">
+        </div>
+        <div style="padding:8px;background:#fff;border-radius:10px;border:1px solid #e8e8f0;">
+          <div style="font-size:8px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;">Document</div>
+          <img src="assets/creative-brief.png" alt="Creative Brief" style="width:100%;display:block;border-radius:4px;">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENTERPRISE SECURITY DEEP DIVE -->
+<section id="security-deep-dive" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Security</div>
+    <h2 class="reveal section-title">Enterprise Security Architecture</h2>
+    <p class="reveal section-subtitle">Purpose-built for regulated industries and zero-trust environments</p>
+    <div class="g2 reveal" style="margin-top:24px;">
+      <div class="card" style="padding:22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+          <h4 style="margin:0;font-size:14px;">Authentication & Identity</h4>
+        </div>
+        <p>OAuth 2.0 with PKCE flow — tokens never exposed in URLs. Supports SAML, OIDC, and Native TD credentials. Encrypted token storage on Desktop and Mobile. Automatic session refresh before expiration.</p>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4 style="margin:0;font-size:14px;">Server-Side Sandbox</h4>
+        </div>
+        <p>All AI code execution happens server-side in a restricted sandbox. No filesystem access. No arbitrary network access. Credentials managed server-side, never stored in browsers. This is the architecture security teams want to see.</p>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <h4 style="margin:0;font-size:14px;">Network Audit & Monitoring</h4>
+        </div>
+        <p>Full Network Audit Log with temporal filtering (1h to 30d), domain/IP/port filtering, and real-time statistics. IP Allowlist with fixed static outbound IPs. See exactly what the AI accessed, when, and where.</p>
+      </div>
+      <div class="card" style="padding:22px;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><path d="M20 8v6M23 11h-6"/></svg>
+          </div>
+          <h4 style="margin:0;font-size:14px;">Policy-Based Access Control</h4>
+        </div>
+        <p>Policy-based permissions inherited from Treasure Data Console. All queries, segments, and API calls execute through the user's own credentials. Same governance model your security team already approved for TD.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:14px;">
+      <div class="callout callout-green" style="margin-top:0;">
+        <h5 style="color:#16a34a;">Key Message for IT Buyers</h5>
+        <p>Treasure AI Studio inherits the security posture of the Treasure Data platform. If they've approved TD, there's no new vendor risk assessment needed. Offer a joint security review call with their CISO to walk through the architecture.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT MAP -->
+<section id="product-map" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Product Clarity</div>
+    <h2 class="reveal section-title">Treasure AI Product Guide</h2>
+    <p class="reveal section-subtitle">Current, evolving, and retiring products — and when to use each</p>
+    <div class="reveal" style="margin-top:24px;">
+      <div style="display:grid;grid-template-columns:160px 1fr 1fr 1fr 1fr;gap:0;">
+        <div style="padding:14px 16px;"></div>
+        <div style="padding:14px 16px;text-align:center;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));color:#fff;border-radius:10px 0 0 0;font-weight:700;font-size:14px;">Treasure AI Studio</div>
+        <div style="padding:14px 16px;text-align:center;background:rgba(0,0,0,.75);color:#fff;font-weight:700;font-size:14px;">AI Agent Foundry</div>
+        <div style="padding:14px 16px;text-align:center;background:rgba(180,120,120,.65);color:#fff;font-weight:700;font-size:14px;">Marketing Super Agent</div>
+        <div style="padding:14px 16px;text-align:center;background:rgba(195,145,55,.75);color:#fff;border-radius:0 10px 0 0;font-weight:700;font-size:14px;">Treasure Work</div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #eee;display:flex;align-items:center;">What It Is</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(132,123,242,.04);">The AI-native workspace for customer data. Conversational interface across web, desktop, and mobile — powered by Claude Agent SDK.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:#fff;">The agent infrastructure platform. Build, deploy, and manage custom AI agents with non-Anthropic model support.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#888;line-height:1.6;background:rgba(180,120,120,.06);">Conversational marketing agent for campaign analysis and audience insights. Capabilities transitioning to Treasure AI Studio.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(195,145,55,.06);">Internal innovation lab. Formerly "Treasure Studio" — used by TD teams for internal workflows, skill development, and experimentation.</div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #eee;display:flex;align-items:center;">Who It's For</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(132,123,242,.04);">Marketers, analysts, data teams, executives — anyone who needs to interact with customer data</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:#fff;">Technical teams building custom agent workflows, or accounts requiring non-Anthropic models</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#888;line-height:1.6;background:rgba(180,120,120,.06);">Marketers using conversational AI for campaign and audience workflows</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(195,145,55,.06);">Internal teams — used for innovation, skill development, and experimentation</div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #eee;display:flex;align-items:center;">When to Use</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(132,123,242,.04);"><strong>Default recommendation for all new customers.</strong> Lead with Studio when the customer can use Anthropic models.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:#fff;">When the customer requires non-Anthropic models (e.g., UMG, SoftBank) or has existing custom agent deployments not yet migrated to Skills.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#888;line-height:1.6;background:rgba(180,120,120,.06);">Transitioning to Treasure AI Studio. Existing users continue through end of May.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(195,145,55,.06);">For internal workflows and early-access skill testing before broader availability.</div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #eee;display:flex;align-items:center;">Status</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;background:rgba(132,123,242,.04);"><span class="pill pg" style="font-size:11px;">GA — April 20, 2026</span><br><span style="color:#555;font-size:12px;margin-top:4px;display:inline-block;">SLA-supported, primary experience</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;background:#fff;"><span class="pill pb" style="font-size:11px;">Active — Maintained</span><br><span style="color:#555;font-size:12px;margin-top:4px;display:inline-block;">Supported — existing deployments continue</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;background:rgba(180,120,120,.06);"><span class="pill" style="font-size:11px;background:rgba(239,68,68,.1);color:#dc2626;">Retiring — End of May</span><br><span style="color:#888;font-size:12px;margin-top:4px;display:inline-block;">Capabilities absorbed into Studio</span></div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;background:rgba(195,145,55,.06);"><span class="pill po" style="font-size:11px;">Internal Only</span><br><span style="color:#555;font-size:12px;margin-top:4px;display:inline-block;">Innovation lab</span></div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;border-bottom:1px solid #eee;display:flex;align-items:center;">Pricing</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(132,123,242,.04);">No license fee. Credit-based — 600 conversations per AI Credit. Shared pool.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:#fff;">Same AI Credit pool. Varies by model and agent complexity.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#888;line-height:1.6;background:rgba(180,120,120,.06);">Same AI Credit pool. No new contracts.</div>
+        <div style="padding:14px 16px;border-bottom:1px solid #eee;border-left:1px solid #eee;font-size:13px;color:#555;line-height:1.6;background:rgba(195,145,55,.06);">Internal use</div>
+        <div style="padding:14px 16px;font-size:12px;font-weight:700;color:var(--soft-purple);text-transform:uppercase;letter-spacing:.05em;display:flex;align-items:flex-start;padding-top:16px;">Key Capabilities</div>
+        <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#555;line-height:1.7;background:rgba(132,123,242,.04);">
+          <div>&#10003; Web + Desktop + Mobile + Voice</div>
+          <div>&#10003; 30 pre-installed skills</div>
+          <div>&#10003; Claude Agent SDK architecture</div>
+          <div>&#10003; Enterprise security (SSO, RBAC, audit)</div>
+          <div>&#10003; 3 AI model tiers</div>
+          <div>&#10003; File viewers, charts, artifacts</div>
+        </div>
+        <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#555;line-height:1.7;background:#fff;">
+          <div>&#10003; Custom agent builder</div>
+          <div>&#10003; Non-Anthropic model support</div>
+          <div>&#10003; RAG pipelines</div>
+          <div>&#10003; Custom agent deployments</div>
+        </div>
+        <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#888;line-height:1.7;background:rgba(180,120,120,.06);">
+          <div style="text-decoration:line-through;">&#10003; Campaign analysis</div>
+          <div style="text-decoration:line-through;">&#10003; Audience insights</div>
+          <div style="font-size:11px;color:#dc2626;margin-top:4px;">→ Available in Studio</div>
+        </div>
+        <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#555;line-height:1.7;background:rgba(195,145,55,.06);">
+          <div>&#10003; Early-access skill testing</div>
+          <div>&#10003; Skill development & iteration</div>
+          <div>&#10003; Internal experimentation</div>
+        </div>
+        <!-- Shared LLM Layer - inside grid -->
+        <div style="grid-column:1/-1;padding:14px 16px;background:rgba(132,123,242,.12);border-top:1px solid rgba(132,123,242,.15);border-radius:0 0 10px 10px;display:flex;align-items:center;gap:14px;">
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);white-space:nowrap;">Shared LLM Intelligence Layer</div>
+          <div style="width:1px;height:20px;background:rgba(132,123,242,.25);flex-shrink:0;"></div>
+          <div style="font-size:12px;line-height:1.5;color:#555;">A shared AI foundation built on <strong>AWS Bedrock</strong> — secure, scalable access to the models powering every Treasure AI product.</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:16px;">
+      <div class="callout" style="margin-top:0;border-left-color:var(--soft-purple);background:rgba(132,123,242,.04);">
+        <h5 style="color:var(--soft-purple);">Key Takeaway</h5>
+        <p style="font-size:14px;"><strong>"Treasure AI Studio is where every customer starts. Foundry is where specific model requirements live. Treasure Work powers internal innovation."</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT ROADMAP -->
+<section id="roadmap" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">What's Coming</div>
+    <h2 class="reveal section-title">FY27 Product Roadmap</h2>
+    <p class="reveal section-subtitle">Treasure AI Studio delivery timeline — Q1 and Q2</p>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:140px 1fr 1fr;gap:0;">
+      <!-- Header row -->
+      <div></div>
+      <div style="padding:12px 20px;text-align:center;font-size:13px;font-weight:700;color:var(--indigo);background:linear-gradient(135deg,rgba(132,123,242,.08),rgba(128,179,250,.06));border-radius:10px 0 0 0;">APR — JUN</div>
+      <div style="padding:12px 20px;text-align:center;font-size:13px;font-weight:700;color:var(--indigo);background:linear-gradient(135deg,rgba(128,179,250,.06),rgba(132,123,242,.04));border-radius:0 10px 0 0;">JUL — SEP</div>
+      <!-- Content row -->
+      <div style="padding:20px 16px;display:flex;align-items:center;">
+        <div style="font-size:14px;font-weight:800;color:var(--black);line-height:1.2;">TREASURE<br>AI STUDIO</div>
+      </div>
+      <div style="padding:16px 20px;border:1px solid #e8e8f0;border-radius:0 0 0 10px;background:#fafafa;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);">
+            <span class="pill pg" style="font-size:9px;padding:2px 8px;">GA</span> Treasure AI Studio (Web)
+          </div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);">
+            <span class="pill pg" style="font-size:9px;padding:2px 8px;">GA</span> Treasure AI Studio (Mobile — iOS)
+          </div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);">
+            <span class="pill pg" style="font-size:9px;padding:2px 8px;">GA</span> Treasure AI Studio (Desktop — Mac)
+          </div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Product-Led-Growth Web Experience</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Third-Party Integration Capabilities</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Web Search (via OpenAI)</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Image Creation (via OpenAI)</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Skills Marketplace (Custom Skills)</div>
+        </div>
+      </div>
+      <div style="padding:16px 20px;border:1px solid #e8e8f0;border-left:none;border-radius:0 0 10px 0;background:#fafafa;">
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);">
+            <span class="pill pg" style="font-size:9px;padding:2px 8px;">GA</span> Treasure AI Studio (Mobile — Android)
+          </div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;display:flex;align-items:center;gap:8px;background:rgba(34,197,94,.06);border:1px solid rgba(34,197,94,.15);">
+            <span class="pill pg" style="font-size:9px;padding:2px 8px;">GA</span> Treasure AI Studio (Desktop — Windows)
+          </div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Collaborative Workspace</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Long-Term Memory</div>
+          <div style="padding:8px 14px;border-radius:8px;font-size:13px;color:#555;background:rgba(195,145,55,.06);border:1px solid rgba(249,115,22,.15);">Agent Scheduling</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 2: VALUE & ICP                     -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-rainbow" id="value-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Value Propositions & Ideal Customer</div>
+    <div class="reveal section-subtitle">Why customers buy and who to target</div>
+  </div>
+</section>
+
+<!-- VALUE PROPS -->
+<section id="value-props" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Why Customers Buy</div>
+    <h2 class="reveal section-title">Core Value Propositions</h2>
+    <p class="reveal section-subtitle">Three value pillars that map directly to the buying catalysts your prospects are feeling right now</p>
+
+    <!-- Three big value pillars -->
+    <div class="g3 reveal" style="margin-top:28px;gap:20px;">
+      <div class="card" style="padding:28px 24px;border-top:4px solid var(--soft-purple);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--soft-purple);margin-bottom:12px;">Value 1 — Speed</div>
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--black);line-height:1.1;margin-bottom:12px;">Days → Minutes</div>
+        <p style="font-size:14px;line-height:1.65;color:#555;margin-bottom:16px;">From data question to actionable insight in a single conversation. No SQL, no analyst queue, no tickets. Natural language replaces the entire request-and-wait cycle.</p>
+        <div style="padding:12px 16px;background:rgba(132,123,242,.04);border-radius:10px;">
+          <div style="font-size:11px;font-weight:700;color:var(--soft-purple);margin-bottom:4px;">CATALYST MATCH</div>
+          <div style="font-size:12px;color:#666;line-height:1.5;">"Do more with less" mandate — fewer analysts needed, faster time-to-action across the org</div>
+        </div>
+      </div>
+      <div class="card" style="padding:28px 24px;border-top:4px solid var(--orchid);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--orchid);margin-bottom:12px;">Value 2 — Reach</div>
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--black);line-height:1.1;margin-bottom:12px;">5 Users → 500</div>
+        <p style="font-size:14px;line-height:1.65;color:#555;margin-bottom:16px;">Every marketer, exec, and analyst gets direct access to customer data. No technical skills required. Unlocks the 95% of the org that can't write SQL today.</p>
+        <div style="padding:12px 16px;background:rgba(196,102,212,.04);border-radius:10px;">
+          <div style="font-size:11px;font-weight:700;color:var(--orchid);margin-bottom:4px;">CATALYST MATCH</div>
+          <div style="font-size:12px;color:#666;line-height:1.5;">Agency reduction &amp; cost pressure — internal teams self-serve instead of outsourcing analysis</div>
+        </div>
+      </div>
+      <div class="card" style="padding:28px 24px;border-top:4px solid var(--sky-blue);">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--indigo);margin-bottom:12px;">Value 3 — Enterprise AI That Works</div>
+        <div style="font-size:clamp(28px,3vw,40px);font-weight:800;color:var(--black);line-height:1.1;margin-bottom:12px;">AI → ROI</div>
+        <p style="font-size:14px;line-height:1.65;color:#555;margin-bottom:16px;">Not another chatbot experiment. 30 pre-built skills, data-grounded answers, enterprise security from day one. AI that's connected to your customer data and produces verifiable results.</p>
+        <div style="padding:12px 16px;background:rgba(128,179,250,.04);border-radius:10px;">
+          <div style="font-size:11px;font-weight:700;color:var(--indigo);margin-bottom:4px;">CATALYST MATCH</div>
+          <div style="font-size:12px;color:#666;line-height:1.5;">AI initiatives failing to drive value — this is AI tethered to real data with measurable outcomes, not a science project</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proof points row -->
+  </div>
+</section>
+
+<!-- ICP -->
+<section id="differentiators" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Why We Win</div>
+    <h2 class="reveal section-title">Key Differentiators</h2>
+    <div class="g3 reveal" style="margin-top:24px;">
+      <div class="card">
+        <div class="col-hdr">Speed</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">Answers at the Speed of Thought</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">No tickets, no analyst queue, no 3-day turnaround. Type a question, get a verified answer from your live data in seconds. The entire request-and-wait cycle collapses into a single conversation.</p>
+      </div>
+      <div class="card">
+        <div class="col-hdr">Data-Connected AI</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">Grounded in Your Customer Data</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">Every response is grounded in your first-party customer data — real profiles, real segments, real schemas. Not a generic LLM; an AI natively wired to your CDP. 12+ interactive chart types with portable HTML output.</p>
+      </div>
+      <div class="card">
+        <div class="col-hdr">Enterprise from Day 1</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">Enterprise-Grade by Design</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">PKCE OAuth 2.0, Network Audit Log with domain/IP/port filtering, IP Allowlist with static outbound IPs, server-side sandbox. Built for regulated industries from the ground up.</p>
+      </div>
+      <div class="card">
+        <div class="col-hdr">Unified Interface</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">A Unified AI Workspace</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">Replaces 5+ tools: analyst tickets, SQL queries, BI dashboards, segmentation UIs, activation workflows — all through conversation.</p>
+      </div>
+      <div class="card">
+        <div class="col-hdr">Extensible Skills</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">Built-In Skills, Expandable Power</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">30 pre-installed skills for CDP operations and content creation — ready on day one. Later in FYQ1, customers can also build custom skills tailored to their unique workflows, data models, and use cases.</p>
+      </div>
+      <div class="card">
+        <div class="col-hdr">Reach</div>
+        <div class="metric" style="font-size:clamp(18px,2.2vw,24px);">Meet Users Where They Work</div>
+        <p style="font-size:13px;color:#666;margin-top:8px;">Only vendor with Desktop + Web + Mobile + CLI. No competitor ships all four. Voice dictation on mobile. The full quad — meet every user where they work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="icp" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Target Customers</div>
+    <h2 class="reveal section-title">Ideal Customer Profile</h2>
+    <div class="reveal" style="margin-top:24px;">
+      <!-- Primary ICP -->
+      <div style="padding:22px 24px;background:#fff;border:1px solid rgba(132,123,242,.15);border-radius:14px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+          <div style="font-size:28px;font-weight:800;color:var(--soft-purple);">$500M+</div>
+          <div style="font-size:14px;font-weight:700;">Primary ICP — Enterprise Brands</div>
+        </div>
+        <div class="col-hdr" style="margin-bottom:8px;">Core Verticals</div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;">
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">Retail</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">CPG</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">Travel</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">Automotive</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">Media</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">D2C</span>
+          <span class="pill pp" style="font-size:12px;padding:5px 14px;">B2B Tech</span>
+        </div>
+        <div style="display:flex;gap:24px;margin-top:8px;font-size:11px;color:#888;">
+          <div><strong style="color:var(--soft-purple);font-weight:600;">Retail:</strong> C-Store, QSR, Grocery</div>
+          <div><strong style="color:var(--soft-purple);font-weight:600;">Travel:</strong> Hospitality, Tourism</div>
+        </div>
+        <div style="margin-top:14px;display:flex;align-items:center;gap:12px;">
+          <div class="col-hdr" style="margin-bottom:0;">Solely Opportunistic</div>
+          <span class="pill po" style="font-size:11px;">$1B+ only</span>
+          <span style="font-size:13px;color:#666;">Financial Services &amp; Healthcare</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cols reveal" style="margin-top:18px;gap:18px;">
+      <!-- Buying Catalysts -->
+      <div>
+        <div class="col-hdr">Buying Catalysts</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <div class="card" style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(239,68,68,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg>
+            </div>
+            <div><h4 style="font-size:13px;margin-bottom:0;">Cost pressure / stock underperformance</h4></div>
+          </div>
+          <div class="card" style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(132,123,242,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--soft-purple)" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <div><h4 style="font-size:13px;margin-bottom:0;">AI initiatives failing to drive enterprise value</h4></div>
+          </div>
+          <div class="card" style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(249,115,22,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg>
+            </div>
+            <div><h4 style="font-size:13px;margin-bottom:0;">Agency reduction mandates</h4></div>
+          </div>
+          <div class="card" style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(34,197,94,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </div>
+            <div><h4 style="font-size:13px;margin-bottom:0;">New executive leadership</h4></div>
+          </div>
+          <div class="card" style="padding:14px 18px;display:flex;align-items:center;gap:12px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(59,130,246,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+            </div>
+            <div><h4 style="font-size:13px;margin-bottom:0;">"Do more with less" mandate</h4></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key Personas -->
+      <div>
+        <div class="col-hdr">Key Personas</div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+          <div class="card" style="padding:14px 18px;">
+            <h4 style="font-size:13px;"><span style="color:var(--soft-purple);">CMO / VP Marketing</span></h4>
+            <p>Wants instant access to campaign performance, customer segments, and AI-generated recommendations without waiting for analyst reports.</p>
+          </div>
+          <div class="card" style="padding:14px 18px;">
+            <h4 style="font-size:13px;"><span style="color:var(--soft-purple);">Marketing Analyst</span></h4>
+            <p>Needs to build segments, run queries, and generate reports faster. Studio accelerates their workflow 10x.</p>
+          </div>
+          <div class="card" style="padding:14px 18px;">
+            <h4 style="font-size:13px;"><span style="color:var(--soft-purple);">Data / Analytics Leader</span></h4>
+            <p>Cares about governance, data quality, and enabling the broader org to self-serve without compromising security.</p>
+          </div>
+          <div class="card" style="padding:14px 18px;">
+            <h4 style="font-size:13px;"><span style="color:var(--soft-purple);">CTO / IT Security</span></h4>
+            <p>Evaluates enterprise readiness: SSO, RBAC, audit logs, data residency, and model governance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Motion -->
+    <div class="reveal" style="margin-top:18px;">
+      <div style="padding:18px 22px;border:1px solid #e8e8f0;border-radius:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <div>
+          <div class="col-hdr">New Customers</div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Lead with Treasure AI Studio as the primary AI interface. Strongest fit when the customer can use Anthropic models.</p>
+        </div>
+        <div>
+          <div class="col-hdr">Existing CDP Customers</div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Upsell and expansion play — customers already on the platform who want conversational access to their data.</p>
+        </div>
+        <div>
+          <div class="col-hdr">Existing Foundry Customers</div>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Showcase new capabilities for additional use cases. Encourage Skills in Studio if comfortable running both apps.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 3: COMPETITIVE                     -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-lavender" id="compete-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Competitive Positioning</div>
+    <div class="reveal section-subtitle">How we win against alternatives</div>
+  </div>
+</section>
+
+<!-- WHY OUR AI STACK IS AHEAD -->
+<section id="model-tiers" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Technology Edge</div>
+    <h2 class="reveal section-title">Why Our AI Stack Is Ahead</h2>
+    <p class="reveal section-subtitle">Built on the Anthropic Agent framework — the same architecture powering the most advanced AI products in the market. We ship what others announce.</p>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card" style="padding:20px;border-left:4px solid var(--soft-purple);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Built on Claude Agent SDK</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Not a wrapper around an API. Treasure AI Studio is built directly on Anthropic's Claude Agent SDK — the same framework used by the most advanced AI applications in the world. This gives us native access to the latest model capabilities the moment they ship.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--orchid);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Architected for Extensibility</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Studio's agent architecture is designed to support open standards like Model Context Protocol (MCP) for AI-to-tool communication. Third-party integration capabilities are on the FYQ1 roadmap — when they ship, the foundation is already in place. No retrofit required.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--sky-blue);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Speed to Innovate</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">When Anthropic releases a new model, we adopt it in days — not quarters. Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5 are all available at GA. Competitors are still running last-generation models while we ship the frontier.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card" style="padding:20px;border-left:4px solid #22c55e;">
+          <h4 style="font-size:14px;margin-bottom:6px;">Agent Architecture, Not Prompt Chaining</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Our 5-stage Agent Orchestrator (Context → Decompose → Tools → Execute → Assemble) is a true agentic system. It plans, selects tools, executes in a server-side sandbox, and assembles results — not a chain of prompts pretending to be intelligent.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--coral);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Skills: Modular Intelligence That Compounds</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">30 pre-built skills ship at GA — and customers can build custom skills in natural language to meet their unique workflows and use cases. Each new skill makes the entire platform smarter. Competitors embed AI helpers; we ship an extensible intelligence layer.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--indigo);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Three Model Tiers, One Click</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Users switch between Fast (Haiku 4.5), Balanced (Sonnet 4.6), and Pro (Opus 4.6) mid-conversation. Match AI power to the task — quick lookups don't need frontier reasoning, deep analysis doesn't need to wait for a cheaper model.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:16px;">
+      <div style="padding:18px 22px;background:rgba(132,123,242,.03);border-radius:14px;border:1px solid rgba(132,123,242,.12);">
+        <div style="font-size:14px;font-weight:700;color:var(--soft-purple);margin-bottom:8px;">The Bottom Line for Your Deal</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;">When a prospect asks "what AI model powers this?" — the answer isn't "we built our own." It's: <strong>"We're built on the same frontier AI that powers the best products in the world, and we adopt new capabilities faster than anyone in the CDP space."</strong> That's not a tech detail — it's a trust signal. Customers get the best AI available, not a proprietary bet that may fall behind.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE LANDSCAPE -->
+<section id="landscape" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Market Context</div>
+    <h2 class="reveal section-title">Competitive Landscape</h2>
+    <div class="reveal" style="margin-top:20px;">
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:18%;">Competitor</th>
+            <th style="width:22%;">What They Offer</th>
+            <th style="width:30%;">Where We Win</th>
+            <th style="width:30%;">Watch Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;">Generic AI Chatbots</td>
+            <td>ChatGPT, Gemini, Copilot — general-purpose AI assistants</td>
+            <td style="color:#16a34a;"><strong>Data connectivity.</strong> They can't access customer data. We're natively integrated with the CDP.</td>
+            <td style="color:#888;">Prospects may think "we already have AI" — reframe around data-connected AI vs. general chat.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;"><a href="https://ai-nativecustomerdatatools.lovable.app/" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">CDP-native AI</a></td>
+            <td>Salesforce Einstein, Adobe Sensei — AI baked into their CDPs</td>
+            <td style="color:#16a34a;"><strong>Flexibility.</strong> Not locked to one vendor's data model. Works across Snowflake, DBX, BQ + TD.</td>
+            <td style="color:#888;">Deep integration with their own ecosystem can be compelling for single-vendor shops.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">BI + AI Assistants</td>
+            <td>ThoughtSpot, Tableau Pulse, Power BI Copilot</td>
+            <td style="color:#16a34a;"><strong>Action-oriented.</strong> We don't just visualize — we build segments, trigger activations, and execute workflows.</td>
+            <td style="color:#888;">Strong existing footprint in analytics teams. Position as complementary, not replacement.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">Point AI Solutions</td>
+            <td>Jasper, Writer, Copy.ai — marketing content AI</td>
+            <td style="color:#16a34a;"><strong>Data-driven.</strong> We personalize with real customer data, not generic templates.</td>
+            <td style="color:#888;">Content generation is a specific use case — we're broader but they may be deeper for copy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<!-- COMPETITIVE INTELLIGENCE -->
+<section id="comp-intel" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Competitive Intelligence</div>
+    <h2 class="reveal section-title">Where We Stand vs. 12 Competitors</h2>
+    <p class="reveal section-subtitle">Data from competitive research analysis — updated April 20, 2026</p>
+
+    <!-- Stats row -->
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--soft-purple);">
+        <div style="font-size:28px;font-weight:800;color:var(--soft-purple);">1 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Has Desktop + Web + Mobile + CLI (full quad)</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid #16a34a;">
+        <div style="font-size:28px;font-weight:800;color:#16a34a;">1 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Has a native mobile app (GA)</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--sky-blue);">
+        <div style="font-size:28px;font-weight:800;color:var(--sky-blue);">2 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Have an AI-native CLI for CDP ops</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--coral);">
+        <div style="font-size:28px;font-weight:800;color:var(--coral);">2 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Have any voice AI capability</div>
+      </div>
+    </div>
+
+    <!-- Why We Win -->
+    <div class="reveal reveal-delay-1" style="margin-top:24px;">
+      <div class="col-hdr">Why We Win — April 2026</div>
+      <div class="g3" style="margin-top:10px;gap:14px;">
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Only GA AI-native CDP desktop</h4>
+          <p style="font-size:11.5px;">Snowflake SnowWork is research preview only. Adobe/Salesforce are web console features only. TD Studio is web + Mac + iOS, GA today.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Marketing vertical depth</h4>
+          <p style="font-size:11.5px;">Snowflake and Databricks are horizontal. TD is purpose-built for segments, journeys, activations — semantics competitors lack.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Vendor-neutral, MCP-native from day 1</h4>
+          <p style="font-size:11.5px;">Salesforce adopted MCP at TDX Apr 2026 — catching up. TD Studio built on MCP natively. Not locked to one cloud ecosystem.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">6x credit efficiency at GA</h4>
+          <p style="font-size:11.5px;">600 Studio conversations per AI Credit (up from 100). No seat licensing. Existing Foundry customers start immediately — no new procurement.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">TRUSTe Responsible AI Certified</h4>
+          <p style="font-size:11.5px;">First enterprise CDP with TrustArc TRUSTe RAI Certification. Key differentiator for compliance-driven enterprise buyers.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Full Desktop + Web + Mobile + CLI quad</h4>
+          <p style="font-size:11.5px;">No competitor ships all four surfaces. Treasure Code (CLI) + Studio (Web + Mac + iOS). Voice is the next frontier.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TOP THREATS -->
+<section id="top-threats" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Threat Assessment</div>
+    <h2 class="reveal section-title">Top Competitive Threats</h2>
+    <p class="reveal section-subtitle">Know what they're shipping, where they're weak, and how to position against them</p>
+    <div class="reveal" style="margin-top:20px;">
+      <!-- High Threat -->
+      <div style="margin-bottom:20px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#ef4444;"></div>
+          <div style="font-size:12px;font-weight:700;color:#ef4444;text-transform:uppercase;letter-spacing:.05em;">High Threat</div>
+        </div>
+        <div class="g2" style="gap:14px;">
+          <div class="card" style="padding:18px;border-left:3px solid #ef4444;">
+            <h4 style="font-size:14px;margin-bottom:4px;">Salesforce</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:8px;">CRM, Data Cloud, Agentforce</p>
+            <div style="font-size:12px;line-height:1.6;color:#555;">
+              <div style="margin-bottom:6px;"><strong style="color:#16a34a;">TD Angle:</strong> Spring '26 doubles down on CRM/sales — not marketing activation. Agent Script adds dev complexity, not marketer simplicity. Voice is call-center, not CDP ops. Data 360 only works inside the Salesforce ecosystem. TD Studio ships now, not in rolling release cycles.</div>
+              <div><strong style="color:#888;">Latest:</strong> Agentforce Builder, Agent Fabric GA, 60+ MCP tools, $50M Builders Fund. AgentExchange: 1,000+ agents.</div>
+            </div>
+          </div>
+          <div class="card" style="padding:18px;border-left:3px solid #ef4444;">
+            <h4 style="font-size:14px;margin-bottom:4px;">Adobe</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:8px;">Experience Cloud, RT-CDP, Journey Optimizer</p>
+            <div style="font-size:12px;line-height:1.6;color:#555;">
+              <div style="margin-bottom:6px;"><strong style="color:#16a34a;">TD Angle:</strong> Summit launches skew creative (Firefly AI, GenStudio) — not RT-CDP or journey depth. Agent Orchestrator is operationalizing 2025 announcements, not net-new. Leadership transition + DOJ settlement drive buyer uncertainty. TD Studio GA lands during Adobe's distraction week.</div>
+              <div><strong style="color:#888;">Latest:</strong> Summit 2026 live this week. Firefly AI Assistant public beta. AEP Agent Orchestrator. Record $6.4B revenue. CEO transition underway.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Medium Threat -->
+      <div>
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#f59e0b;"></div>
+          <div style="font-size:12px;font-weight:700;color:#d97706;text-transform:uppercase;letter-spacing:.05em;">Medium Threat</div>
+        </div>
+        <div class="g2" style="gap:14px;">
+          <div class="card" style="padding:16px;border-left:3px solid #f59e0b;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Snowflake</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">SnowWork is research preview only. No marketing semantics (segments, journeys, campaigns). Bound to Snowflake data cloud. TD Studio GA vs. SnowWork preview.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #f59e0b;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Hightouch</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">$100M ARR but growth is in ad creative, not CDP depth. Ad Studio generates creative but doesn't own the send layer. No native journey orchestration.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #f59e0b;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Databricks</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">Genie Code is for data engineers, not marketers. No journey/segment/activation layer. TD's 50+ purpose-built marketing skills ship GA day 1.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #f59e0b;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Amperity</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">Customer Data Agent is identity-platform only, not a full CDP control plane. Chuck CLI is data-engineering infra — no journey/activation ops layer.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #f59e0b;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Tealium</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">AI is integration, not intelligence — no native ML. Connector ecosystem means Tealium is a data pipe, not a decision engine. No journey orchestration. Gartner flags decelerating revenue and declining customer count.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Lower Threat -->
+      <div style="margin-top:20px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+          <div style="width:10px;height:10px;border-radius:50%;background:#16a34a;"></div>
+          <div style="font-size:12px;font-weight:700;color:#16a34a;text-transform:uppercase;letter-spacing:.05em;">Lower Threat — Complementary or narrow overlap</div>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+          <div class="card" style="padding:16px;border-left:3px solid #16a34a;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Uniphore</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">Gartner CDP Leader but scope is contact center AI + CX, not marketing activation. Overlaps with NICE/Genesys more than TD. Unlikely in the same RFP.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #16a34a;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Klaviyo</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">SMB/mid-market B2C — not enterprise, multi-brand, or complex data. TD wins where data complexity, governance, and multi-region requirements exist.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #16a34a;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Braze</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">Best-in-class delivery layer — TD feeds Braze better data via Diamond Record. Complementary in most stacks. No deep CDP unification of their own.</p>
+          </div>
+          <div class="card" style="padding:16px;border-left:3px solid #16a34a;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Iterable</h4>
+            <p style="font-size:11px;color:#888;margin-bottom:6px;">Lifecycle orchestration layer — complementary to CDP. Journey Assist sits above the data layer; TD provides the governed foundation. AI terms restrict PII use.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHTOUCH BATTLE CARD -->
+<section id="hightouch-positioning" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Competitive Deep Dive</div>
+    <h2 class="reveal section-title">Hightouch: Talk Track & Wedge</h2>
+    <p class="reveal section-subtitle">How they position, how they attack us, and how to reframe the conversation</p>
+    <div class="cols reveal" style="margin-top:24px;gap:24px;">
+      <!-- Left: How they position -->
+      <div>
+        <div class="col-hdr">How Hightouch Positions Themselves</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:10px;">
+          <div class="card" style="padding:16px 18px;">
+            <h4 style="font-size:13px;margin-bottom:4px;">"Finally, a CDP that actually works"</h4>
+            <p style="font-size:12px;color:#666;">Implying legacy CDPs (including TD, Salesforce, Adobe) are broken. Core pitch: your data warehouse is already your source of truth — stop duplicating data into a black-box CDP.</p>
+          </div>
+          <div class="card" style="padding:16px 18px;">
+            <h4 style="font-size:13px;margin-bottom:4px;">"Built on your existing data infrastructure"</h4>
+            <p style="font-size:12px;color:#666;">No data movement, no new silo. They land with reverse ETL syncs, then expand to Customer Studio → Match Booster → AI Decisioning.</p>
+          </div>
+          <div class="card" style="padding:16px 18px;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Agentic Marketing Platform (AMP)</h4>
+            <p style="font-size:12px;color:#666;">"Every marketer becomes a manager of agents." AI agents with warehouse context automate campaigns, creative, and decisions. Reinforcement learning for 1:1 optimization.</p>
+          </div>
+          <div class="card" style="padding:16px 18px;">
+            <h4 style="font-size:13px;margin-bottom:4px;">Speed & simplicity narrative</h4>
+            <p style="font-size:12px;color:#666;">"Live in under a month." Sub-second same-session personalization. Fast time-to-value vs. "big contract" CDPs. Target buyer: data teams at Snowflake/Databricks-native accounts.</p>
+          </div>
+        </div>
+        <div class="callout" style="margin-top:14px;">
+          <h5>Their Attack on Us (Verbatim)</h5>
+          <p>"Treasure Data requires data to be copied into its own managed infrastructure, creating another data silo."</p>
+        </div>
+      </div>
+      <!-- Right: The Wedge -->
+      <div>
+        <div class="col-hdr">The Wedge — Your Conversation Starter</div>
+        <div style="margin-top:10px;padding:22px 24px;background:#fff;border-radius:14px;border:1px solid rgba(132,123,242,.15);">
+          <div style="font-size:15px;font-weight:700;color:var(--soft-purple);line-height:1.5;margin-bottom:16px;">"Hightouch is a great activation pipe — but they're not an AI marketing platform. There's a difference between a tool that moves data and a platform that acts on it."</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;">
+            <div style="font-weight:700;margin-bottom:6px;">Opening question to plant the wedge:</div>
+            <div style="padding:12px 16px;background:rgba(132,123,242,.04);border-radius:10px;font-style:italic;margin-bottom:14px;">"How much of your data engineering team's time is currently dedicated to keeping Hightouch's schemas, models, and warehouse performance tuned for your marketing use cases?"</div>
+            <div style="font-weight:700;margin-bottom:6px;">The reframe:</div>
+            <div style="padding:12px 16px;background:rgba(132,123,242,.04);border-radius:10px;font-style:italic;margin-bottom:14px;">"Hightouch's pitch is that your warehouse is your CDP. What they don't tell you is that means your data team IS your CDP team. You're not replacing a vendor — you're building one."</div>
+            <div style="font-weight:700;margin-bottom:6px;">For AMP / AI agent deals:</div>
+            <div style="padding:12px 16px;background:rgba(132,123,242,.04);border-radius:10px;font-style:italic;">"Hightouch's agents optimize messages into the ESPs and ad platforms you already have. That's last-mile optimization. Treasure AI Studio gives you the full stack — data, identity, journey orchestration, decisioning, and the AI workspace to run it all — in one governed place. They automate a step. We replace the system."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHTOUCH TACTICS -->
+<section id="hightouch-tactics" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Hightouch Tactics</div>
+    <h2 class="reveal section-title">7 Points to Leverage</h2>
+    <p class="reveal section-subtitle">Competitive follow-up points with trap questions, G2 evidence, and TD counters</p>
+    <div class="reveal" style="margin-top:20px;">
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <details class="xcard" open>
+          <summary><span class="xnum">1</span>The Engineering Tax — Expose the DIY Burden</summary>
+          <div class="xbody">
+            <p>Every Hightouch capability (Customer Studio, AI Decisioning, real-time, agents) requires careful schema setup and ongoing warehouse tuning.</p>
+            <ul>
+              <li><strong>Trap question:</strong> "When you set up AI Decisioning or same-session personalization with Hightouch, who owns the schema modeling and warehouse performance tuning? How long did that take?"</li>
+              <li><strong>G2 evidence:</strong> "Works fine but beware of upfront engineering work and long sync times" — reviewer noted reps complained sync takes hours; another said "error messages are not the most helpful, I often find I am only able to debug failed loads because I am very close to the data."</li>
+              <li><strong>TD counter:</strong> Diamond Record and Treasure AI Studio give marketing ops a turnkey profile and the AI workspace to operate it — no engineering queue required.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">2</span>Pricing Is a Ticking Clock</summary>
+          <div class="xbody">
+            <p>Hightouch uses usage-based pricing across syncs (MAS), events, and AI Actions. Their own customers call it "punitive" and "restricting experimentation."</p>
+            <ul>
+              <li><strong>G2 evidence:</strong> "Pricing is too high for small organizations... Price scales quickly." A 2-year customer wrote in Nov 2025: "They decided to completely change the conditions making it unaffordable, all within 2 months... leaving us with no way to migrate our data." (Support: 1/10, Partner: 1/10)</li>
+              <li><strong>Trap question:</strong> "Have you modeled out what your Hightouch bill looks like as you scale AI Actions across more use cases and destinations?"</li>
+              <li><strong>TD counter:</strong> Credit-based model (600 conversations per AI credit at GA), predictable contract-based pricing, no per-sync or per-AI-Action meters.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">3</span>No Native ESP — Incomplete AI Marketing Cloud</summary>
+          <div class="xbody">
+            <ul>
+              <li>Hightouch does not have a native ESP. Their AI agents generate decisions and creative, but the actual message delivery depends entirely on third-party ESPs (Braze, Iterable, Salesforce MC). Without native send capability, they can't offer a complete AI marketing cloud.</li>
+              <li><strong>Trap question:</strong> "When Hightouch's AI Decisioning agent decides to send a message, who actually sends it? Who owns deliverability and reputation management?"</li>
+              <li><strong>TD counter:</strong> Treasure AI includes AI Suites (Personalization, Engagement, Creative, Paid Media, Service) with native journey orchestration and delivery — one platform from signal to send, no third-party ESP dependency.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">4</span>Enterprise & Regulated Industry Risk</summary>
+          <div class="xbody">
+            <ul>
+              <li>No Japan region. Audit logs retained only 90 days. Limited presence in FSI, healthcare, pharma.</li>
+              <li><strong>Trap question:</strong> "What's Hightouch's data residency story for Japan / APAC? How long are audit logs retained — and is that sufficient for your compliance team?"</li>
+              <li><strong>TD counter:</strong> 14+ patents, ISO 27xxx / HIPAA / CSA STAR certifications, long-standing Japanese enterprise presence, deep RBAC / policy-based governance. Hightouch has 0 patents.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">5</span>Multi-Brand & Global Scale — Where They've Been Rejected</summary>
+          <div class="xbody">
+            <ul>
+              <li><strong>G2 evidence:</strong> "Performance on very large queries can be a bit of a pain. For heavy workloads, like hundreds of millions of rows, we sometimes see long runtimes." Pricing "scales quickly" as destinations grow. One wrote: "Pricing scales quickly, making you still develop your own reverse ETL code for some destinations."</li>
+              <li><strong>Trap question:</strong> "How does Hightouch handle cross-brand identity resolution and journey orchestration when you have 3+ brands running on different regional data models?"</li>
+              <li><strong>TD counter:</strong> Journey Orchestration validated at global enterprise scale for omnichannel journeys across brands, regions, and business units — a documented Hightouch weakness.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">6</span>AI Workspace Gap — No Treasure AI Studio Equivalent</summary>
+          <div class="xbody">
+            <ul>
+              <li>Hightouch embeds AI helpers inside their product UI. They do not ship a standalone AI-native workspace for exploring data, building CDP resources, and generating artifacts.</li>
+              <li><strong>The line:</strong> "Hightouch has AI inside a product. Treasure AI Studio is the product — a conversational workspace wired into your entire environment where you go from a strategy brief to a live segment, journey, and executive deck in one session."</li>
+            </ul>
+          </div>
+        </details>
+        <details class="xcard">
+          <summary><span class="xnum">7</span>Identity Resolution — One-Source Limit vs. Diamond Record</summary>
+          <div class="xbody">
+            <ul>
+              <li>Hightouch identity graphs are limited to one source and rely on customer DW compute. More DIY rule management, no portable identity graph.</li>
+              <li><strong>TD counter:</strong> Diamond Record delivers fully managed, cross-source identity resolution with deterministic + probabilistic methods, backed by patents and privacy certifications. Hightouch has 0 patents in this area.</li>
+            </ul>
+          </div>
+        </details>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:16px;">
+      <div class="callout callout-green" style="margin-top:0;">
+        <h5 style="color:#16a34a;">One-Liner for the Field</h5>
+        <p style="font-size:14px;line-height:1.7;">"Hightouch is a well-built activation pipe for data teams. Treasure AI is the platform that replaces the need to build the stack yourself — with a governed AI workspace, native identity, journey orchestration, and a full AI marketing cloud on top."</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 4: DEMO & NEXT STEPS               -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-sunset" id="demo-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Sales Toolkit</div>
+    <div class="reveal section-subtitle">Demo playbook, discovery, pricing, and everything you need to run the deal</div>
+  </div>
+</section>
+
+<!-- USE CASES / TOP SALES SCENARIOS -->
+<section id="use-cases" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Use Cases</div>
+    <h2 class="reveal section-title">Top Sales Scenarios</h2>
+    <p class="reveal section-subtitle">The highest-converting demo scenarios and real-world use cases</p>
+    <div class="g3 reveal" style="margin-top:24px;">
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#f5f3ff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--soft-purple)" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Instant Audience Discovery</h4>
+        <p>"Show me high-value customers in EMEA who haven't purchased in 90 days" — natural language to segment in seconds.</p>
+      </div>
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#ecfdf5;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#11b076" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Campaign Performance Review</h4>
+        <p>"How did our holiday campaign perform vs. last year?" — instant cross-channel analysis with AI-generated insights.</p>
+      </div>
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#fef3c7;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Executive Reporting</h4>
+        <p>"Generate a board-ready summary of Q1 customer metrics" — AI creates polished reports from raw data in minutes.</p>
+      </div>
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#eff6ff;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--sky-blue)" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Customer 360 Exploration</h4>
+        <p>"Tell me everything about this customer's journey" — unified view across touchpoints, purchases, and engagement.</p>
+      </div>
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#fce7f3;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#eb7f9b" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Churn Prediction & Action</h4>
+        <p>"Which customers are at risk of churning and what should we do?" — AI-powered recommendations with one-click activation.</p>
+      </div>
+      <div class="card">
+        <div style="width:44px;height:44px;border-radius:12px;background:#e0f2fe;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--indigo)" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        </div>
+        <h4 style="font-size:15px;margin-bottom:8px;">Data Quality Auditing</h4>
+        <p>"Are there any data quality issues in our customer profiles?" — proactive anomaly detection across your CDP.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO FLOW -->
+<section id="demo-flow" style="background:linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);text-align:center;align-items:center;">
+  <div class="section-inner" style="text-align:center;">
+    <div class="reveal section-label">Live Demo</div>
+    <h2 class="reveal section-title" style="font-size:clamp(38px,5vw,64px);">Treasure AI Studio</h2>
+    <p class="reveal section-subtitle" style="margin:12px auto 0;text-align:center;">Let's see it in action</p>
+    <div class="reveal" style="margin-top:24px;">
+      <a href="https://drive.google.com/file/d/1EC28jQIjQgAAw2i0Nbsa5GRaS_nsR10f/view?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:8px;padding:10px 20px;background:rgba(255,255,255,.85);border:1px solid rgba(132,123,242,.2);border-radius:10px;text-decoration:none;color:var(--soft-purple);font-size:13px;font-weight:600;transition:all .2s;" onmouseover="this.style.background='#fff';this.style.boxShadow='0 4px 12px rgba(132,123,242,.12)'" onmouseout="this.style.background='rgba(255,255,255,.85)';this.style.boxShadow='none'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch Demo Recording
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO PLANNER SKILL -->
+<section id="demo-planner" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">New Tool for GTM</div>
+    <h2 class="reveal section-title">Demo Planner Skill — Live Demo</h2>
+    <p class="reveal section-subtitle" style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">Generate <strong>customer-specific demo plans</strong> in minutes — with positioning, prompt flows, expected outputs, talk tracks, and timing
+      <a href="https://drive.google.com/file/d/1Mnb1eGRnzwxZ38lX4CAxv2x1IKJVvIPX/view?usp=sharing" target="_blank" style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:#fff;border:1px solid rgba(132,123,242,.2);border-radius:8px;text-decoration:none;color:var(--soft-purple);font-size:11px;font-weight:600;white-space:nowrap;transition:all .2s;" onmouseover="this.style.boxShadow='0 4px 12px rgba(132,123,242,.12)'" onmouseout="this.style.boxShadow='none'">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        Watch Demo
+      </a>
+    </p>
+
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;">
+      <!-- Left: Value + example -->
+      <div>
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div style="padding:18px 20px;background:#fff;border-radius:12px;border:1px solid rgba(132,123,242,.12);">
+            <div class="col-hdr" style="margin-bottom:8px;">What It Does</div>
+            <div style="font-size:13px;color:#555;line-height:1.7;">
+              Give it your account context — industry, deal stage, stakeholders, competitive threats, time constraints — and it generates a complete, ready-to-run demo plan. No more building decks from scratch or winging discovery calls.
+            </div>
+          </div>
+          <div style="padding:18px 20px;background:#fff;border-radius:12px;border:1px solid rgba(132,123,242,.12);">
+            <div class="col-hdr" style="margin-bottom:8px;">What You Get</div>
+            <div style="font-size:13px;color:#555;line-height:1.7;">
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Recommended positioning for the account</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Step-by-step prompt flows to run live</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Expected outputs at each step</div>
+              <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Talk track with timing per section</div>
+              <div style="display:flex;align-items:center;gap:6px;"><span style="color:#16a34a;font-size:13px;">&#10003;</span> Pre-demo checklist and environment setup</div>
+            </div>
+          </div>
+          <div style="padding:14px 18px;background:rgba(132,123,242,.04);border-radius:10px;border:1px solid rgba(132,123,242,.1);">
+            <div style="font-size:11px;font-weight:700;color:var(--soft-purple);margin-bottom:6px;">EXAMPLE PROMPT</div>
+            <div style="font-size:12px;color:var(--soft-purple);font-style:italic;line-height:1.6;">"Prep a demo for Fidelity Investments. Existing TD customer using CDP and Journeys, enterprise account. This is an upsell — they want to get more value from AI and make their marketing team more self-sufficient. 20 minutes with their VP of Digital Marketing and Head of Data. They're evaluating Salesforce Einstein as an alternative. Main concern: they're not sure AI is ready for production."</div>
+          </div>
+        </div>
+        <div style="margin-top:14px;">
+          <div class="callout callout-green" style="margin-top:0;">
+            <h5 style="color:#16a34a;">How to Access</h5>
+            <p>Available in <strong>Treasure Work</strong>, via <a href="https://github.com/treasure-data/td-internal-skills/tree/main/solutions-skills" target="_blank" style="color:#16a34a;text-decoration:underline;">TD Internal Skills</a>. Type: <strong>"Use the demo-planner skill to..."</strong> followed by your account context. The more detail you give, the sharper the output.</p>
+          </div>
+        </div>
+      </div>
+      <!-- Right: Sample output screenshot -->
+      <div id="demoPlanRight">
+        <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:#999;margin-bottom:8px;">Sample Output</div>
+        <div style="background:#fff;border-radius:14px;border:1px solid #e8e8f0;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,.04);">
+          <div style="background:#f5f5f8;padding:6px 14px;display:flex;align-items:center;gap:6px;border-bottom:1px solid #e8e8f0;">
+            <div style="width:8px;height:8px;border-radius:50%;background:#ff5f57;"></div>
+            <div style="width:8px;height:8px;border-radius:50%;background:#febd2e;"></div>
+            <div style="width:8px;height:8px;border-radius:50%;background:#27c840;"></div>
+            <div style="flex:1;text-align:center;font-size:10px;color:#999;">demo-plan-retail-churn.html</div>
+          </div>
+          <div id="demoPlanImgWrap" style="overflow:hidden;">
+            <img src="assets/demo-plan-output.png" alt="Demo Planner sample output" style="width:100%;display:block;">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVERY QUESTIONS -->
+<section id="discovery" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Discovery</div>
+    <h2 class="reveal section-title">Key Discovery Questions</h2>
+    <div class="cols reveal" style="margin-top:24px;gap:20px;">
+      <div>
+        <div class="col-hdr">Pain & Process</div>
+        <div class="tips-card" style="margin-top:8px;">
+          <h4>Ask These First</h4>
+          <ul style="padding:0;">
+            <li>How does your marketing team currently access customer data? Who do they go through?</li>
+            <li>What's the average turnaround time from data request to insight?</li>
+            <li>How many people on your team can write SQL or use your BI tools directly?</li>
+            <li>What percentage of your data's value do you think your org is actually capturing today?</li>
+            <li>Have you tried AI tools for data analysis? What worked and what didn't?</li>
+            <li>What other tools or platforms are you evaluating, or already using, for AI-driven customer analytics?</li>
+            <li>If data access weren't a bottleneck, how many people on your team would use customer insights daily?</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="col-hdr">Technical & Security</div>
+        <div class="tips-card" style="margin-top:8px;">
+          <h4>For the IT / Security Buyer</h4>
+          <ul style="padding:0;">
+            <li>What's your current SSO provider? (Okta, Azure AD, etc.)</li>
+            <li>Do you have data residency requirements? Any regions where data can't leave?</li>
+            <li>What's your AI governance policy today? Who approves new AI tools?</li>
+            <li>Where does your customer data live? (Snowflake, Databricks, BigQuery, TD)</li>
+            <li>Are there specific compliance frameworks you need to meet? (SOC2, GDPR, HIPAA)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OBJECTION HANDLING -->
+<section id="objections" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Battle Cards</div>
+    <h2 class="reveal section-title">Objection Handling</h2>
+    <p class="reveal section-subtitle">Common pushback and how to respond</p>
+    <div class="reveal" style="margin-top:20px;">
+      <details class="faq" open>
+        <summary>"We already have ChatGPT / Copilot — why do we need another AI?"</summary>
+        <div class="ans">
+          <strong>Response:</strong> ChatGPT doesn't know your customers. It can't query your CDP, build segments from your data, or activate audiences to your channels. Treasure AI Studio is AI that's <em>connected to your customer data</em> — the difference between a general assistant and a data-powered marketing co-pilot. Ask them: "Can ChatGPT tell you which of your customers are about to churn based on your actual purchase data?"
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"Our security team won't approve another AI tool."</summary>
+        <div class="ans">
+          <strong>Response:</strong> Treasure AI Studio inherits the same enterprise security posture as the Treasure Data platform they've already approved. Console SSO, role-based access, same data residency controls. No new vendor to approve — it's part of the platform they already trust. Offer to do a joint security review call with their CISO.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"We tried AI and the outputs weren't accurate enough."</summary>
+        <div class="ans">
+          <strong>Response:</strong> Generic AI hallucinates because it's guessing. Treasure AI Studio is grounded in your actual data — it runs real queries against your CDP and returns verified results. The Skills architecture means it follows defined, tested workflows rather than making things up. Offer a live demo with their data to prove accuracy.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"We want to wait for the custom skill marketplace."</summary>
+        <div class="ans">
+          <strong>Response:</strong> The pre-installed TD Skills cover the most common use cases today — segmentation, activation, analytics, reporting. Customers who start now build organizational muscle with AI and will be first movers when the marketplace launches. The marketplace extends value; it doesn't gate it.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"What about customers who can't use Anthropic models?"</summary>
+        <div class="ans">
+          <strong>Response:</strong> For customers requiring non-Anthropic models (e.g., UMG, SoftBank), AI Agent Foundry remains available and fully supported. We're actively working on enabling non-Anthropic model support in Treasure AI Studio. Foundry is not going away — it serves a different need.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"How is this different from the old Treasure Studio?"</summary>
+        <div class="ans">
+          <strong>Response:</strong> Treasure AI Studio is a ground-up rebuild — new architecture (Claude Agent SDK), new interfaces (web + desktop + mobile + voice), new security model (console SSO), and new UI. Treasure Studio is being renamed to Treasure Work and will serve as an internal innovation lab. Treasure AI Studio is the future — SLA-supported, customer-facing, enterprise-ready.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"How much does this cost? What's the pricing model?"</summary>
+        <div class="ans">
+          <strong>Response:</strong> Treasure AI Studio uses a credit-based consumption model with three AI model tiers: <strong>Pro</strong> (Claude Opus 4.6) for complex reasoning, <strong>Balanced</strong> (Claude Sonnet 4.6) for everyday tasks, and <strong>Fast</strong> (Claude Haiku 4.5) for quick lookups. Users switch models mid-conversation with one click to optimize cost. Most daily tasks run on Balanced or Fast, keeping consumption predictable. No per-seat licensing — teams pay for what they use.
+        </div>
+      </details>
+      <details class="faq">
+        <summary>"My team won't adopt another tool."</summary>
+        <div class="ans">
+          <strong>Response:</strong> Studio doesn't add a workflow — it replaces one. Instead of: submit a ticket → wait for the data team → get a CSV → open Excel → build a chart → send an email — it's: type a question, get an answer. That's a net <em>reduction</em> in tools, not an addition. The teams that adopt fastest are the ones tired of waiting in the analyst queue.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Commercial</div>
+    <h2 class="reveal section-title">How Pricing Works</h2>
+    <p class="reveal section-subtitle">Credit-Based Consumption Model</p>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;align-items:start;">
+      <!-- Left: Key points -->
+      <div style="display:flex;flex-direction:column;gap:20px;">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Treasure AI Studio is free to access to Foundry Customers</div>
+            <div style="font-size:13px;color:#666;line-height:1.6;">The workspace itself has no license fee. Customers pay only for AI-powered actions via fungible AI credits.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Unified credit model across all Treasure AI products</div>
+            <div style="font-size:13px;color:#666;line-height:1.6;">One AI Credit pool powers Treasure Code, Treasure AI Studio, Treasure AI Suites, and AI Foundry agents — no fragmented billing.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:4px;">Usage-based, not seat-based</div>
+            <div style="font-size:13px;color:#666;line-height:1.6;">Pricing scales with value delivered (conversations and actions executed), not headcount.</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+          <div>
+            <div style="font-size:15px;font-weight:700;margin-bottom:4px;">No new procurement required</div>
+            <div style="font-size:13px;color:#666;line-height:1.6;">Existing Treasure AI Foundry customers can start using Studio immediately with their current credit allocation. No forms required.</div>
+          </div>
+        </div>
+      </div>
+      <!-- Right: Flow diagram -->
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <div style="padding:22px 24px;border-radius:14px;background:linear-gradient(135deg,rgba(132,123,242,.08),rgba(196,102,212,.06));border:1px solid rgba(132,123,242,.12);">
+          <h4 style="font-size:15px;font-weight:700;margin-bottom:6px;">AI Credit Pool</h4>
+          <p style="font-size:13px;color:#555;line-height:1.5;">Customers purchase AI Credits as part of Treasure AI Foundry</p>
+        </div>
+        <div style="text-align:center;color:var(--soft-purple);font-size:18px;">↓</div>
+        <div style="padding:22px 24px;border-radius:14px;background:linear-gradient(135deg,rgba(196,102,212,.08),rgba(128,179,250,.06));border:1px solid rgba(196,102,212,.12);">
+          <h4 style="font-size:15px;font-weight:700;margin-bottom:6px;">Conversations</h4>
+          <p style="font-size:13px;color:#555;line-height:1.5;">Each interaction in Studio consumes credits from the pool</p>
+        </div>
+        <div style="text-align:center;color:var(--soft-purple);font-size:18px;">↓</div>
+        <div style="padding:22px 24px;border-radius:14px;background:linear-gradient(135deg,rgba(128,179,250,.08),rgba(132,123,242,.04));border:1px solid rgba(128,179,250,.12);">
+          <h4 style="font-size:15px;font-weight:700;margin-bottom:6px;">Usage Metering</h4>
+          <p style="font-size:13px;color:#555;line-height:1.5;">Transparent tracking of credit consumption over time</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDIT BOOST -->
+<section id="credit-boost" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Effective Today</div>
+    <h2 class="reveal section-title">6x the Value — Same Price</h2>
+    <p class="reveal section-subtitle">Alongside the launch of Treasure AI Studio, we're increasing the conversation allowance on all Credit plans</p>
+    <div class="reveal" style="margin-top:28px;">
+      <div style="display:flex;align-items:center;gap:28px;padding:28px 32px;background:linear-gradient(135deg,rgba(132,123,242,.06),rgba(196,102,212,.04));border:1px solid rgba(132,123,242,.12);border-radius:16px;">
+        <div style="text-align:center;flex-shrink:0;">
+          <div style="font-size:14px;color:#888;margin-bottom:4px;">Before</div>
+          <div style="font-size:32px;font-weight:800;color:#ccc;text-decoration:line-through;">100</div>
+        </div>
+        <div style="font-size:32px;color:var(--soft-purple);font-weight:300;">→</div>
+        <div style="text-align:center;flex-shrink:0;">
+          <div style="font-size:14px;color:var(--soft-purple);font-weight:600;margin-bottom:4px;">Now</div>
+          <div style="font-size:48px;font-weight:800;color:var(--soft-purple);">600</div>
+        </div>
+        <div style="width:1px;height:60px;background:rgba(132,123,242,.15);flex-shrink:0;"></div>
+        <div style="font-size:16px;line-height:1.6;color:#333;">
+          <strong>1 AI Credit = 600 Conversations.</strong> Same price, 6x the value. More headroom means more room to explore, get comfortable, and see what's possible before committing deeper.
+        </div>
+      </div>
+    </div>
+    <div class="g2 reveal reveal-delay-1" style="margin-top:20px;gap:16px;">
+      <div>
+        <div class="col-hdr">Why This Matters for Your Deals</div>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px;">
+          <div class="card" style="padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:13px;line-height:1.6;color:#555;">If a customer hasn't explored Treasure AI Studio yet, <strong>this is your moment</strong> — they have more runway than ever to try it</div>
+          </div>
+          <div class="card" style="padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:13px;line-height:1.6;color:#555;">The new pricing model is designed to <strong>scale with customers</strong> as they lean in — not penalize exploration</div>
+          </div>
+          <div class="card" style="padding:16px 18px;display:flex;align-items:flex-start;gap:12px;">
+            <div style="width:8px;height:8px;border-radius:50%;background:var(--soft-purple);margin-top:7px;flex-shrink:0;"></div>
+            <div style="font-size:13px;line-height:1.6;color:#555;">Usage is transparent — <strong>Conversations and Credit consumption are visible</strong> directly from their customer-facing dashboard. No surprises.</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="col-hdr">One Credit Pool Powers Everything</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;">
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">AI Foundry</span>
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">Custom Agents</span>
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">Our Agents</span>
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">Treasure Code</span>
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">AI Suites</span>
+          <span class="pill pp" style="font-size:12px;padding:6px 14px;">Treasure AI Studio</span>
+        </div>
+        <div class="callout callout-green" style="margin-top:16px;">
+          <h5 style="color:#16a34a;">The More You Use, The More You Unlock</h5>
+          <p>Credits power everything across the Treasure AI platform. The more you use, the more you unlock across the board — not just in Studio, but across Foundry, Code, Suites, and custom agents.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT DOCUMENTATION -->
+<section id="product-docs" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Everything You Need</div>
+    <h2 class="reveal section-title">Resources</h2>
+    <p class="reveal section-subtitle">Documentation, collateral, tools, and links to keep your deal moving</p>
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;">
+      <!-- Sales Tools & Demo Prep -->
+      <div>
+        <div class="col-hdr" style="margin-bottom:10px;">Sales Tools & Demo Prep</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="#hero" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--orchid),var(--coral));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">Enablement Deck</h4>
+              <div style="font-size:10px;color:var(--soft-purple);font-weight:500;">This presentation</div>
+            </div>
+          </a>
+          <a href="https://github.com/treasure-data/td-internal-skills/tree/main/solutions-skills" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">Demo Planner Skill</h4>
+              <div style="font-size:10px;color:var(--soft-purple);font-weight:500;">Available in Treasure Work, via TD Internal Skills</div>
+            </div>
+          </a>
+          <a href="https://github.com/treasure-data/td-internal-skills/tree/main/solutions-skills" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--coral),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">Industry Builder Skill</h4>
+              <div style="font-size:10px;color:var(--orchid);font-weight:500;">Available in Treasure Work, via TD Internal Skills</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Product & Technical -->
+      <div>
+        <div class="col-hdr" style="margin-bottom:10px;">Product & Technical</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://docs.treasuredata.com/products/ai-studio" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--soft-purple),var(--sky-blue));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">Product Documentation</h4>
+              <div style="font-size:10px;color:var(--soft-purple);font-weight:500;">docs.treasuredata.com</div>
+            </div>
+          </a>
+          <a href="https://github.com/treasure-data/td-skills" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:rgba(0,0,0,.85);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">TD Skills Repository</h4>
+              <div style="font-size:10px;color:#555;font-weight:500;">github.com/treasure-data/td-skills</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <!-- Collateral -->
+      <div>
+        <div class="col-hdr" style="margin-bottom:10px;">Collateral</div>
+        <div style="display:flex;flex-direction:column;gap:10px;">
+          <a href="https://treasure.ai/hubfs/Product%20One-Pagers/Treasure%20AI%20Studio%20One-pager.pdf" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--soft-purple),var(--orchid));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">One Pager</h4>
+              <div style="font-size:10px;color:var(--soft-purple);font-weight:500;">PDF</div>
+            </div>
+          </a>
+          <a href="https://www.treasure.ai/product/treasure-ai-studio" target="_blank" class="card" style="padding:14px 16px;text-decoration:none;color:inherit;display:flex;align-items:center;gap:10px;">
+            <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,var(--sky-blue),var(--soft-purple));display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <div>
+              <h4 style="font-size:13px;margin:0;">Product Webpage</h4>
+              <div style="font-size:10px;color:var(--soft-purple);font-weight:500;">treasure.ai</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section class="closing" id="closing">
+  <div class="section-inner" style="text-align:center;">
+    <div class="reveal section-title" style="font-size:clamp(38px,5vw,64px);">Thank you</div>
+    <div class="reveal" style="margin-top:16px;font-size:clamp(18px,2.5vw,24px);color:#555;">Let's build something</div>
+    <div class="reveal" style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:clamp(24px,3.5vw,36px);">
+      <img id="rotatingIcon" src="assets/closing-word-1.svg" alt="" style="width:36px;height:36px;transition:opacity 0.4s ease,transform 0.4s ease;">
+      <span id="rotatingWord" style="font-weight:800;display:inline-block;transition:opacity 0.4s ease,transform 0.4s ease;"></span>
+    </div>
+    <div class="reveal" style="margin-top:12px;font-size:16px;color:var(--soft-purple);font-weight:600;">treasure.ai</div>
+  </div>
+</section>
+
+<script>
+// ===== Section tracking =====
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-section');
+const topBarSection = document.getElementById('topBarSection');
+const topBar = document.getElementById('topBar');
+const keyHint = document.getElementById('keyHint');
+
+let currentSectionIndex = 0;
+let hideHintTimer;
+
+const slideToNav = {};
+navItems.forEach(item => {
+  const owned = item.dataset.sections ? item.dataset.sections.split(',') : [item.dataset.section];
+  owned.forEach(id => { slideToNav[id] = item; });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      currentSectionIndex = Array.from(sections).indexOf(entry.target);
+
+      navItems.forEach(n => n.classList.remove('active'));
+      const activeNav = slideToNav[id];
+      if (activeNav) activeNav.classList.add('active');
+
+      const label = activeNav ? activeNav.querySelector('.nav-label') : null;
+      topBarSection.textContent = label ? label.textContent : '';
+
+      topBar.style.transform = id === 'hero' ? 'translateY(-100%)' : 'translateY(0)';
+    }
+  });
+}, { threshold: 0.35 });
+
+sections.forEach(s => observer.observe(s));
+
+navItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const target = document.getElementById(item.dataset.section);
+    if (target) target.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+
+document.addEventListener('keydown', (e) => {
+  if (!keyHint.classList.contains('hidden')) {
+    clearTimeout(hideHintTimer);
+    hideHintTimer = setTimeout(() => keyHint.classList.add('hidden'), 3000);
+  }
+
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+    e.preventDefault();
+    if (currentSectionIndex < sections.length - 1) {
+      sections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+    e.preventDefault();
+    if (currentSectionIndex > 0) {
+      sections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
+  const num = parseInt(e.key);
+  if (num >= 1 && num <= 9 && num <= sections.length) {
+    e.preventDefault();
+    sections[num - 1].scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+hideHintTimer = setTimeout(() => keyHint.classList.add('hidden'), 8000);
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+// ===== BRAND LINE GEM =====
+document.querySelectorAll('section:not(.hero):not(.closing):not(.divider)').forEach(sec => {
+  const gem = document.createElement('img');
+  gem.src = 'assets/treasure-gem.png';
+  gem.className = 'brand-gem';
+  gem.alt = '';
+  sec.appendChild(gem);
+});
+
+// Match demo planner screenshot height to left column
+function matchDemoPlanHeight() {
+  const right = document.getElementById('demoPlanRight');
+  if (!right) return;
+  const left = right.previousElementSibling;
+  if (!left) return;
+  const imgWrap = document.getElementById('demoPlanImgWrap');
+  if (!imgWrap) return;
+  imgWrap.style.maxHeight = 'none';
+  const leftH = left.offsetHeight;
+  const rightContent = right.offsetHeight - imgWrap.offsetHeight;
+  imgWrap.style.maxHeight = Math.max(200, leftH - rightContent) + 'px';
+}
+window.addEventListener('load', matchDemoPlanHeight);
+window.addEventListener('resize', matchDemoPlanHeight);
+
+// ===== ROTATING WORDS =====
+const closingWords = [
+  { word: 'Amazing', color: '#847BF2', icon: 'assets/closing-word-1.svg' },
+  { word: 'Revolutionary', color: '#C466D4', icon: 'assets/closing-word-2.svg' },
+  { word: 'Brilliant', color: '#80B3FA', icon: 'assets/closing-word-3.svg' },
+  { word: 'Exceptional', color: '#FDB893', icon: 'assets/closing-word-4.svg' },
+];
+let closingWordIdx = 0;
+const rotEl = document.getElementById('rotatingWord');
+const rotIcon = document.getElementById('rotatingIcon');
+if (rotEl && rotIcon) {
+  rotEl.textContent = closingWords[0].word;
+  rotEl.style.color = closingWords[0].color;
+  setInterval(() => {
+    rotEl.style.opacity = '0';
+    rotEl.style.transform = 'translateY(8px)';
+    rotIcon.style.opacity = '0';
+    rotIcon.style.transform = 'translateY(8px)';
+    setTimeout(() => {
+      closingWordIdx = (closingWordIdx + 1) % closingWords.length;
+      rotEl.textContent = closingWords[closingWordIdx].word;
+      rotEl.style.color = closingWords[closingWordIdx].color;
+      rotIcon.src = closingWords[closingWordIdx].icon;
+      rotEl.style.opacity = '1';
+      rotEl.style.transform = 'translateY(0)';
+      rotIcon.style.opacity = '1';
+      rotIcon.style.transform = 'translateY(0)';
+    }, 400);
+  }, 2500);
+}
+</script>
+</body>
+</html>
