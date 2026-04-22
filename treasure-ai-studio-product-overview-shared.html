@@ -413,9 +413,14 @@ if(sessionStorage.getItem('pw_ok_se')==='1') document.getElementById('pwGate').s
     <span class="nav-label">Value & Use Cases</span>
     <div class="nav-dot"></div>
   </div>
-  <div class="nav-section" data-section="demo-flow" data-sections="demo-flow,pricing,credit-boost">
+  <div class="nav-section" data-section="compete-div" data-sections="compete-div,model-tiers,landscape,comp-intel">
     <span class="nav-num">3</span>
-    <span class="nav-label">Demo & Pricing</span>
+    <span class="nav-label">Market Positioning</span>
+    <div class="nav-dot"></div>
+  </div>
+  <div class="nav-section" data-section="pricing-div" data-sections="pricing-div,pricing,credit-boost">
+    <span class="nav-num">4</span>
+    <span class="nav-label">Pricing</span>
     <div class="nav-dot"></div>
   </div>
   <div class="nav-section" data-section="closing">
@@ -451,7 +456,8 @@ if(sessionStorage.getItem('pw_ok_se')==='1') document.getElementById('pwGate').s
     <div style="margin-top:16px;">
       <div class="reveal ag" onclick="document.getElementById('overview-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">1</span><span class="ag-l">Product Overview</span></div>
       <div class="reveal reveal-delay-1 ag" onclick="document.getElementById('value-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">2</span><span class="ag-l">Value Propositions & Use Cases</span></div>
-      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('demo-flow').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Live Demo & Pricing</span></div>
+      <div class="reveal reveal-delay-2 ag" onclick="document.getElementById('compete-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">3</span><span class="ag-l">Market Positioning</span></div>
+      <div class="reveal reveal-delay-3 ag" onclick="document.getElementById('pricing-div').scrollIntoView({behavior:'smooth'})"><span class="ag-n">4</span><span class="ag-l">Pricing & Credit Model</span></div>
     </div>
   </div>
 </section>
@@ -985,9 +991,9 @@ if(sessionStorage.getItem('pw_ok_se')==='1') document.getElementById('pwGate').s
           <div>&#10003; Custom agent deployments</div>
         </div>
         <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#888;line-height:1.7;background:rgba(180,120,120,.06);">
-          <div style="text-decoration:line-through;">&#10003; Campaign analysis</div>
-          <div style="text-decoration:line-through;">&#10003; Audience insights</div>
-          <div style="font-size:11px;color:#dc2626;margin-top:4px;">→ Available in Studio</div>
+          <div>&#10003; Campaign analysis</div>
+          <div>&#10003; Audience insights</div>
+          <div style="font-size:11px;color:var(--soft-purple);margin-top:4px;">→ Available in Studio</div>
         </div>
         <div style="padding:14px 16px;border-left:1px solid #eee;font-size:12px;color:#555;line-height:1.7;background:rgba(195,145,55,.06);">
           <div>&#10003; Early-access skill testing</div>
@@ -1295,17 +1301,181 @@ if(sessionStorage.getItem('pw_ok_se')==='1') document.getElementById('pwGate').s
   </div>
 </section>
 
-<!-- DEMO FLOW -->
-<section id="demo-flow" style="background:linear-gradient(135deg,#e8dff5,#f5e0f0 20%,#fce8d5 40%,#f0d0e8 60%,#d0e0f8 80%,#e0f0ff);text-align:center;align-items:center;">
-  <div class="section-inner" style="text-align:center;">
-    <div class="reveal section-label">Live Demo</div>
-    <h2 class="reveal section-title" style="font-size:clamp(38px,5vw,64px);">Treasure AI Studio</h2>
-    <p class="reveal section-subtitle" style="margin:12px auto 0;text-align:center;">Let's see it in action</p>
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 3: COMPETITIVE                     -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-lavender" id="compete-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Market Positioning</div>
+    <div class="reveal section-subtitle">What makes the Treasure AI approach different</div>
+  </div>
+</section>
+
+<!-- WHY OUR AI STACK IS AHEAD -->
+<section id="model-tiers" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">Technology Edge</div>
+    <h2 class="reveal section-title">The Treasure AI Approach</h2>
+    <p class="reveal section-subtitle">Built on the Anthropic Agent framework — the same architecture powering the most advanced AI products in the market. We ship what others announce.</p>
+    <div class="reveal" style="margin-top:28px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card" style="padding:20px;border-left:4px solid var(--soft-purple);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Built on Claude Agent SDK</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Not a wrapper around an API. Treasure AI Studio is built directly on Anthropic's Claude Agent SDK — the same framework used by the most advanced AI applications in the world. This gives us native access to the latest model capabilities the moment they ship.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--orchid);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Architected for Extensibility</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Studio's agent architecture is designed to support open standards like Model Context Protocol (MCP) for AI-to-tool communication. Third-party integration capabilities are on the FYQ1 roadmap — when they ship, the foundation is already in place. No retrofit required.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--sky-blue);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Speed to Innovate</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">When Anthropic releases a new model, we adopt it in days — not quarters. Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5 are all available at GA. Competitors are still running last-generation models while we ship the frontier.</p>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card" style="padding:20px;border-left:4px solid #22c55e;">
+          <h4 style="font-size:14px;margin-bottom:6px;">Agent Architecture, Not Prompt Chaining</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Our 5-stage Agent Orchestrator (Context → Decompose → Tools → Execute → Assemble) is a true agentic system. It plans, selects tools, executes in a server-side sandbox, and assembles results — not a chain of prompts pretending to be intelligent.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--coral);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Skills: Modular Intelligence That Compounds</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">30 pre-built skills ship at GA — and customers can build custom skills in natural language to meet their unique workflows and use cases. Each new skill makes the entire platform smarter. Competitors embed AI helpers; we ship an extensible intelligence layer.</p>
+        </div>
+        <div class="card" style="padding:20px;border-left:4px solid var(--indigo);">
+          <h4 style="font-size:14px;margin-bottom:6px;">Three Model Tiers, One Click</h4>
+          <p style="font-size:12.5px;color:#555;line-height:1.6;">Users switch between Fast (Haiku 4.5), Balanced (Sonnet 4.6), and Pro (Opus 4.6) mid-conversation. Match AI power to the task — quick lookups don't need frontier reasoning, deep analysis doesn't need to wait for a cheaper model.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:16px;">
+      <div style="padding:18px 22px;background:rgba(132,123,242,.03);border-radius:14px;border:1px solid rgba(132,123,242,.12);">
+        <div style="font-size:14px;font-weight:700;color:var(--soft-purple);margin-bottom:8px;">Why This Matters</div>
+        <div style="font-size:13px;color:#555;line-height:1.7;"><strong>"We're built on the same frontier AI that powers the best products in the world, and we adopt new capabilities faster than anyone in the CDP space."</strong> You get the best AI available — not a proprietary model that may fall behind. That's not a tech detail — it's a trust signal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITIVE LANDSCAPE -->
+<section id="landscape" style="background:#F7F8FB;">
+  <div class="section-inner">
+    <div class="reveal section-label">Market Context</div>
+    <h2 class="reveal section-title">How We Compare</h2>
+    <div class="reveal" style="margin-top:20px;">
+      <table class="dt">
+        <thead>
+          <tr>
+            <th style="width:18%;">Competitor</th>
+            <th style="width:22%;">What They Offer</th>
+            <th style="width:30%;">Where We Win</th>
+            <th style="width:30%;">Watch Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:700;">Generic AI Chatbots</td>
+            <td>ChatGPT, Gemini, Copilot — general-purpose AI assistants</td>
+            <td style="color:#16a34a;"><strong>Data connectivity.</strong> They can't access customer data. We're natively integrated with the CDP.</td>
+            <td style="color:#888;">Prospects may think "we already have AI" — reframe around data-connected AI vs. general chat.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;"><a href="https://ai-nativecustomerdatatools.lovable.app/" target="_blank" style="color:inherit;text-decoration:underline;text-underline-offset:3px;">CDP-native AI</a></td>
+            <td>Salesforce Einstein, Adobe Sensei — AI baked into their CDPs</td>
+            <td style="color:#16a34a;"><strong>Flexibility.</strong> Not locked to one vendor's data model. Works across Snowflake, DBX, BQ + TD.</td>
+            <td style="color:#888;">Deep integration with their own ecosystem can be compelling for single-vendor shops.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">BI + AI Assistants</td>
+            <td>ThoughtSpot, Tableau Pulse, Power BI Copilot</td>
+            <td style="color:#16a34a;"><strong>Action-oriented.</strong> We don't just visualize — we build segments, trigger activations, and execute workflows.</td>
+            <td style="color:#888;">Strong existing footprint in analytics teams. Position as complementary, not replacement.</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;">Point AI Solutions</td>
+            <td>Jasper, Writer, Copy.ai — marketing content AI</td>
+            <td style="color:#16a34a;"><strong>Data-driven.</strong> We personalize with real customer data, not generic templates.</td>
+            <td style="color:#888;">Content generation is a specific use case — we're broader but they may be deeper for copy.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENTIATORS -->
+<!-- COMPETITIVE INTELLIGENCE -->
+<section id="comp-intel" style="background:#fff;">
+  <div class="section-inner">
+    <div class="reveal section-label">What Sets Us Apart</div>
+    <h2 class="reveal section-title">Market Differentiation</h2>
+    <p class="reveal section-subtitle">Data from competitive research analysis — updated April 20, 2026</p>
+
+    <!-- Stats row -->
+    <div class="reveal" style="margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;">
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--soft-purple);">
+        <div style="font-size:28px;font-weight:800;color:var(--soft-purple);">1 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Has Desktop + Web + Mobile + CLI (full quad)</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid #16a34a;">
+        <div style="font-size:28px;font-weight:800;color:#16a34a;">1 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Has a native mobile app (GA)</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--sky-blue);">
+        <div style="font-size:28px;font-weight:800;color:var(--sky-blue);">2 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Have an AI-native CLI for CDP ops</div>
+      </div>
+      <div class="card" style="text-align:center;padding:22px 16px;border-top:3px solid var(--coral);">
+        <div style="font-size:28px;font-weight:800;color:var(--coral);">2 of 12</div>
+        <div style="font-size:11px;color:#888;margin-top:6px;">Have any voice AI capability</div>
+      </div>
+    </div>
+
+    <!-- Why We Win -->
+    <div class="reveal reveal-delay-1" style="margin-top:24px;">
+      <div class="col-hdr">Why We Win — April 2026</div>
+      <div class="g3" style="margin-top:10px;gap:14px;">
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Only GA AI-native CDP desktop</h4>
+          <p style="font-size:11.5px;">Snowflake SnowWork is research preview only. Adobe/Salesforce are web console features only. TD Studio is web + Mac + iOS, GA today.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Marketing vertical depth</h4>
+          <p style="font-size:11.5px;">Snowflake and Databricks are horizontal. TD is purpose-built for segments, journeys, activations — semantics competitors lack.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Vendor-neutral, MCP-native from day 1</h4>
+          <p style="font-size:11.5px;">Salesforce adopted MCP at TDX Apr 2026 — catching up. TD Studio built on MCP natively. Not locked to one cloud ecosystem.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">6x credit efficiency at GA</h4>
+          <p style="font-size:11.5px;">600 Studio conversations per AI Credit (up from 100). No seat licensing. Existing Foundry customers start immediately — no new procurement.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">TRUSTe Responsible AI Certified</h4>
+          <p style="font-size:11.5px;">First enterprise CDP with TrustArc TRUSTe RAI Certification. Key differentiator for compliance-driven enterprise buyers.</p>
+        </div>
+        <div class="card" style="padding:16px;border-left:3px solid var(--soft-purple);">
+          <h4 style="font-size:13px;margin-bottom:4px;">Full Desktop + Web + Mobile + CLI quad</h4>
+          <p style="font-size:11.5px;">No competitor ships all four surfaces. Treasure Code (CLI) + Studio (Web + Mac + iOS). Voice is the next frontier.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 
+
+
+<!-- ══════════════════════════════════════════ -->
+<!-- SECTION 4: PRICING                          -->
+<!-- ══════════════════════════════════════════ -->
+<section class="divider bg-sunset" id="pricing-div">
+  <div class="section-inner">
+    <div class="reveal section-title">Pricing & Credit Model</div>
+    <div class="reveal section-subtitle">How Treasure AI Studio is priced and how credits work</div>
+  </div>
+</section>
 
 <!-- PRICING -->
 <section id="pricing" style="background:#fff;">
